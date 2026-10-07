@@ -1,5 +1,6 @@
 {
   "name": "study-cards",
+  "homepage": "https://alexbrilevski.github.io/study-cards",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +11,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/react-redux": "^7.1.34",
+    "axios": "^1.20.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-redux": "^9.3.0",
+    "react-router-dom": "^7.18.4",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
