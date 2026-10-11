@@ -42,4 +42,4 @@ const rootReducer = combineReducers({
   passwordRecovery: passwordRecoveryReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducer, undefined, applyMiddleware(thunk));
