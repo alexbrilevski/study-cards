@@ -25,5 +25,5 @@ export const someActionAC = () => ({ type: 'registration/SOME-ACTION' }) as cons
 
 // Thunk creators
 export const someThunkTC = (): RootThunk => (dispatch) => {
-  dispatch(someActionAC);
+  dispatch(someActionAC());
 };

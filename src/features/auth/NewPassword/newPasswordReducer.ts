@@ -25,5 +25,5 @@ export const someActionAC = () => ({ type: 'newPassword/SOME-ACTION' }) as const
 
 // Thunk creators
 export const someThunkTC = (): RootThunk => (dispatch) => {
-  dispatch(someActionAC);
+  dispatch(someActionAC());
 };
