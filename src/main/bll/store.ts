@@ -1,5 +1,5 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import { thunk, type ThunkAction } from 'redux-thunk';
+import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux';
+import { thunk, type ThunkAction, type ThunkDispatch } from 'redux-thunk';
 import { loginReducer, type LoginActions } from '../../features/auth/Login/loginReducer';
 import {
   newPasswordReducer,
@@ -17,6 +17,7 @@ import {
   profileReducer,
   type ProfileActions,
 } from '../../features/profile/profileReducer';
+import { useDispatch, useSelector, type TypedUseSelectorHook } from 'react-redux';
 
 export type RootState = ReturnType<typeof rootReducer>;
 
@@ -33,6 +34,11 @@ export type RootThunk<ReturnType = void> = ThunkAction<
   unknown,
   RootAction
 >;
+export type AppDispatch = ThunkDispatch<RootState, unknown, RootAction>;
+
+// Custom useDispatch and useSelector: Use throughout app instead of plain useDispatch and useSelector
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const rootReducer = combineReducers({
   registration: registrationReducer,
