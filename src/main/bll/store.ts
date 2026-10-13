@@ -9,7 +9,7 @@ import { appReducer, type AppActions } from './appReducer';
 import {
   registrationReducer,
   type RegistrationActions,
-} from '../../features/auth/Registration/registrationReducer';
+} from '../../features/auth/Registration/bll/registrationReducer';
 import { loginReducer, type LoginActions } from '../../features/auth/Login/loginReducer';
 import {
   newPasswordReducer,

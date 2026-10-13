@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Login } from '../../../features/auth/Login/Login';
-import { Registration } from '../../../features/auth/Registration/Registration';
+import { Registration } from '../../../features/auth/Registration/ui/Registration';
 import { Profile } from '../../../features/profile/Profile';
 import { PasswordRecovery } from '../../../features/auth/PasswordRecovery/PasswordRecovery';
 import { NewPassword } from '../../../features/auth/NewPassword/NewPassword';
