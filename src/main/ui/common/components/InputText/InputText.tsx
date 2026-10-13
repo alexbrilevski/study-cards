@@ -36,7 +36,7 @@ const InputText: FC<InputTextProps> = ({
   return (
     <>
       <input
-        type={'text'}
+        type={type}
         onChange={onChangeCallback}
         onKeyDown={onKeyPressCallback}
         className={finalInputClassName}
