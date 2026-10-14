@@ -42,26 +42,23 @@ export const LoginForm = () => {
       dispatch(login(values.email, values.password, values.rememberMe));
     },
   });
+
   return (
-    <>
-      <form onSubmit={formik.handleSubmit}>
-        <span>Email</span>
-        <InputText type="email" {...formik.getFieldProps('email')} />
-        {formik.errors.email && formik.touched.email && <div>{formik.errors.email}</div>}
-        <span>Password</span>
-        <InputText type="password" {...formik.getFieldProps('password')} />
-        {formik.errors.password && formik.touched.password && (
-          <div>{formik.errors.password}</div>
-        )}
-        <label>
-          <Checkbox {...formik.getFieldProps('rememberMe')} />
-          Remember me
-        </label>
-        <NavLink to={PATH.PASSWORD_RECOVERY}>Forget password?</NavLink>
-        <Button type={'submit'}>Login</Button>
-      </form>
-      <span>Don’t have an account?</span>
-      <NavLink to={PATH.REGISTRATION}>Sign Up</NavLink>
-    </>
+    <form onSubmit={formik.handleSubmit}>
+      <span>Email</span>
+      <InputText type="email" {...formik.getFieldProps('email')} />
+      {formik.errors.email && formik.touched.email && <div>{formik.errors.email}</div>}
+      <span>Password</span>
+      <InputText type="password" {...formik.getFieldProps('password')} />
+      {formik.errors.password && formik.touched.password && (
+        <div>{formik.errors.password}</div>
+      )}
+      <label>
+        <Checkbox {...formik.getFieldProps('rememberMe')} />
+        Remember me
+      </label>
+      <NavLink to={PATH.PASSWORD_RECOVERY}>Forget password?</NavLink>
+      <Button type={'submit'}>Login</Button>
+    </form>
   );
 };
