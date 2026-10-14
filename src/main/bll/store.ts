@@ -10,7 +10,10 @@ import {
   registrationReducer,
   type RegistrationActions,
 } from '../../features/auth/Registration/bll/registrationReducer';
-import { loginReducer, type LoginActions } from '../../features/auth/Login/loginReducer';
+import {
+  loginReducer,
+  type LoginActions,
+} from '../../features/auth/Login/bll/loginReducer';
 import {
   newPasswordReducer,
   type NewPasswordActions,

@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Login } from '../../../features/auth/Login/Login';
+import { Login } from '../../../features/auth/Login/ui/Login';
 import { Registration } from '../../../features/auth/Registration/ui/Registration';
 import { Profile } from '../../../features/profile/Profile';
 import { PasswordRecovery } from '../../../features/auth/PasswordRecovery/PasswordRecovery';
