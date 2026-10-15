@@ -1,0 +1,39 @@
+.mainBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 99vh;
+  text-align: center;
+}
+
+.speedingWheel {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  border: 4px solid rgb(7, 1, 1);
+  border-left-color: transparent;
+  border-radius: 50%;
+  border-right-color: transparent;
+  animation: spinner 800ms infinite linear;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.3);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}

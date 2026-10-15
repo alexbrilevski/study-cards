@@ -1,11 +1,11 @@
 import { baseInstance } from '../../../../main/dal/instance';
 
-type APIResponse = {
+type APIResponseData = {
   error: string,
 };
 
 export const registrationAPI = {
   register(email: string, password: string) {
-    return baseInstance.post<APIResponse>('auth/register', { email, password });
+    return baseInstance.post<APIResponseData>('auth/register', { email, password });
   },
 };
