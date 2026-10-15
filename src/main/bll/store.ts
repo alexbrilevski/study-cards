@@ -21,7 +21,7 @@ import {
 import {
   passwordRecoveryReducer,
   type PasswordRecoveryActions,
-} from '../../features/auth/PasswordRecovery/passwordRecoveryReducer';
+} from '../../features/auth/PasswordRecovery/bll/passwordRecoveryReducer';
 import {
   profileReducer,
   type ProfileActions,

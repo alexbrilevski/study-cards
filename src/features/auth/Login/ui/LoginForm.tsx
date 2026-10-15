@@ -57,7 +57,7 @@ export const LoginForm = () => {
         <Checkbox {...formik.getFieldProps('rememberMe')} />
         Remember me
       </label>
-      <NavLink to={PATH.PASSWORD_RECOVERY}>Forget password?</NavLink>
+      <NavLink to={PATH.PASSWORD_RECOVERY}>Forgot password</NavLink>
       <Button type={'submit'}>Login</Button>
     </form>
   );
