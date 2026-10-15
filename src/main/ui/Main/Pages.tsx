@@ -4,7 +4,7 @@ import { Registration } from '../../../features/auth/Registration/ui/Registratio
 import { Profile } from '../../../features/profile/Profile';
 import { PasswordRecovery } from '../../../features/auth/PasswordRecovery/ui/PasswordRecovery';
 import { PasswordRecoveryConfirm } from '../../../features/auth/PasswordRecovery/ui/PasswordRecoveryConfirm';
-import { NewPassword } from '../../../features/auth/NewPassword/NewPassword';
+import { NewPassword } from '../../../features/auth/PasswordRecovery/ui/NewPassword';
 import { Test } from '../../../features/test/Test';
 import { Error404 } from './pages/Error404/Error404';
 
@@ -28,7 +28,7 @@ export const Pages = () => {
       <Route path={PATH.PROFILE} element={<Profile />} />
       <Route path={PATH.PASSWORD_RECOVERY} element={<PasswordRecovery />} />
       <Route path={PATH.PASSWORD_RECOVERY_CONFIRM} element={<PasswordRecoveryConfirm />} />
-      <Route path={PATH.CREATE_NEW_PASSWORD} element={<NewPassword />} />
+      <Route path={PATH.CREATE_NEW_PASSWORD + "/:token"} element={<NewPassword />} />
       <Route path={PATH.TEST} element={<Test />} />
       <Route path={PATH.ERROR404} element={<Error404 />} />
       <Route path={"*"} element={<Navigate to={PATH.ERROR404} />} />

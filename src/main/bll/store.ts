@@ -17,7 +17,7 @@ import {
 import {
   newPasswordReducer,
   type NewPasswordActions,
-} from '../../features/auth/NewPassword/newPasswordReducer';
+} from '../../features/auth/PasswordRecovery/bll/newPasswordReducer';
 import {
   passwordRecoveryReducer,
   type PasswordRecoveryActions,
