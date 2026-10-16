@@ -15,7 +15,6 @@ export const NewPassword = () => {
 
   const handleSetNewPassword = () => {
     if (token) {
-      console.log(token);
       dispatch(setNewPassword(password, token));
     }
   };

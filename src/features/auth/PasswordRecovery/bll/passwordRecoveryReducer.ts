@@ -53,8 +53,7 @@ export const recoverPassword =
     dispatch(setAppIsLoading(true));
     passwordAPI
       .forgot(email, message)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         dispatch(setRecoveryEmailAC(email));
       })
       .catch((e) => {

@@ -48,8 +48,7 @@ export const setNewPassword =
     dispatch(setAppIsLoading(true));
     passwordAPI
       .setNewPassword(password, token)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         dispatch(setNewPasswordSuccessAC(true));
       })
       .catch((e) => {

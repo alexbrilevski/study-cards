@@ -53,7 +53,6 @@ export const login =
     loginAPI
       .login(email, password, rememberMe)
       .then((data) => {
-        console.log(data);
         dispatch(loginAC(data));
       })
       .catch((e) => {

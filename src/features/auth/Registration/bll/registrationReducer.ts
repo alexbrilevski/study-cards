@@ -56,8 +56,7 @@ export const register =
     dispatch(setAppIsLoading(true));
     registrationAPI
       .register(email, password)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         dispatch(setSuccess(true));
       })
       .catch((error) => {
