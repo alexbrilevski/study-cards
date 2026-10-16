@@ -1,6 +1,7 @@
 import type { RootThunk } from '../../../../main/bll/store';
 import { setAppIsLoading } from '../../../../main/bll/appReducer';
 import { loginAPI } from '../dal/loginApi';
+import type { User } from '../../../../main/types/user';
 
 // Types
 type InitState = typeof initState;
@@ -39,7 +40,7 @@ export const loginReducer = (
 };
 
 // Action creators
-export const loginAC = (payload: InitState) =>
+export const loginAC = (payload: User) =>
   ({ type: 'login/LOGIN', payload }) as const;
 export const setErrorMessageAC = (payload: string) =>
   ({ type: 'login/SET_ERROR_MESSAGE', payload }) as const;
@@ -51,9 +52,9 @@ export const login =
     dispatch(setAppIsLoading(true));
     loginAPI
       .login(email, password, rememberMe)
-      .then((response) => {
-        console.log(response);
-        dispatch(loginAC(response));
+      .then((data) => {
+        console.log(data);
+        dispatch(loginAC(data));
       })
       .catch((e) => {
         const error = e.response
