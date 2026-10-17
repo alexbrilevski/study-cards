@@ -40,8 +40,7 @@ export const loginReducer = (
 };
 
 // Action creators
-export const loginAC = (payload: User) =>
-  ({ type: 'login/LOGIN', payload }) as const;
+export const loginAC = (payload: User) => ({ type: 'login/LOGIN', payload }) as const;
 export const setErrorMessageAC = (payload: string) =>
   ({ type: 'login/SET_ERROR_MESSAGE', payload }) as const;
 
@@ -66,3 +65,21 @@ export const login =
         dispatch(setAppIsLoading(false));
       });
   };
+export const logout = (): RootThunk => (dispatch) => {
+  dispatch(setAppIsLoading(true));
+  loginAPI
+    .logout()
+    .then(() => {
+      dispatch(loginAC(initState));
+    })
+    .catch((e) => {
+      const error = e.response
+        ? e.response.data.error
+        : e.message + ', more details in the console';
+
+      dispatch(setErrorMessageAC(error));
+    })
+    .finally(() => {
+      dispatch(setAppIsLoading(false));
+    });
+};
