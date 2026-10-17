@@ -28,8 +28,11 @@ export const Registration = () => {
     <div>
       <p>Study Cards</p>
       <h1>Sign Up</h1>
+      <span>Email</span>
       <InputText type={'email'} value={email} onChangeText={setEmail} />
+      <span>Password</span>
       <InputText type={'password'} value={password} onChangeText={setPassword} />
+      <span>Confirm password</span>
       <InputText type={'password'} value={passwordConfirm} onChangeText={setPasswordConfirm} />
       <Button>Cancel</Button>
       <Button onClick={handleRegister} disabled={isLoading}>Register</Button>

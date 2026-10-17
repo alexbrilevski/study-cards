@@ -27,9 +27,9 @@ export const NewPassword = () => {
     <div>
       <p>Study Cards</p>
       <h1>Create new password</h1>
+      <span>Password</span>
       <InputText
         type={'password'}
-        placeholder={'Password'}
         value={password}
         onChangeText={setPassword}
       />

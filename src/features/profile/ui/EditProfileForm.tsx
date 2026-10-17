@@ -45,7 +45,9 @@ export const EditProfileForm: FC<EditProfileFormProps> = ({ user }) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
+      <span>Name</span>
       <InputText {...formik.getFieldProps('name')} />
+      <span>Email</span>
       <InputText {...formik.getFieldProps('email')} readOnly />
       <div>
         <Button type={'button'} onClick={handleCancelEdit}>

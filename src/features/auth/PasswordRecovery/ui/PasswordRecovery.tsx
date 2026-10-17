@@ -28,9 +28,9 @@ export const PasswordRecovery = () => {
     <div>
       <p>Study Cards</p>
       <h1>Forgot your password?</h1>
+      <span>Email</span>
       <InputText
         type={'email'}
-        placeholder={'Email'}
         value={email}
         onChangeText={setEmail}
       />
