@@ -25,7 +25,7 @@ import {
 import {
   profileReducer,
   type ProfileActions,
-} from '../../features/profile/profileReducer';
+} from '../../features/profile/bll/profileReducer';
 
 export type RootState = ReturnType<typeof rootReducer>;
 

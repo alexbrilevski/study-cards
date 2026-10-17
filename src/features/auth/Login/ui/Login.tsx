@@ -1,8 +1,16 @@
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
+import { useAppSelector } from '../../../../main/bll/store';
+import type { User } from '../../../../main/types/user';
 import { PATH } from '../../../../main/ui/Main/Pages';
 import { LoginForm } from './LoginForm';
 
 export const Login = () => {
+  const authUser = useAppSelector<User | null>(state => state.profile.user);
+
+  if (authUser) {
+    return <Navigate to={PATH.PROFILE}/>
+  }
+
   return (
     <div>
       <p>Study Cards</p>

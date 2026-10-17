@@ -1,5 +1,6 @@
 import type { RootThunk } from './store';
 import { appAPI } from '../dal/appApi';
+import { setAuthUser } from '../../features/profile/bll/profileReducer';
 
 // Constants
 const ACTION_TYPES = {
@@ -47,7 +48,7 @@ export const initializeApp = (): RootThunk => (dispatch) => {
   appAPI
     .me()
     .then((data) => {
-      console.log(data);
+      dispatch(setAuthUser(data));
     })
     .catch((error) => {
       const errorMessage = error.response

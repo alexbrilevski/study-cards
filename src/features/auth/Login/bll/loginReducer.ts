@@ -1,36 +1,21 @@
 import type { RootThunk } from '../../../../main/bll/store';
 import { setAppIsLoading } from '../../../../main/bll/appReducer';
 import { loginAPI } from '../dal/loginApi';
-import type { User } from '../../../../main/types/user';
+import { setAuthUser } from '../../../profile/bll/profileReducer';
 
 // Types
 type InitState = typeof initState;
-type LoginAction = ReturnType<typeof loginAC> | ReturnType<typeof setErrorMessageAC>;
+type LoginAction = ReturnType<typeof setErrorMessageAC>;
 export type LoginActions = LoginAction;
 
 // Initial state
-const initState = {
-  _id: '',
-  email: '',
-  name: '',
-  avatar: '',
-  publicCardPacksCount: 0,
-  created: 0,
-  updated: 0,
-  isAdmin: false,
-  verified: false,
-  rememberMe: false,
-  error: '',
-};
+const initState = {};
 
 export const loginReducer = (
   state: InitState = initState,
   action: LoginActions,
 ): InitState => {
   switch (action.type) {
-    case 'login/LOGIN': {
-      return { ...state, ...action.payload };
-    }
     case 'login/SET_ERROR_MESSAGE': {
       return { ...state, error: action.payload };
     }
@@ -40,7 +25,6 @@ export const loginReducer = (
 };
 
 // Action creators
-export const loginAC = (payload: User) => ({ type: 'login/LOGIN', payload }) as const;
 export const setErrorMessageAC = (payload: string) =>
   ({ type: 'login/SET_ERROR_MESSAGE', payload }) as const;
 
@@ -52,7 +36,7 @@ export const login =
     loginAPI
       .login(email, password, rememberMe)
       .then((data) => {
-        dispatch(loginAC(data));
+        dispatch(setAuthUser(data));
       })
       .catch((e) => {
         const error = e.response
@@ -70,7 +54,7 @@ export const logout = (): RootThunk => (dispatch) => {
   loginAPI
     .logout()
     .then(() => {
-      dispatch(loginAC(initState));
+      dispatch(setAuthUser(null));
     })
     .catch((e) => {
       const error = e.response
