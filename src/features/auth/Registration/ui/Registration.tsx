@@ -1,27 +1,40 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
-import { register } from '../bll/registrationReducer';
+import { register, setSuccess } from '../bll/registrationReducer';
 import { PATH } from '../../../../main/ui/Main/Pages';
 import InputText from '../../../../main/ui/common/components/InputText/InputText';
 import Button from '../../../../main/ui/common/components/Button/Button';
 
 export const Registration = () => {
-  const isLoading = useAppSelector<boolean>(state => state.app.isLoading);
-  const success = useAppSelector<boolean>(state => state.registration.success);
-  const error = useAppSelector<null | string>(state => state.registration.error);
+  const isLoading = useAppSelector<boolean>((state) => state.app.isLoading);
+  const success = useAppSelector<boolean>((state) => state.registration.success);
   const dispatch = useAppDispatch();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [passwordConfirm, setPasswordConfirm] = useState<string>('');
+  const [passwordConfirmError, setPasswordConfirmError] = useState<string | null>(null);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setSuccess(false));
+    };
+  }, []);
 
   const handleRegister = useCallback(() => {
+    if (password !== passwordConfirm) {
+      setPasswordConfirmError('Passwords don\'t match');
+      return;
+    }
+    if (passwordConfirmError) {
+      setPasswordConfirmError(null);
+    }
     dispatch(register({ email, password, passwordConfirm }));
-  }, [email, password, passwordConfirm]);
+  }, [email, password, passwordConfirm, passwordConfirmError]);
 
   if (success) {
-    return <Navigate to={PATH.LOGIN} />
+    return <Navigate to={PATH.LOGIN} />;
   }
 
   return (
@@ -33,10 +46,16 @@ export const Registration = () => {
       <span>Password</span>
       <InputText type={'password'} value={password} onChangeText={setPassword} />
       <span>Confirm password</span>
-      <InputText type={'password'} value={passwordConfirm} onChangeText={setPasswordConfirm} />
+      <InputText
+        type={'password'}
+        value={passwordConfirm}
+        onChangeText={setPasswordConfirm}
+      />
       <Button>Cancel</Button>
-      <Button onClick={handleRegister} disabled={isLoading}>Register</Button>
-      {error && <p>{error}</p>}
+      <Button onClick={handleRegister} disabled={isLoading}>
+        Register
+      </Button>
+      {passwordConfirmError && <p>{passwordConfirmError}</p>}
     </div>
   );
 };
