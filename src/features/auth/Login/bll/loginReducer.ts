@@ -1,23 +1,31 @@
 import type { RootThunk } from '../../../../main/bll/store';
-import { setAppIsLoading } from '../../../../main/bll/appReducer';
+import { setAppIsLoading, setAppNotification } from '../../../../main/bll/appReducer';
 import { loginAPI } from '../dal/loginApi';
 import { setAuthUser } from '../../../profile/bll/profileReducer';
+import { handleApiRequestError } from '../../../../utils/notificationUtils';
+
+// Constants
+const ACTION_TYPES = {
+  SET_ERROR_MESSAGE: 'login/SET-ERROR-MESSAGE',
+} as const;
 
 // Types
 type InitState = typeof initState;
-type LoginAction = ReturnType<typeof setErrorMessageAC>;
+type LoginAction = ReturnType<typeof setErrorMessage>;
 export type LoginActions = LoginAction;
 
 // Initial state
-const initState = {};
+const initState = {
+  error: null as string | null,
+};
 
 export const loginReducer = (
   state: InitState = initState,
   action: LoginActions,
 ): InitState => {
   switch (action.type) {
-    case 'login/SET_ERROR_MESSAGE': {
-      return { ...state, error: action.payload };
+    case ACTION_TYPES.SET_ERROR_MESSAGE: {
+      return { ...state, ...action.payload };
     }
     default:
       return state;
@@ -25,8 +33,8 @@ export const loginReducer = (
 };
 
 // Action creators
-export const setErrorMessageAC = (payload: string) =>
-  ({ type: 'login/SET_ERROR_MESSAGE', payload }) as const;
+export const setErrorMessage = (error: string | null) =>
+  ({ type: ACTION_TYPES.SET_ERROR_MESSAGE, payload: { error } }) as const;
 
 // Thunk creators
 export const login =
@@ -38,12 +46,11 @@ export const login =
       .then((data) => {
         dispatch(setAuthUser(data));
       })
-      .catch((e) => {
-        const error = e.response
-          ? e.response.data.error
-          : e.message + ', more details in the console';
-
-        dispatch(setErrorMessageAC(error));
+      .catch((error) => {
+        const errorMessage = error.response
+          ? error.response.data.error
+          : error.message + ', more details in the console';
+        dispatch(setErrorMessage(errorMessage));
       })
       .finally(() => {
         dispatch(setAppIsLoading(false));
@@ -55,13 +62,15 @@ export const logout = (): RootThunk => (dispatch) => {
     .logout()
     .then(() => {
       dispatch(setAuthUser(null));
+      dispatch(
+        setAppNotification({
+          type: 'success',
+          message: 'You logged out successfully',
+        }),
+      );
     })
-    .catch((e) => {
-      const error = e.response
-        ? e.response.data.error
-        : e.message + ', more details in the console';
-
-      dispatch(setErrorMessageAC(error));
+    .catch((error) => {
+      handleApiRequestError(error, dispatch);
     })
     .finally(() => {
       dispatch(setAppIsLoading(false));

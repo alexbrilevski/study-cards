@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { NavLink } from 'react-router-dom';
-import { useAppDispatch } from '../../../../main/bll/store';
-import { login } from '../bll/loginReducer';
+import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
+import { login, setErrorMessage } from '../bll/loginReducer';
 import { PATH } from '../../../../main/ui/Main/Pages';
 import InputText from '../../../../main/ui/common/components/InputText/InputText';
 import Checkbox from '../../../../main/ui/common/components/Checkbox/Checkbox';
@@ -14,13 +15,22 @@ type LoginFormError = {
 };
 
 export const LoginForm = () => {
+  const error = useAppSelector<string | null>(state => state.login.error);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(setErrorMessage(null));
+    };
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
       rememberMe: false,
     },
+
     validate: (values) => {
       const errors: LoginFormError = {};
 
@@ -39,6 +49,9 @@ export const LoginForm = () => {
     },
 
     onSubmit: (values) => {
+      if (error) {
+        dispatch(setErrorMessage(null));
+      }
       dispatch(login(values.email, values.password, values.rememberMe));
     },
   });
@@ -59,6 +72,7 @@ export const LoginForm = () => {
       </label>
       <NavLink to={PATH.PASSWORD_RECOVERY}>Forgot password</NavLink>
       <Button type={'submit'}>Login</Button>
+      {error && <p>{error}</p>}
     </form>
   );
 };
