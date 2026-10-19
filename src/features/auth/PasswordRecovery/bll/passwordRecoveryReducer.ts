@@ -18,8 +18,8 @@ export type PasswordRecoveryActions =
 
 // Initial state
 const initState = {
-  error: null as string | null,
   recoveryEmail: '',
+  error: null as string | null,
 };
 
 export const passwordRecoveryReducer = (
@@ -58,11 +58,11 @@ export const recoverPassword =
       .then(() => {
         dispatch(setRecoveryEmail(email));
       })
-      .catch((e) => {
-        const error = e.response
-          ? e.response.data.error
-          : e.message + ', more details in the console';
-        dispatch(setPasswordRecoveryFormError(error));
+      .catch((error) => {
+        const errorMessage = error.response
+          ? error.response.data.error
+          : error.message + ', more details in the console';
+        dispatch(setPasswordRecoveryFormError(errorMessage));
       })
       .finally(() => {
         dispatch(setAppIsLoading(false));

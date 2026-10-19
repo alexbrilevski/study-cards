@@ -18,8 +18,8 @@ export type NewPasswordActions =
 
 // Initial state
 const initState = {
-  error: null as string | null,
   success: false,
+  error: null as string | null,
 };
 
 export const newPasswordReducer = (
@@ -51,11 +51,11 @@ export const setNewPassword =
       .then(() => {
         dispatch(setNewPasswordSuccess(true));
       })
-      .catch((e) => {
-        const error = e.response
-          ? e.response.data.error
-          : e.message + ', more details in the console';
-        dispatch(setNewPasswordFormError(error));
+      .catch((error) => {
+        const errorMessage = error.response
+          ? error.response.data.error
+          : error.message + ', more details in the console';
+        dispatch(setNewPasswordFormError(errorMessage));
       })
       .finally(() => {
         dispatch(setAppIsLoading(false));
