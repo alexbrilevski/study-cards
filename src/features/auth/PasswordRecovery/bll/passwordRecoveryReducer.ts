@@ -5,19 +5,20 @@ import { setAppIsLoading } from '../../../../main/bll/appReducer';
 // Constants
 const ACTION_TYPES = {
   SET_RECOVERY_EMAIL: 'passwordRecovery/SET-RECOVERY-EMAIL',
-  SET_ERROR: 'passwordRecovery/SET-ERROR',
+  SET_FORM_ERROR: 'passwordRecovery/SET-FORM-ERROR',
 } as const;
 
 // Types
 type InitState = typeof initState;
-type RedirectAction = ReturnType<typeof setRecoveryEmailAC>;
-type SetPasswordErrorAction = ReturnType<typeof setPasswordErrorAC>;
-export type PasswordRecoveryActions = RedirectAction | SetPasswordErrorAction;
+type SetRecoveryEmailAction = ReturnType<typeof setRecoveryEmail>;
+type SetPasswordRecoveryFormErrorAction = ReturnType<typeof setPasswordRecoveryFormError>;
+export type PasswordRecoveryActions =
+  | SetRecoveryEmailAction
+  | SetPasswordRecoveryFormErrorAction;
 
 // Initial state
 const initState = {
-  info: '',
-  error: null as null | string,
+  error: null as string | null,
   recoveryEmail: '',
 };
 
@@ -26,11 +27,9 @@ export const passwordRecoveryReducer = (
   action: PasswordRecoveryActions,
 ): InitState => {
   switch (action.type) {
-    case ACTION_TYPES.SET_RECOVERY_EMAIL: {
-      return { ...state, recoveryEmail: action.recoveryEmail };
-    }
-    case ACTION_TYPES.SET_ERROR: {
-      return { ...state, error: action.value };
+    case ACTION_TYPES.SET_RECOVERY_EMAIL:
+    case ACTION_TYPES.SET_FORM_ERROR: {
+      return { ...state, ...action.payload };
     }
     default:
       return state;
@@ -38,29 +37,32 @@ export const passwordRecoveryReducer = (
 };
 
 // Action creators
-export const setRecoveryEmailAC = (recoveryEmail: string) =>
+export const setRecoveryEmail = (recoveryEmail: string) =>
   ({
     type: ACTION_TYPES.SET_RECOVERY_EMAIL,
-    recoveryEmail,
+    payload: { recoveryEmail },
   }) as const;
-export const setPasswordErrorAC = (value: null | string) =>
-  ({ type: ACTION_TYPES.SET_ERROR, value }) as const;
+export const setPasswordRecoveryFormError = (error: string | null) =>
+  ({ type: ACTION_TYPES.SET_FORM_ERROR, payload: { error } }) as const;
 
 // Thunk creators
 export const recoverPassword =
-  (email: string, message: string): RootThunk =>
+  (email: string): RootThunk =>
   (dispatch) => {
+    const baseURL = import.meta.env.VITE_BASE_URL;
+    const message = `<div>Password recovery link:<a href='${baseURL}/#/create-new-password/$token$'>link</a></div>`;
+
     dispatch(setAppIsLoading(true));
     passwordAPI
       .forgot(email, message)
       .then(() => {
-        dispatch(setRecoveryEmailAC(email));
+        dispatch(setRecoveryEmail(email));
       })
       .catch((e) => {
         const error = e.response
           ? e.response.data.error
           : e.message + ', more details in the console';
-        dispatch(setPasswordErrorAC(error));
+        dispatch(setPasswordRecoveryFormError(error));
       })
       .finally(() => {
         dispatch(setAppIsLoading(false));
