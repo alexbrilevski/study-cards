@@ -6,12 +6,12 @@ import { handleApiRequestError } from '../../../../utils/notificationUtils';
 
 // Constants
 const ACTION_TYPES = {
-  SET_ERROR_MESSAGE: 'login/SET-ERROR-MESSAGE',
+  SET_FORM_ERROR: 'login/SET-FORM-ERROR',
 } as const;
 
 // Types
 type InitState = typeof initState;
-type LoginAction = ReturnType<typeof setErrorMessage>;
+type LoginAction = ReturnType<typeof setLoginFormError>;
 export type LoginActions = LoginAction;
 
 // Initial state
@@ -24,7 +24,7 @@ export const loginReducer = (
   action: LoginActions,
 ): InitState => {
   switch (action.type) {
-    case ACTION_TYPES.SET_ERROR_MESSAGE: {
+    case ACTION_TYPES.SET_FORM_ERROR: {
       return { ...state, ...action.payload };
     }
     default:
@@ -33,8 +33,8 @@ export const loginReducer = (
 };
 
 // Action creators
-export const setErrorMessage = (error: string | null) =>
-  ({ type: ACTION_TYPES.SET_ERROR_MESSAGE, payload: { error } }) as const;
+export const setLoginFormError = (error: string | null) =>
+  ({ type: ACTION_TYPES.SET_FORM_ERROR, payload: { error } }) as const;
 
 // Thunk creators
 export const login =
@@ -50,7 +50,7 @@ export const login =
         const errorMessage = error.response
           ? error.response.data.error
           : error.message + ', more details in the console';
-        dispatch(setErrorMessage(errorMessage));
+        dispatch(setLoginFormError(errorMessage));
       })
       .finally(() => {
         dispatch(setAppIsLoading(false));

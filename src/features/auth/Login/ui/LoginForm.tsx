@@ -2,27 +2,27 @@ import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
-import { login, setErrorMessage } from '../bll/loginReducer';
+import { login, setLoginFormError } from '../bll/loginReducer';
 import { PATH } from '../../../../main/ui/Main/Pages';
 import InputText from '../../../../main/ui/common/components/InputText/InputText';
 import Checkbox from '../../../../main/ui/common/components/Checkbox/Checkbox';
 import Button from '../../../../main/ui/common/components/Button/Button';
 
-type LoginFormError = {
+type LoginFormErrors = {
   email?: string;
   password?: string;
   rememberMe?: boolean;
 };
 
 export const LoginForm = () => {
-  const error = useAppSelector<string | null>(state => state.login.error);
+  const error = useAppSelector<string | null>((state) => state.login.error);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     return () => {
-      dispatch(setErrorMessage(null));
+      if (error) dispatch(setLoginFormError(null));
     };
-  }, []);
+  }, [error]);
 
   const formik = useFormik({
     initialValues: {
@@ -32,7 +32,7 @@ export const LoginForm = () => {
     },
 
     validate: (values) => {
-      const errors: LoginFormError = {};
+      const errors: LoginFormErrors = {};
 
       if (!values.email) {
         errors.email = 'Required';
@@ -49,9 +49,7 @@ export const LoginForm = () => {
     },
 
     onSubmit: (values) => {
-      if (error) {
-        dispatch(setErrorMessage(null));
-      }
+      if (error) dispatch(setLoginFormError(null));
       dispatch(login(values.email, values.password, values.rememberMe));
     },
   });
