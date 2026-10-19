@@ -24,7 +24,7 @@ export const LoginForm = () => {
     };
   }, [error]);
 
-  const formik = useFormik({
+  const loginForm = useFormik({
     initialValues: {
       email: '',
       password: '',
@@ -55,17 +55,19 @@ export const LoginForm = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={loginForm.handleSubmit}>
       <span>Email</span>
-      <InputText type="email" {...formik.getFieldProps('email')} />
-      {formik.errors.email && formik.touched.email && <div>{formik.errors.email}</div>}
+      <InputText type="email" {...loginForm.getFieldProps('email')} />
+      {loginForm.errors.email && loginForm.touched.email && (
+        <div>{loginForm.errors.email}</div>
+      )}
       <span>Password</span>
-      <InputText type="password" {...formik.getFieldProps('password')} />
-      {formik.errors.password && formik.touched.password && (
-        <div>{formik.errors.password}</div>
+      <InputText type="password" {...loginForm.getFieldProps('password')} />
+      {loginForm.errors.password && loginForm.touched.password && (
+        <div>{loginForm.errors.password}</div>
       )}
       <label>
-        <Checkbox {...formik.getFieldProps('rememberMe')} />
+        <Checkbox {...loginForm.getFieldProps('rememberMe')} />
         Remember me
       </label>
       <NavLink to={PATH.PASSWORD_RECOVERY}>Forgot password</NavLink>

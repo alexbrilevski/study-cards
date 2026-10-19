@@ -11,8 +11,8 @@ const ACTION_TYPES = {
 
 // Types
 type InitState = typeof initState;
-type LoginAction = ReturnType<typeof setLoginFormError>;
-export type LoginActions = LoginAction;
+type SetLoginFormErrorAction = ReturnType<typeof setLoginFormError>;
+export type LoginActions = SetLoginFormErrorAction;
 
 // Initial state
 const initState = {
