@@ -1,6 +1,7 @@
 import { Navigate, NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../../../main/bll/store';
 import { PATH } from '../../../../main/ui/Main/Pages';
+import { Logo } from '../../../../main/ui/common/components/Logo/Logo';
 import { PasswordRecoveryForm } from './PasswordRecoveryForm';
 
 export const PasswordRecovery = () => {
@@ -14,7 +15,7 @@ export const PasswordRecovery = () => {
 
   return (
     <div>
-      <p>Study Cards</p>
+      <Logo />
       <h1>Forgot your password?</h1>
       <PasswordRecoveryForm />
       <p>Did you remember your password?</p>

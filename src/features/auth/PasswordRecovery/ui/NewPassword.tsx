@@ -3,6 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
 import { setNewPassword, setNewPasswordFormError } from '../bll/newPasswordReducer';
 import { PATH } from '../../../../main/ui/Main/Pages';
+import { Logo } from '../../../../main/ui/common/components/Logo/Logo';
 import InputText from '../../../../main/ui/common/components/InputText/InputText';
 import Button from '../../../../main/ui/common/components/Button/Button';
 
@@ -33,7 +34,7 @@ export const NewPassword = () => {
 
   return (
     <div>
-      <p>Study Cards</p>
+      <Logo />
       <h1>Create new password</h1>
       <form onSubmit={handleSetNewPassword}>
         <span>Password</span>

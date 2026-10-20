@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
 import { setRegistrationSuccess } from '../bll/registrationReducer';
 import { PATH } from '../../../../main/ui/Main/Pages';
+import { Logo } from '../../../../main/ui/common/components/Logo/Logo';
 import { RegistrationFrom } from './RegistrationFrom';
 
 export const Registration = () => {
@@ -21,7 +22,7 @@ export const Registration = () => {
 
   return (
     <div>
-      <p>Study Cards</p>
+      <Logo />
       <h1>Sign Up</h1>
       <RegistrationFrom />
     </div>
