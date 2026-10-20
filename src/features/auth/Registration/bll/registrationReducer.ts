@@ -2,11 +2,19 @@ import { setAppIsLoading } from '../../../../main/bll/appReducer';
 import type { RootThunk } from '../../../../main/bll/store';
 import { registrationAPI } from '../dal/registrationApi';
 
+// Constants
+const ACTION_TYPES = {
+  SET_SUCCESS: 'registration/SET-SUCCESS',
+  SET_FORM_ERROR: 'registration/SET-FORM-ERROR',
+} as const;
+
 // Types
 type InitState = typeof initState;
-type SetSuccessAction = ReturnType<typeof setSuccess>;
-type SetErrorAction = ReturnType<typeof setError>;
-export type RegistrationActions = SetSuccessAction | SetErrorAction;
+type SetRegistrationSuccessAction = ReturnType<typeof setRegistrationSuccess>;
+type SetRegistrationFormErrorAction = ReturnType<typeof setRegistrationFormError>;
+export type RegistrationActions =
+  | SetRegistrationSuccessAction
+  | SetRegistrationFormErrorAction;
 export type SignUpFormData = {
   email: string;
   password: string;
@@ -15,9 +23,8 @@ export type SignUpFormData = {
 
 // Initial state
 const initState = {
-  isLoading: false,
   success: false,
-  error: null as null | string,
+  error: null as string | null,
 };
 
 export const registrationReducer = (
@@ -25,22 +32,19 @@ export const registrationReducer = (
   action: RegistrationActions,
 ): InitState => {
   switch (action.type) {
-    case 'registration/SET-SUCCESS':
-      return { ...state, success: action.value };
-    case 'registration/SET-ERROR':
-      return { ...state, error: action.value };
+    case ACTION_TYPES.SET_SUCCESS:
+    case ACTION_TYPES.SET_FORM_ERROR:
+      return { ...state, ...action.payload };
     default:
       return state;
   }
 };
 
 // Action creators
-export const setIsLoading = (value: boolean) =>
-  ({ type: 'registration/SET-IS-LOADING', value }) as const;
-export const setSuccess = (value: boolean) =>
-  ({ type: 'registration/SET-SUCCESS', value }) as const;
-export const setError = (value: null | string) =>
-  ({ type: 'registration/SET-ERROR', value }) as const;
+export const setRegistrationSuccess = (success: boolean) =>
+  ({ type: ACTION_TYPES.SET_SUCCESS, payload: { success } }) as const;
+export const setRegistrationFormError = (error: string | null) =>
+  ({ type: ACTION_TYPES.SET_FORM_ERROR, payload: { error } }) as const;
 
 // Thunk creators
 export const register =
@@ -49,7 +53,7 @@ export const register =
     const { email, password, passwordConfirm } = formData;
 
     if (password !== passwordConfirm) {
-      dispatch(setError("Passwords don't match!"));
+      dispatch(setRegistrationFormError("Passwords don't match"));
       return;
     }
 
@@ -57,10 +61,13 @@ export const register =
     registrationAPI
       .register(email, password)
       .then(() => {
-        dispatch(setSuccess(true));
+        dispatch(setRegistrationSuccess(true));
       })
       .catch((error) => {
-        dispatch(setError(error.response.data.error));
+        const errorMessage = error.response
+          ? error.response.data.error
+          : error.message + ', more details in the console';
+        dispatch(setRegistrationFormError(errorMessage));
       })
       .finally(() => {
         dispatch(setAppIsLoading(false));

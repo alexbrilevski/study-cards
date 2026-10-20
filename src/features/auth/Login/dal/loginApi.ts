@@ -7,4 +7,7 @@ export const loginAPI = {
       .post<User>('auth/login', { email, password, rememberMe })
       .then((res) => res.data);
   },
+  logout() {
+    return baseInstance.delete<{ info: string }>('auth/me').then((res) => res.data);
+  },
 };

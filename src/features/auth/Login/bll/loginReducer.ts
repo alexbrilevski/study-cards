@@ -1,26 +1,22 @@
 import type { RootThunk } from '../../../../main/bll/store';
-import { setAppIsLoading } from '../../../../main/bll/appReducer';
+import { setAppIsLoading, setAppNotification } from '../../../../main/bll/appReducer';
 import { loginAPI } from '../dal/loginApi';
-import type { User } from '../../../../main/types/user';
+import { setAuthUser } from '../../../profile/bll/profileReducer';
+import { handleApiRequestError } from '../../../../utils/notificationUtils';
+
+// Constants
+const ACTION_TYPES = {
+  SET_FORM_ERROR: 'login/SET-FORM-ERROR',
+} as const;
 
 // Types
 type InitState = typeof initState;
-type LoginAction = ReturnType<typeof loginAC> | ReturnType<typeof setErrorMessageAC>;
-export type LoginActions = LoginAction;
+type SetLoginFormErrorAction = ReturnType<typeof setLoginFormError>;
+export type LoginActions = SetLoginFormErrorAction;
 
 // Initial state
 const initState = {
-  _id: '',
-  email: '',
-  name: '',
-  avatar: '',
-  publicCardPacksCount: 0,
-  created: 0,
-  updated: 0,
-  isAdmin: false,
-  verified: false,
-  rememberMe: false,
-  error: '',
+  error: null as string | null,
 };
 
 export const loginReducer = (
@@ -28,11 +24,8 @@ export const loginReducer = (
   action: LoginActions,
 ): InitState => {
   switch (action.type) {
-    case 'login/LOGIN': {
+    case ACTION_TYPES.SET_FORM_ERROR: {
       return { ...state, ...action.payload };
-    }
-    case 'login/SET_ERROR_MESSAGE': {
-      return { ...state, error: action.payload };
     }
     default:
       return state;
@@ -40,10 +33,8 @@ export const loginReducer = (
 };
 
 // Action creators
-export const loginAC = (payload: User) =>
-  ({ type: 'login/LOGIN', payload }) as const;
-export const setErrorMessageAC = (payload: string) =>
-  ({ type: 'login/SET_ERROR_MESSAGE', payload }) as const;
+export const setLoginFormError = (error: string | null) =>
+  ({ type: ACTION_TYPES.SET_FORM_ERROR, payload: { error } }) as const;
 
 // Thunk creators
 export const login =
@@ -53,16 +44,35 @@ export const login =
     loginAPI
       .login(email, password, rememberMe)
       .then((data) => {
-        dispatch(loginAC(data));
+        dispatch(setAuthUser(data));
       })
-      .catch((e) => {
-        const error = e.response
-          ? e.response.data.error
-          : e.message + ', more details in the console';
-
-        dispatch(setErrorMessageAC(error));
+      .catch((error) => {
+        const errorMessage = error.response
+          ? error.response.data.error
+          : error.message + ', more details in the console';
+        dispatch(setLoginFormError(errorMessage));
       })
       .finally(() => {
         dispatch(setAppIsLoading(false));
       });
   };
+export const logout = (): RootThunk => (dispatch) => {
+  dispatch(setAppIsLoading(true));
+  loginAPI
+    .logout()
+    .then(() => {
+      dispatch(setAuthUser(null));
+      dispatch(
+        setAppNotification({
+          type: 'success',
+          message: 'You logged out successfully',
+        }),
+      );
+    })
+    .catch((error) => {
+      handleApiRequestError(error, dispatch);
+    })
+    .finally(() => {
+      dispatch(setAppIsLoading(false));
+    });
+};

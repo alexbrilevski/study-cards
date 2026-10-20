@@ -1,7 +1,9 @@
-import { useAppSelector } from "../../../../main/bll/store";
+import { useAppSelector } from '../../../../main/bll/store';
 
 export const PasswordRecoveryConfirm = () => {
-  const recoveryEmail = useAppSelector<string>(state => state.passwordRecovery.recoveryEmail)
+  const recoveryEmail = useAppSelector<string>(
+    (state) => state.passwordRecovery.recoveryEmail,
+  );
 
   return (
     <div>
