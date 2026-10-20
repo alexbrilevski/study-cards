@@ -2,7 +2,7 @@
   "name": "study-cards",
   "homepage": "https://alexbrilevski.github.io/study-cards",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^1.20.0",
+    "formik": "^2.4.9",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-redux": "^9.3.0",
