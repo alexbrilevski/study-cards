@@ -66,10 +66,9 @@ export const LoginForm = () => {
       {loginForm.errors.password && loginForm.touched.password && (
         <div>{loginForm.errors.password}</div>
       )}
-      <label>
-        <Checkbox {...loginForm.getFieldProps('rememberMe')} />
+      <Checkbox {...loginForm.getFieldProps('rememberMe')}>
         Remember me
-      </label>
+      </Checkbox>
       <NavLink to={PATH.PASSWORD_RECOVERY}>Forgot password</NavLink>
       <Button type={'submit'}>Login</Button>
       {error && <p>{error}</p>}
