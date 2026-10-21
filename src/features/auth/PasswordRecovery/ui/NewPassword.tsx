@@ -33,7 +33,7 @@ export const NewPassword = () => {
   }
 
   return (
-    <div>
+    <div className='form-container'>
       <Logo />
       <h1>Create new password</h1>
       <form onSubmit={handleSetNewPassword}>

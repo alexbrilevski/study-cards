@@ -14,7 +14,7 @@ export const PasswordRecovery = () => {
   }
 
   return (
-    <div>
+    <div className='form-container'>
       <Logo />
       <h1>Forgot your password?</h1>
       <PasswordRecoveryForm />

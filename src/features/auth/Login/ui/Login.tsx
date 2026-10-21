@@ -13,7 +13,7 @@ export const Login = () => {
   }
 
   return (
-    <div>
+    <div className='form-container'>
       <Logo />
       <h1>Sign In</h1>
       <LoginForm />

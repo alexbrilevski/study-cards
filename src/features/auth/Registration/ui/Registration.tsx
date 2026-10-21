@@ -21,7 +21,7 @@ export const Registration = () => {
   }
 
   return (
-    <div>
+    <div className='form-container'>
       <Logo />
       <h1>Sign Up</h1>
       <RegistrationFrom />
