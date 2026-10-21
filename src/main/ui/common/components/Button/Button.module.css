@@ -1,14 +1,28 @@
 .default {
-  margin: 5px 10px;
-  padding: 5px 15px;
-  background: orange;
+  margin: 6px 12px;
+  padding: 6px 46px;
+  background: #21268f;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
+  box-shadow:
+    0 4px 18px rgba(33, 38, 143, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  color: #ececf9;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.1s ease;
   cursor: pointer;
 }
 
 .default:hover {
-  background: darkorange;
+  background: #191d69;
+}
+
+.default:active {
+  transform: translateY(1.6px);
 }
 
 .default:disabled {
