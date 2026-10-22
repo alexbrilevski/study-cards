@@ -1,14 +1,14 @@
 .app {
   height: 100%;
   min-height: 100vh;
-  padding: 6px 12px;
+  padding: var(--indent-xs) var(--indent-s);
   background: linear-gradient(180deg, #e6d4de 0%, #9890c7 100%);
 }
 
 .form-container {
   width: 416px;
-  margin: 48px auto;
-  padding: 24px 36px 36px;
+  margin: var(--indent-xl) auto;
+  padding: var(--indent-base) var(--indent-l) var(--indent-l);
   background: #f9f9fe;
   border-radius: 8px;
 }
@@ -17,25 +17,21 @@
 .form-footer {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--indent-base);
   text-align: center;
 }
 
 .form-header {
-  margin-bottom: 36px;
-}
-
-.form-header h1 {
-  margin-top: 24px;
+  margin-bottom: var(--indent-l);
 }
 
 .form-footer {
-  margin-top: 36px;
+  margin-top: var(--indent-l);
 }
 
 .form-footer p {
   color: #878787;
-  line-height: 24px;
+  line-height: var(--indent-base);
   font-weight: 600;
 }
 

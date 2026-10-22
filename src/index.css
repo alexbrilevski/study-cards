@@ -1,17 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+  --text-color: #000;
+  --border-radius-default: 8px;
+  --indent-xl: 48px;
+  --indent-l: 36px;
+  --indent-base: 24px;
+  --indent-s: 12px;
+  --indent-xs: 6px;
+  --accent-color: #366eff;
+
+  --font-primary: 'Montserrat', sans-serif;
+
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--text-color);
+  letter-spacing: 0.18px;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   border: 0;
   outline: none;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  color: #000;
 }
 
 header,
@@ -36,14 +48,14 @@ h1 {
 }
 
 h2 {
-  margin: 32px 0;
+  margin: var(--indent-l) 0;
   font-size: 22px;
   font-weight: 600;
   line-height: 33px;
 }
 
 h4 {
-  margin: 20px 0;
+  margin: var(--indent-base) 0;
   font-size: 18px;
   font-weight: 600;
 }
