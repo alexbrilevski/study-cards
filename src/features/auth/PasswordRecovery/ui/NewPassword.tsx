@@ -34,8 +34,10 @@ export const NewPassword = () => {
 
   return (
     <div className='form-container'>
-      <Logo />
-      <h1>Create new password</h1>
+      <div className='form-header'>
+        <Logo />
+        <h1>Create new password</h1>
+      </div>
       <form onSubmit={handleSetNewPassword}>
         <span>Password</span>
         <InputText type={'password'} value={password} onChangeText={setPassword} />

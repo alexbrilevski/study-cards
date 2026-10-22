@@ -14,11 +14,15 @@ export const Login = () => {
 
   return (
     <div className='form-container'>
-      <Logo />
-      <h1>Sign In</h1>
+      <div className='form-header'>
+        <Logo />
+        <h1>Sign In</h1>
+      </div>
       <LoginForm />
-      <p>Don’t have an account?</p>
-      <NavLink to={PATH.REGISTRATION}>Sign Up</NavLink>
+      <div className='form-footer'>
+        <p>Don’t have an account?</p>
+        <NavLink to={PATH.REGISTRATION}>Sign Up</NavLink>
+      </div>
     </div>
   );
 };

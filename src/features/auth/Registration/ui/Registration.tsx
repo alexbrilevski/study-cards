@@ -22,9 +22,12 @@ export const Registration = () => {
 
   return (
     <div className='form-container'>
-      <Logo />
-      <h1>Sign Up</h1>
+      <div className='form-header'>
+        <Logo />
+        <h1>Sign Up</h1>
+      </div>
       <RegistrationFrom />
+      <div className='form-footer'></div>
     </div>
   );
 };

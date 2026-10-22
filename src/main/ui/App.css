@@ -13,6 +13,44 @@
   border-radius: 8px;
 }
 
+.form-header,
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.form-header {
+  margin-bottom: 36px;
+}
+
+.form-header h1 {
+  margin-top: 24px;
+}
+
+.form-footer {
+  margin-top: 36px;
+}
+
+.form-footer p {
+  color: #878787;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.form-footer a {
+  font-size: 18px;
+  color: #21268f;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.1s ease;
+}
+
+.form-footer a:hover {
+  color: #191d69;
+}
+
 @media (max-width: 413px) {
   .form-container {
     width: 100%;

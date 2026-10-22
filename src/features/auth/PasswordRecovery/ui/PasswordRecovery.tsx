@@ -15,11 +15,15 @@ export const PasswordRecovery = () => {
 
   return (
     <div className='form-container'>
-      <Logo />
-      <h1>Forgot your password?</h1>
+      <div className='form-header'>
+        <Logo />
+        <h1>Forgot your password?</h1>
+      </div>
       <PasswordRecoveryForm />
-      <p>Did you remember your password?</p>
-      <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
+      <div className='form-footer'>
+        <p>Did you remember your password?</p>
+        <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
+      </div>
     </div>
   );
 };

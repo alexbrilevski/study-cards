@@ -8,8 +8,10 @@ export const PasswordRecoveryConfirm = () => {
 
   return (
     <div className='form-container'>
-      <Logo />
-      <h1>Check Email</h1>
+      <div className='form-header'>
+        <Logo />
+        <h1>Check Email</h1>
+      </div>
       <p>{`We've sent an Email with instructions to ${recoveryEmail}`}</p>
     </div>
   );
