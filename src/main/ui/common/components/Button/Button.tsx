@@ -13,7 +13,7 @@ const Button: FC<ButtonProps> = ({
   children,
   ...restProps
 }) => {
-  const finalClassName = `${s['default']} ${red ? s['red'] : ''} ${className ? className : ''}`;
+  const finalClassName = `${s['button']} ${red ? s['red'] : ''} ${className ? className : ''}`;
 
   return (
     <button
