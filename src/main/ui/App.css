@@ -2,22 +2,23 @@
   height: 100%;
   min-height: 100vh;
   padding: var(--indent-xs) var(--indent-s);
-  background: linear-gradient(180deg, #e6d4de 0%, #9890c7 100%);
+  background: var(--default-bg);
 }
 
 .form-container {
   width: 416px;
   margin: var(--indent-xl) auto;
   padding: var(--indent-base) var(--indent-l) var(--indent-l);
-  background: #f9f9fe;
-  border-radius: 8px;
+  background: var(--card-bg);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
 }
 
 .form-header,
 .form-footer {
   display: flex;
   flex-direction: column;
-  gap: var(--indent-base);
+  gap: var(--indent-s);
   text-align: center;
 }
 
@@ -25,26 +26,27 @@
   margin-bottom: var(--indent-l);
 }
 
+.form-header p {
+  font-size: var(--font-size-l);
+}
+
 .form-footer {
   margin-top: var(--indent-l);
 }
 
 .form-footer p {
-  color: #878787;
-  line-height: var(--indent-base);
-  font-weight: 600;
+  font-weight: var(--font-weight-caption);
 }
 
 .form-footer a {
-  font-size: 18px;
-  color: #21268f;
-  font-weight: 600;
+  font-weight: var(--font-weight-caption);
+  color: var(--accent-color);
   text-decoration: underline;
   transition: color 0.1s ease;
 }
 
 .form-footer a:hover {
-  color: #191d69;
+  color: var(--accent-color-dark);
 }
 
 @media (max-width: 413px) {
