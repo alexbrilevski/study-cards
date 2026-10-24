@@ -21,7 +21,7 @@ export const PasswordRecovery = () => {
       </div>
       <PasswordRecoveryForm />
       <div className='form-footer'>
-        <p>Did you remember your password?</p>
+        <p className='form-note'>Did you remember your password?</p>
         <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
       </div>
     </div>

@@ -17,7 +17,7 @@ export const NewPassword = () => {
   useEffect(() => {
     return () => {
       if (error) dispatch(setNewPasswordFormError(null));
-    }
+    };
   }, [error]);
 
   const handleSetNewPassword = (e: SubmitEvent<HTMLFormElement>) => {
@@ -41,8 +41,12 @@ export const NewPassword = () => {
       <form onSubmit={handleSetNewPassword}>
         <span>Password</span>
         <InputText type={'password'} value={password} onChangeText={setPassword} />
-        <p>Create new password and we will send you further instructions to email</p>
-        <Button>Create new password</Button>
+        <p className='form-note'>
+          Create new password and we will send you further instructions to email
+        </p>
+        <div className='form-actions'>
+          <Button>Create new password</Button>
+        </div>
         {error && <p>{error}</p>}
       </form>
     </div>

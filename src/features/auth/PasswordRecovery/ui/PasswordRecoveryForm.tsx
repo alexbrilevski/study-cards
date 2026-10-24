@@ -52,8 +52,12 @@ export const PasswordRecoveryForm = () => {
       {passwordRecoveryForm.errors.email && passwordRecoveryForm.touched.email && (
         <div>{passwordRecoveryForm.errors.email}</div>
       )}
-      <p>Enter your email address and we will send you further instructions</p>
-      <Button>Send Instructions</Button>
+      <p className='form-note'>
+        Enter your email address and we will send you further instructions
+      </p>
+      <div className='form-actions'>
+        <Button type={'submit'}>Send Instructions</Button>
+      </div>
       {error && <p>{error}</p>}
     </form>
   );
