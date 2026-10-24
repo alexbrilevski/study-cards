@@ -57,26 +57,38 @@ export const RegistrationFrom = () => {
 
   return (
     <form onSubmit={registrationForm.handleSubmit}>
-      <span>Email</span>
-      <InputText type={'email'} {...registrationForm.getFieldProps('email')} />
-      {registrationForm.errors.email && registrationForm.touched.email && (
-        <div>{registrationForm.errors.email}</div>
-      )}
-      <span>Password</span>
-      <InputText type={'password'} {...registrationForm.getFieldProps('password')} />
-      {registrationForm.errors.password && registrationForm.touched.password && (
-        <div>{registrationForm.errors.password}</div>
-      )}
-      <span>Confirm password</span>
+      <InputText
+        type={'email'}
+        label={'Email'}
+        error={
+          registrationForm.errors.email && registrationForm.touched.email
+            ? registrationForm.errors.email
+            : ''
+        }
+        {...registrationForm.getFieldProps('email')}
+      />
       <InputText
         type={'password'}
+        label={'Password'}
+        error={
+          registrationForm.errors.password && registrationForm.touched.password
+            ? registrationForm.errors.password
+            : ''
+        }
+        {...registrationForm.getFieldProps('password')}
+      />
+      <InputText
+        type={'password'}
+        label={'Confirm password'}
+        error={
+          registrationForm.errors.passwordConfirm &&
+          registrationForm.touched.passwordConfirm
+            ? registrationForm.errors.passwordConfirm
+            : ''
+        }
         {...registrationForm.getFieldProps('passwordConfirm')}
       />
-      {registrationForm.errors.passwordConfirm &&
-        registrationForm.touched.passwordConfirm && (
-          <div>{registrationForm.errors.passwordConfirm}</div>
-        )}
-      <div className='form-actions'>
+      <div className="form-actions">
         <Button disabled={isLoading} type={'submit'}>
           Register
         </Button>

@@ -19,16 +19,19 @@ type DefaultInputProps = DetailedHTMLProps<
 type InputTextProps = DefaultInputProps & {
   onChangeText?: (value: string) => void;
   onEnter?: () => void;
+  label?: string;
   error?: string;
   spanClassName?: string;
 };
 
 const InputText: FC<InputTextProps> = ({
   type,
+  name,
   onChange,
   onChangeText,
   onKeyDown,
   onEnter,
+  label,
   error,
   className,
   spanClassName,
@@ -38,7 +41,7 @@ const InputText: FC<InputTextProps> = ({
   const isPasswordInput = type === 'password';
 
   const handleChangeInputType = () => {
-    setInputType(prevType => {
+    setInputType((prevType) => {
       if (isPasswordInput) {
         return prevType === 'password' ? 'text' : 'password';
       } else {
@@ -57,27 +60,37 @@ const InputText: FC<InputTextProps> = ({
     onEnter && e.key === 'Enter' && onEnter();
   };
 
-  const finalSpanClassName = `${s['error']} ${spanClassName ? spanClassName : ''}`;
+  const inputId = `${name ? name : undefined}`;
   const finalInputClassName = `${s['input']} ${error ? s['input-error'] : ''} ${className ? className : ''}`;
+  const finalSpanClassName = `${s['error']} ${spanClassName ? spanClassName : ''}`;
 
   return (
     <div className={s['form-group']}>
-      <input
-        type={inputType}
-        onChange={onChangeCallback}
-        onKeyDown={onKeyPressCallback}
-        className={finalInputClassName}
-        {...restProps}
-      />
-      {error && <span className={finalSpanClassName}>{error}</span>}
-      {isPasswordInput && (
-        <button type={'button'} className={s['toggle-button']} onClick={handleChangeInputType}>
-          <IconSvg
-            src={inputType === 'password' ? eyeIcon : eyeSlashIcon}
-            size={24}
-          />
-        </button>
+      {label && inputId && (
+        <label htmlFor={inputId} className={s['label']}>
+          {label}
+        </label>
       )}
+      <div className={s['form-control']}>
+        <input
+          id={inputId}
+          type={inputType}
+          onChange={onChangeCallback}
+          onKeyDown={onKeyPressCallback}
+          className={finalInputClassName}
+          {...restProps}
+        />
+        {isPasswordInput && (
+          <button
+            type={'button'}
+            className={s['toggle-button']}
+            onClick={handleChangeInputType}
+          >
+            <IconSvg src={inputType === 'password' ? eyeIcon : eyeSlashIcon} size={24} />
+          </button>
+        )}
+      </div>
+      {error && <span className={finalSpanClassName}>{error}</span>}
     </div>
   );
 };
