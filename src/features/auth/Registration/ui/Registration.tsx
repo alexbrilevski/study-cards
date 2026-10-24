@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
 import { setRegistrationSuccess } from '../bll/registrationReducer';
 import { PATH } from '../../../../main/ui/Main/Pages';
@@ -27,7 +27,10 @@ export const Registration = () => {
         <h1>Sign Up</h1>
       </div>
       <RegistrationFrom />
-      <div className='form-footer'></div>
+      <div className='form-footer'>
+        <p>Already have an account?</p>
+        <NavLink to={PATH.LOGIN}>Sign In</NavLink>
+      </div>
     </div>
   );
 };

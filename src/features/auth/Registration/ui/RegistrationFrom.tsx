@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
+import { useFormik } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
 import { register, setRegistrationFormError } from '../bll/registrationReducer';
 import InputText from '../../../../main/ui/common/components/InputText/InputText';
 import Button from '../../../../main/ui/common/components/Button/Button';
-import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
-import { PATH } from '../../../../main/ui/Main/Pages';
 
 type RegistrationFormErrors = {
   email?: string;
@@ -17,7 +15,6 @@ export const RegistrationFrom = () => {
   const isLoading = useAppSelector<boolean>((state) => state.app.isLoading);
   const error = useAppSelector<string | null>((state) => state.registration.error);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     return () => {
@@ -58,10 +55,6 @@ export const RegistrationFrom = () => {
     },
   });
 
-  const handleCancelClick = () => {
-    navigate(PATH.LOGIN);
-  };
-
   return (
     <form onSubmit={registrationForm.handleSubmit}>
       <span>Email</span>
@@ -83,10 +76,11 @@ export const RegistrationFrom = () => {
         registrationForm.touched.passwordConfirm && (
           <div>{registrationForm.errors.passwordConfirm}</div>
         )}
-      <Button type={'button'} onClick={handleCancelClick} disabled={isLoading}>
-        Cancel
-      </Button>
-      <Button disabled={isLoading}>Register</Button>
+      <div className='form-actions'>
+        <Button disabled={isLoading} type={'submit'}>
+          Register
+        </Button>
+      </div>
       {error && <p>{error}</p>}
     </form>
   );
