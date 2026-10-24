@@ -6,6 +6,9 @@ import {
   type InputHTMLAttributes,
   type KeyboardEvent,
 } from 'react';
+import { IconSvg } from '../IconSvg/IconSvg';
+import eyeIcon from '../../../../../assets/icons/eye.svg';
+import eyeSlashIcon from '../../../../../assets/icons/eye-slash.svg';
 import s from './InputText.module.css';
 
 type DefaultInputProps = DetailedHTMLProps<
@@ -69,7 +72,10 @@ const InputText: FC<InputTextProps> = ({
       {error && <span className={finalSpanClassName}>{error}</span>}
       {isPasswordInput && (
         <button type={'button'} className={s['toggle-button']} onClick={handleChangeInputType}>
-          {inputType === 'password' ? 'Show' : 'Hide'}
+          <IconSvg
+            src={inputType === 'password' ? eyeIcon : eyeSlashIcon}
+            size={24}
+          />
         </button>
       )}
     </div>
