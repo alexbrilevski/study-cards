@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
+  --font-primary: 'Montserrat', sans-serif;
+
   --indent-base: 24px;
   --indent-xs: 6px;
   --indent-s: 12px;
   --indent-m: 16px;
   --indent-l: 36px;
   --indent-xl: 48px;
+
   --text-color: #000;
   --link-color: #000;
   --heading-color: #000;
@@ -22,22 +25,31 @@
   --font-size-xl: 22px;
   --font-size-xxl: 26px;
   --font-size-xxxl: 50px;
+
   --line-height-base: 1.6;
   --line-height-l: 24px;
   --line-height-xl: 36px;
+
   --font-weight-heading: 600;
   --line-height-heading: 1.2;
+
   --font-weight-caption: 600;
   --line-height-caption: 1.4;
 
+  --button-padding-x: 24px;
+  --button-padding-y: 8px;
   --button-bg: var(--accent-color);
   --button-bg-dark: var(--accent-color-dark);
   --button-border-color: var(--accent-color);
   --butoon-border-radius: 30px;
   --button-shadow:
     0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --button-font-family: var(--font-primary);
+  --button-font-size: 16px;
   --button-font-weight: 500;
+  --button-line-height: 20px;
   --button-text-color: #fff;
+  --button-letter-spacing: 0.01em;
 
   --default-bg: #f9f9fa;
   --header-bg: #fcfcfc;
@@ -46,8 +58,6 @@
   --card-bg: #fff;
   --card-border-radius: 8px;
   --card-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
-
-  --font-primary: 'Montserrat', sans-serif;
 
   font-family: var(--font-primary);
   font-size: var(--font-size-base);

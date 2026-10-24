@@ -1,13 +1,15 @@
 .button {
-  padding: var(--indent-xs) var(--indent-xl);
+  padding: var(--button-padding-y) var(--button-padding-x);
   background: var(--button-bg);
   border: none;
   border-radius: var(--butoon-border-radius);
   box-shadow: var(--button-shadow);
   color: var(--button-text-color);
-  font-size: var(--font-size-base);
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size);
   font-weight: var(--button-font-weight);
-  line-height: var(--line-height-base);
+  line-height: var(--button-line-height);
+  letter-spacing: var(--button-letter-spacing);
   text-align: center;
   transition: background-color 0.1s ease;
   cursor: pointer;
