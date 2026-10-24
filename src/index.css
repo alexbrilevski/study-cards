@@ -55,6 +55,8 @@
 
   --field-label-font-size: var(--font-size-base);
   --field-label-line-height: var(--line-height-l);
+  --field-label-active-font-size: var(--font-size-s);
+  --field-label-active-line-height: var(--line-height-m);
   --field-label-color: var(--caption-color);
   --text-field-padding-x: 0;
   --text-field-padding-y: var(--indent-xs);

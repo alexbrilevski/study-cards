@@ -3,6 +3,7 @@ import {
   type ChangeEvent,
   type DetailedHTMLProps,
   type FC,
+  type FocusEvent,
   type InputHTMLAttributes,
   type KeyboardEvent,
 } from 'react';
@@ -28,6 +29,8 @@ const InputText: FC<InputTextProps> = ({
   type,
   name,
   onChange,
+  onFocus,
+  onBlur,
   onChangeText,
   onKeyDown,
   onEnter,
@@ -38,6 +41,7 @@ const InputText: FC<InputTextProps> = ({
   ...restProps
 }) => {
   const [inputType, setInputType] = useState<string | undefined>(type);
+  const [isActive, setIsActive] = useState<boolean>(Boolean(restProps.value));
   const isPasswordInput = type === 'password';
 
   const handleChangeInputType = () => {
@@ -55,19 +59,29 @@ const InputText: FC<InputTextProps> = ({
     onChangeText && onChangeText(e.currentTarget.value);
   };
 
-  const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
+  const onKeyDownCallback = (e: KeyboardEvent<HTMLInputElement>) => {
     onKeyDown && onKeyDown(e);
     onEnter && e.key === 'Enter' && onEnter();
   };
 
+  const onFocusCallback = (e: FocusEvent<HTMLInputElement>) => {
+    onFocus && onFocus(e);
+    setIsActive(true);
+  };
+  const onBlurCallback = (e: FocusEvent<HTMLInputElement>) => {
+    onBlur && onBlur(e);
+    setIsActive(Boolean(restProps.value));
+  };
+
   const inputId = `${name ? name : undefined}`;
+  const finalLabelClassName = `${s['label']} ${isActive ? s['active'] : ''}`;
   const finalInputClassName = `${s['input']} ${error ? s['input-error'] : ''} ${className ? className : ''}`;
   const finalSpanClassName = `${s['error']} ${spanClassName ? spanClassName : ''}`;
 
   return (
     <div className={s['form-group']}>
       {label && inputId && (
-        <label htmlFor={inputId} className={s['label']}>
+        <label htmlFor={inputId} className={finalLabelClassName}>
           {label}
         </label>
       )}
@@ -76,7 +90,9 @@ const InputText: FC<InputTextProps> = ({
           id={inputId}
           type={inputType}
           onChange={onChangeCallback}
-          onKeyDown={onKeyPressCallback}
+          onKeyDown={onKeyDownCallback}
+          onFocus={onFocusCallback}
+          onBlur={onBlurCallback}
           className={finalInputClassName}
           {...restProps}
         />
