@@ -5,6 +5,14 @@
   background: var(--default-bg);
 }
 
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
 .form-container {
   width: 416px;
   margin: var(--indent-xl) auto;
@@ -28,6 +36,29 @@
 
 .form-header p {
   font-size: var(--font-size-l);
+}
+
+.form-image {
+  margin-bottom: var(--indent-base);
+}
+
+.form-image img {
+  display: block;
+  width: 108px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.form-note {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-l);
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--indent-s);
+  margin-top: var(--indent-xl);
 }
 
 .form-footer {

@@ -28,7 +28,7 @@ export const Registration = () => {
       </div>
       <RegistrationFrom />
       <div className='form-footer'>
-        <p>Already have an account?</p>
+        <p className='form-note'>Already have an account?</p>
         <NavLink to={PATH.LOGIN}>Sign In</NavLink>
       </div>
     </div>

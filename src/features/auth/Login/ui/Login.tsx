@@ -20,7 +20,7 @@ export const Login = () => {
       </div>
       <LoginForm />
       <div className='form-footer'>
-        <p>Don’t have an account?</p>
+        <p className='form-note'>Don’t have an account?</p>
         <NavLink to={PATH.REGISTRATION}>Sign Up</NavLink>
       </div>
     </div>
