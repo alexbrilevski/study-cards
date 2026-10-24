@@ -1,11 +1,12 @@
 .form-group {
   position: relative;
-  margin-bottom: var(--indent-l);
+  padding-top: var(--indent-s);
+  margin-bottom: var(--indent-base);
 }
 
 .label {
   position: absolute;
-  top: var(--text-field-padding-y);
+  top: calc(var(--text-field-padding-y) + var(--indent-s));
   left: var(--text-field-padding-x);
   font-size: var(--field-label-font-size);
   line-height: var(--field-label-line-height);
@@ -14,9 +15,7 @@
 }
 
 .label.active {
-  top: calc(
-    (var(--field-label-active-line-height) / 2 + var(--text-field-padding-y)) * -1
-  );
+  top: 0;
   font-size: var(--field-label-active-font-size);
   line-height: var(--field-label-active-line-height);
 }
