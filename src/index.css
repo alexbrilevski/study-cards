@@ -7,9 +7,10 @@
   --indent-m: 16px;
   --indent-l: 36px;
   --indent-xl: 48px;
-  --text-color: rgba(0, 0, 0, 0.5);
+  --text-color: #000;
   --link-color: #000;
   --heading-color: #000;
+  --caption-color: rgba(0, 0, 0, 0.5);
   --accent-color: #366eff;
   --accent-color-dark: #1e3c88;
 

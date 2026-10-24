@@ -52,6 +52,7 @@
 .form-note {
   font-size: var(--font-size-s);
   line-height: var(--line-height-l);
+  color: var(--caption-color);
 }
 
 .form-actions {
