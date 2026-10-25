@@ -38,6 +38,10 @@
   --font-weight-caption: 600;
   --line-height-caption: 1.4;
 
+  --shadow-active: 0px 4px 18px rgba(54, 110, 255, 0.35);
+
+  --transition-ease: 0.3s ease;
+
   --button-padding-x: var(--indent-base);
   --button-padding-y: 8px;
   --button-bg: var(--accent-color);
@@ -58,14 +62,16 @@
   --field-label-active-font-size: var(--font-size-s);
   --field-label-active-line-height: var(--line-height-m);
   --field-label-color: var(--caption-color);
+  --field-border: 1px solid rgba(0, 0, 0, 0.2);
   --text-field-padding-x: 0;
   --text-field-padding-y: var(--indent-xs);
-  --text-field-border: 1px solid rgba(0, 0, 0, 0.2);
   --text-field-font-family: var(--font-primary);
   --text-field-font-size: var(--font-size-base);
   --text-field-font-weight: 500;
   --text-field-line-height: var(--line-height-l);
   --text-field-text-color: #000;
+  --checkbox-checked-bg: var(--accent-color);
+  --checkbox-checked-color: #fff;
   --field-error-font-size: var(--font-size-s);
   --field-error-line-height: var(--line-height-m);
 
