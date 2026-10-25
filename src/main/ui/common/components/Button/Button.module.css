@@ -11,12 +11,13 @@
   line-height: var(--button-line-height);
   letter-spacing: var(--button-letter-spacing);
   text-align: center;
-  transition: background-color 0.1s ease;
+  transition: background-color var(--transition-ease);
   cursor: pointer;
 }
 
 .button:hover {
   background: var(--button-bg-dark);
+  box-shadow: var(--button-shadow-dark);
 }
 
 .button:active {

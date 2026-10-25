@@ -26,6 +26,7 @@
 .form-footer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--indent-s);
   text-align: center;
 }
@@ -74,7 +75,7 @@
   font-weight: var(--font-weight-caption);
   color: var(--accent-color);
   text-decoration: underline;
-  transition: color 0.1s ease;
+  transition: color var(--transition-ease);
 }
 
 .form-footer a:hover {

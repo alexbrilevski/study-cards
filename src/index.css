@@ -15,7 +15,7 @@
   --heading-color: #000;
   --caption-color: rgba(0, 0, 0, 0.5);
   --accent-color: #366eff;
-  --accent-color-dark: #1e3c88;
+  --accent-color-dark: rgb(0, 56, 199);
   --error-color: #f30808;
 
   --font-size-base: 16px;
@@ -50,6 +50,8 @@
   --butoon-border-radius: 30px;
   --button-shadow:
     0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --button-shadow-dark:
+    0px 4px 18px rgba(4, 58, 194, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
   --button-font-family: var(--font-primary);
   --button-font-size: var(--font-size-base);
   --button-font-weight: 500;
