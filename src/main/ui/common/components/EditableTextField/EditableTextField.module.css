@@ -1,0 +1,42 @@
+.editable-text-field {
+  position: relative;
+}
+
+.editable-text-field > div {
+  margin-bottom: 0;
+}
+
+.current-text {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: var(--line-height-l);
+}
+
+.action-button {
+  position: absolute;
+  cursor: pointer;
+}
+
+.edit-button {
+  top: 50%;
+  right: calc(var(--indent-xl) * -1);
+  transform: translateY(-50%);
+  display: block;
+  padding: var(--indent-s);
+  background: transparent;
+  border: none;
+}
+
+.save-button {
+  bottom: var(--text-field-padding-y);
+  right: var(--indent-s);
+  padding: 0 var(--indent-s);
+  background: var(--button-bg);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--button-font-family);
+  font-size: 12px;
+  line-height: var(--line-height-l);
+  color: var(--button-text-color);
+  text-transform: uppercase;
+}
