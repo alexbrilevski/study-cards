@@ -44,20 +44,32 @@
 
   --button-padding-x: var(--indent-base);
   --button-padding-y: 8px;
-  --button-bg: var(--accent-color);
-  --button-bg-dark: var(--accent-color-dark);
-  --button-border-color: var(--accent-color);
   --butoon-border-radius: 30px;
-  --button-shadow:
-    0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
-  --button-shadow-dark:
-    0px 4px 18px rgba(4, 58, 194, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
   --button-font-family: var(--font-primary);
   --button-font-size: var(--font-size-base);
   --button-font-weight: 500;
   --button-line-height: var(--line-height-m);
   --button-text-color: #fff;
   --button-letter-spacing: 0.01em;
+  --primary-button-bg: var(--accent-color);
+  --primary-button-bg-dark: var(--accent-color-dark);
+  --primary-button-shadow:
+    0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --primary-button-shadow-dark:
+    0px 4px 18px rgba(4, 58, 194, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --white-button-bg: #fcfcfc;
+  --white-button-bg-dark: #e0e0e0;
+  --white-button-shadow:
+    0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --white-button-shadow-dark:
+    0px 4px 18px rgba(71, 71, 71, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --white-button-text-color: rgba(0, 0, 0, 0.8);
+  --red-button-bg: #ff3636;
+  --red-button-bg-dark: #e20000;
+  --red-button-shadow:
+    0px 4px 18px rgba(255, 54, 54, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --red-button-shadow-dark:
+    0px 4px 18px rgba(201, 9, 9, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
 
   --field-label-font-size: var(--font-size-base);
   --field-label-line-height: var(--line-height-l);

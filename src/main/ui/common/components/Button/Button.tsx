@@ -3,17 +3,19 @@ import s from './Button.module.css';
 
 type DefaultButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
+type ButtonColor = 'primary' | 'white' | 'red';
+
 type ButtonProps = DefaultButtonProps & {
-  red?: boolean,
+  color?: ButtonColor,
 };
 
 const Button: FC<ButtonProps> = ({
-  red,
+  color = 'primary',
   className,
   children,
   ...restProps
 }) => {
-  const finalClassName = `${s['button']} ${red ? s['red'] : ''} ${className ? className : ''}`;
+  const finalClassName = `${s['button']} ${s[color]} ${className ? className : ''}`;
 
   return (
     <button

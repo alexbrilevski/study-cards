@@ -31,7 +31,7 @@
   bottom: var(--text-field-padding-y);
   right: var(--indent-s);
   padding: 0 var(--indent-s);
-  background: var(--button-bg);
+  background-color: var(--primary-button-bg);
   border: none;
   border-radius: 2px;
   font-family: var(--button-font-family);
@@ -39,4 +39,8 @@
   line-height: var(--line-height-l);
   color: var(--button-text-color);
   text-transform: uppercase;
+}
+
+.save-button:hover {
+  background-color: var(--primary-button-bg-dark);
 }

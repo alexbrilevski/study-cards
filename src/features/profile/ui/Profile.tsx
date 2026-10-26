@@ -26,9 +26,9 @@ export const Profile = () => {
       </div>
       <EditProfileForm user={user} />
       <div className="form-footer">
-        <Button onClick={handleLogoutClick}>
+        <Button onClick={handleLogoutClick} color={'white'}>
           <IconSvg src={logoutIcon} size={16} />
-          Log out
+          <span>Log out</span>
         </Button>
       </div>
     </div>
