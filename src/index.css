@@ -97,6 +97,10 @@
   --card-border-radius: 8px;
   --card-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
 
+  --dropdown-bg: #fff;
+  --dropdown-border: 1px solid #cfcfcf;
+  --dropdown-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
+
   font-family: var(--font-primary);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
