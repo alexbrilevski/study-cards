@@ -1,3 +1,35 @@
+.user-avatar-container {
+  position: relative;
+}
+
+.user-avatar {
+  display: block;
+  width: 96px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+.upload-photo-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: #808080;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.upload-photo-button img {
+  display: block;
+  width: 18px;
+  aspect-ratio: 1 / 1;
+}
+
 .user-info {
   display: flex;
   flex-direction: column;

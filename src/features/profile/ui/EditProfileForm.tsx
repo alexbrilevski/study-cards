@@ -3,6 +3,9 @@ import type { User } from '../../../main/types/user';
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
 import { saveUpdatedUserData, setEditProfileFormError } from '../bll/profileReducer';
 import { EditableText } from '../../../main/ui/common/components/EditableTextField/EditableTextField';
+import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
+import defaultAvatar from '../../../assets/images/default-avatar.svg';
+import photoIcon from '../../../assets/icons/photo.svg';
 import s from './EditProfileForm.module.css';
 
 type EditProfileFormProps = {
@@ -25,6 +28,18 @@ export const EditProfileForm: FC<EditProfileFormProps> = ({ user }) => {
 
   return (
     <div className={s['user-info']}>
+      <div className={s['user-avatar-container']}>
+        <img
+          className={s['user-avatar']}
+          src={user.avatar || defaultAvatar}
+          alt=""
+          width="96"
+          height="96"
+        />
+        <button className={s['upload-photo-button']}>
+          <IconSvg src={photoIcon} size={18} />
+        </button>
+      </div>
       <EditableText
         text={user.name}
         inputLabel={'Name'}
