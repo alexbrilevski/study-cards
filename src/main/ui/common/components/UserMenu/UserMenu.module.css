@@ -35,17 +35,17 @@
 }
 
 .dropdown::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    right: 14px;
-    width: 5px;
-    height: 5px;
-    background: inherit;
-    border-top: var(--dropdown-border);
-    border-left: var(--dropdown-border);
-    transform: rotate(45deg);
-  }
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: 14px;
+  width: 5px;
+  height: 5px;
+  background: inherit;
+  border-top: var(--dropdown-border);
+  border-left: var(--dropdown-border);
+  transform: rotate(45deg);
+}
 
 .dropdown ul {
   list-style: none;

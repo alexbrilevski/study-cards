@@ -101,6 +101,8 @@
   --dropdown-border: 1px solid #cfcfcf;
   --dropdown-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
 
+  --container-width: 1032px;
+
   font-family: var(--font-primary);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);

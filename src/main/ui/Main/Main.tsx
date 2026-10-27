@@ -22,7 +22,11 @@ export const Main = () => {
   return (
     <>
       <Header />
-      <Pages />
+      <main>
+        <div className="main-content">
+          <Pages />
+        </div>
+      </main>
       {notification && <Snackbar notification={notification} />}
     </>
   );

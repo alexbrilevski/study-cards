@@ -1,8 +1,13 @@
 .app {
   height: 100%;
   min-height: 100vh;
-  padding: var(--indent-xs) var(--indent-s);
   background: var(--default-bg);
+}
+
+.main-content {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--indent-base) var(--indent-s) var(--indent-xl);
 }
 
 .text-center {
