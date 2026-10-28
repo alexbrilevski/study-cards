@@ -17,7 +17,9 @@
   --accent-color: #366eff;
   --accent-color-dark: #0038c7;
   --accent-color-light: rgba(54, 110, 255, 0.15);
+  --success-color: #00d22b;
   --error-color: #ff3636;
+  --info-color: var(--accent-color);
 
   --font-size-base: 16px;
   --font-size-xs: 12px;
@@ -40,6 +42,12 @@
   --line-height-caption: 1.4;
 
   --shadow-active: 0px 4px 18px rgba(54, 110, 255, 0.35);
+  --shadow-primary:
+    0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --shadow-success:
+    0px 4px 18px rgba(0, 210, 43, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --shadow-error:
+    0px 4px 18px rgba(255, 54, 54, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
 
   --transition-ease: 0.3s ease;
 
@@ -59,8 +67,7 @@
   --primary-button-color: var(--accent-color);
   --primary-button-color-dark: var(--accent-color-dark);
   --primary-button-color-light: var(--accent-color-light);
-  --primary-button-shadow:
-    0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --primary-button-shadow: var(--shadow-primary);
   --primary-button-shadow-dark:
     0px 4px 18px rgba(4, 58, 194, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
   --white-button-color: var(--button-color);
@@ -72,8 +79,7 @@
   --red-button-color: var(--error-color);
   --red-button-color-dark: #e20000;
   --red-button-color-light: rgba(27, 20, 20, 0.15);
-  --red-button-shadow:
-    0px 4px 18px rgba(255, 54, 54, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --red-button-shadow: var(--shadow-error);
   --red-button-shadow-dark:
     0px 4px 18px rgba(201, 9, 9, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
 
