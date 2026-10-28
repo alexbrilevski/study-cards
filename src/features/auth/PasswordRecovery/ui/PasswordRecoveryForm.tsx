@@ -61,7 +61,9 @@ export const PasswordRecoveryForm = () => {
         Enter your email address and we will send you further instructions
       </p>
       <div className="form-actions">
-        <Button type={'submit'}>Send Instructions</Button>
+        <Button type={'submit'} variant={'contained'} color={'primary'}>
+          Send Instructions
+        </Button>
       </div>
       {error && <p>{error}</p>}
     </form>

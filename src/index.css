@@ -15,8 +15,9 @@
   --heading-color: #000;
   --caption-color: rgba(0, 0, 0, 0.5);
   --accent-color: #366eff;
-  --accent-color-dark: rgb(0, 56, 199);
-  --error-color: #f30808;
+  --accent-color-dark: #0038c7;
+  --accent-color-light: rgba(54, 110, 255, 0.15);
+  --error-color: #ff3636;
 
   --font-size-base: 16px;
   --font-size-xs: 12px;
@@ -44,28 +45,33 @@
 
   --button-padding-x: var(--indent-base);
   --button-padding-y: 8px;
-  --butoon-border-radius: 30px;
+  --button-color: #fcfcfc;
+  --button-color-dark: #e0e0e0;
+  --button-border-radius: 30px;
+  --button-border-radius-default: 3px;
   --button-font-family: var(--font-primary);
   --button-font-size: var(--font-size-base);
   --button-font-weight: 500;
   --button-line-height: var(--line-height-m);
-  --button-text-color: #fff;
+  --button-text-color-dark: rgba(0, 0, 0, 0.8);
+  --button-text-color-light: #fff;
   --button-letter-spacing: 0.01em;
-  --primary-button-bg: var(--accent-color);
-  --primary-button-bg-dark: var(--accent-color-dark);
+  --primary-button-color: var(--accent-color);
+  --primary-button-color-dark: var(--accent-color-dark);
+  --primary-button-color-light: var(--accent-color-light);
   --primary-button-shadow:
     0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
   --primary-button-shadow-dark:
     0px 4px 18px rgba(4, 58, 194, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
-  --white-button-bg: #fcfcfc;
-  --white-button-bg-dark: #e0e0e0;
+  --white-button-color: var(--button-color);
+  --white-button-color-dark: var(--button-color-dark);
   --white-button-shadow:
     0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
   --white-button-shadow-dark:
     0px 4px 18px rgba(71, 71, 71, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
-  --white-button-text-color: rgba(0, 0, 0, 0.8);
-  --red-button-bg: #ff3636;
-  --red-button-bg-dark: #e20000;
+  --red-button-color: var(--error-color);
+  --red-button-color-dark: #e20000;
+  --red-button-color-light: rgba(27, 20, 20, 0.15);
   --red-button-shadow:
     0px 4px 18px rgba(255, 54, 54, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
   --red-button-shadow-dark:
@@ -155,4 +161,8 @@ a {
 
 b {
   font-weight: var(--font-weight-caption);
+}
+
+button {
+  font-family: var(--button-font-family);
 }

@@ -89,7 +89,12 @@ export const RegistrationFrom = () => {
         {...registrationForm.getFieldProps('passwordConfirm')}
       />
       <div className="form-actions">
-        <Button disabled={isLoading} type={'submit'}>
+        <Button
+          type={'submit'}
+          variant={'contained'}
+          color={'primary'}
+          disabled={isLoading}
+        >
           Register
         </Button>
       </div>

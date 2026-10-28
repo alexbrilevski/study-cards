@@ -49,7 +49,9 @@ export const NewPassword = () => {
           Create new password and we will send you further instructions to email
         </p>
         <div className="form-actions">
-          <Button>Create new password</Button>
+          <Button variant={'contained'} color={'primary'}>
+            Create new password
+          </Button>
         </div>
         {error && <p>{error}</p>}
       </form>

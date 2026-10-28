@@ -31,16 +31,16 @@
   bottom: var(--text-field-padding-y);
   right: var(--indent-s);
   padding: 0 var(--indent-s);
-  background-color: var(--primary-button-bg);
+  background-color: var(--primary-button-color);
   border: none;
   border-radius: 2px;
   font-family: var(--button-font-family);
   font-size: 12px;
   line-height: var(--line-height-l);
-  color: var(--button-text-color);
+  color: var(--button-text-color-light);
   text-transform: uppercase;
 }
 
 .save-button:hover {
-  background-color: var(--primary-button-bg-dark);
+  background-color: var(--primary-button-color-dark);
 }

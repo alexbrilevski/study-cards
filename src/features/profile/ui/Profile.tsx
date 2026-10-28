@@ -1,8 +1,9 @@
 import type { User } from '../../../main/types/user';
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
 import { logout } from '../../auth/Login/bll/loginReducer';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { EditProfileForm } from './EditProfileForm';
+import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack';
 import Button from '../../../main/ui/common/components/Button/Button';
 import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
 import logoutIcon from '../../../assets/icons/logout.svg';
@@ -10,9 +11,14 @@ import logoutIcon from '../../../assets/icons/logout.svg';
 export const Profile = () => {
   const user = useAppSelector<User | null>((state) => state.profile.user);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleLogoutClick = () => {
     dispatch(logout());
+  };
+
+  const handleBackButtonClick = () => {
+    navigate('/');
   };
 
   if (!user) {
@@ -20,17 +26,20 @@ export const Profile = () => {
   }
 
   return (
-    <div className="form-container">
-      <div className="form-header">
-        <h1>Personal Information</h1>
+    <>
+      <ButtonBack caption={'Back to Packs List'} onClick={handleBackButtonClick} />
+      <div className="form-container">
+        <div className="form-header">
+          <h1>Personal Information</h1>
+        </div>
+        <EditProfileForm user={user} />
+        <div className="form-footer">
+          <Button variant={'contained'} color={'white'} onClick={handleLogoutClick}>
+            <IconSvg src={logoutIcon} size={16} />
+            <span>Log out</span>
+          </Button>
+        </div>
       </div>
-      <EditProfileForm user={user} />
-      <div className="form-footer">
-        <Button onClick={handleLogoutClick} color={'white'}>
-          <IconSvg src={logoutIcon} size={16} />
-          <span>Log out</span>
-        </Button>
-      </div>
-    </div>
+    </>
   );
 };

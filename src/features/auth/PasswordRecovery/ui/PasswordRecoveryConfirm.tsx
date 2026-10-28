@@ -10,7 +10,7 @@ export const PasswordRecoveryConfirm = () => {
   const recoveryEmail = useAppSelector<string>(
     (state) => state.passwordRecovery.recoveryEmail,
   );
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleBackToLoginClick = () => {
@@ -19,23 +19,23 @@ export const PasswordRecoveryConfirm = () => {
   };
 
   if (!recoveryEmail) {
-    return <Navigate to={PATH.PASSWORD_RECOVERY} />
+    return <Navigate to={PATH.PASSWORD_RECOVERY} />;
   }
 
   return (
-    <div className='form-container'>
-      <div className='form-header'>
+    <div className="form-container">
+      <div className="form-header">
         <Logo />
         <h1>Check Email</h1>
       </div>
-      <p className='form-image text-center'>
-        <img src={checkEmailImg} width='108' height='108' alt='' />
+      <p className="form-image text-center">
+        <img src={checkEmailImg} width="108" height="108" alt="" />
       </p>
-      <p className='form-note text-center'>
+      <p className="form-note text-center">
         {`We've sent an Email with instructions to ${recoveryEmail}`}
       </p>
-      <div className='form-actions'>
-        <Button onClick={handleBackToLoginClick}>
+      <div className="form-actions">
+        <Button variant={'contained'} color={'primary'} onClick={handleBackToLoginClick}>
           Back to login
         </Button>
       </div>
