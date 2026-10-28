@@ -6,21 +6,21 @@ import { Logo } from '../../../../main/ui/common/components/Logo/Logo';
 import { LoginForm } from './LoginForm';
 
 export const Login = () => {
-  const authUser = useAppSelector<User | null>(state => state.profile.user);
+  const authUser = useAppSelector<User | null>((state) => state.profile.user);
 
   if (authUser) {
-    return <Navigate to={PATH.PROFILE} />
+    return <Navigate to={PATH.PROFILE} />;
   }
 
   return (
-    <div className='form-container'>
-      <div className='form-header'>
+    <div className="card form-container">
+      <div className="form-header">
         <Logo />
         <h1>Sign In</h1>
       </div>
       <LoginForm />
-      <div className='form-footer'>
-        <p className='form-note'>Don’t have an account?</p>
+      <div className="form-footer">
+        <p className="form-note">Don’t have an account?</p>
         <NavLink to={PATH.REGISTRATION}>Sign Up</NavLink>
       </div>
     </div>

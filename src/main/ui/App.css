@@ -18,13 +18,16 @@
   text-align: right;
 }
 
+.card {
+  background: var(--card-bg);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+}
+
 .form-container {
   width: 416px;
   margin: var(--indent-xl) auto;
   padding: var(--indent-base) var(--indent-l) var(--indent-l);
-  background: var(--card-bg);
-  border-radius: var(--card-border-radius);
-  box-shadow: var(--card-shadow);
 }
 
 .form-header,
@@ -93,7 +96,7 @@
   color: var(--accent-color-dark);
 }
 
-@media (max-width: 413px) {
+@media (max-width: 450px) {
   .form-container {
     width: 100%;
   }

@@ -14,14 +14,14 @@ export const PasswordRecovery = () => {
   }
 
   return (
-    <div className='form-container'>
-      <div className='form-header'>
+    <div className="card form-container">
+      <div className="form-header">
         <Logo />
         <h1>Forgot your password?</h1>
       </div>
       <PasswordRecoveryForm />
-      <div className='form-footer'>
-        <p className='form-note'>Did you remember your password?</p>
+      <div className="form-footer">
+        <p className="form-note">Did you remember your password?</p>
         <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
       </div>
     </div>

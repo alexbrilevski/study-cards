@@ -21,14 +21,14 @@ export const Registration = () => {
   }
 
   return (
-    <div className='form-container'>
-      <div className='form-header'>
+    <div className="card form-container">
+      <div className="form-header">
         <Logo />
         <h1>Sign Up</h1>
       </div>
       <RegistrationFrom />
-      <div className='form-footer'>
-        <p className='form-note'>Already have an account?</p>
+      <div className="form-footer">
+        <p className="form-note">Already have an account?</p>
         <NavLink to={PATH.LOGIN}>Sign In</NavLink>
       </div>
     </div>

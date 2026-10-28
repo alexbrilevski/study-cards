@@ -28,7 +28,7 @@ export const Profile = () => {
   return (
     <>
       <ButtonBack caption={'Back to Packs List'} onClick={handleBackButtonClick} />
-      <div className="form-container">
+      <div className="card form-container">
         <div className="form-header">
           <h1>Personal Information</h1>
         </div>
