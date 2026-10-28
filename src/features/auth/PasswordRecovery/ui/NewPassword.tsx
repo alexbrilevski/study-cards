@@ -39,6 +39,7 @@ export const NewPassword = () => {
         <h1>Create new password</h1>
       </div>
       <form onSubmit={handleSetNewPassword}>
+        {error && <div className="form-error">{error}</div>}
         <InputText
           type={'password'}
           label={'Password'}
@@ -53,7 +54,6 @@ export const NewPassword = () => {
             Create new password
           </Button>
         </div>
-        {error && <p>{error}</p>}
       </form>
     </div>
   );

@@ -44,6 +44,12 @@
   font-size: var(--font-size-l);
 }
 
+.form-error {
+  margin-bottom: var(--indent-s);
+  color: var(--error-color);
+  text-align: center;
+}
+
 .form-image {
   margin-bottom: var(--indent-base);
 }

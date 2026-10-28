@@ -28,6 +28,7 @@ export const EditProfileForm: FC<EditProfileFormProps> = ({ user }) => {
 
   return (
     <div className={s['user-info']}>
+      {error && <div className="form-error">{error}</div>}
       <div className={s['user-avatar-container']}>
         <img
           className={s['user-avatar']}
@@ -48,7 +49,6 @@ export const EditProfileForm: FC<EditProfileFormProps> = ({ user }) => {
         onSave={handleSaveName}
       />
       <p className={s['user-email']}>{user.email}</p>
-      {error && <p>{error}</p>}
     </div>
   );
 };

@@ -56,6 +56,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={loginForm.handleSubmit}>
+      {error && <div className="form-error">{error}</div>}
       <InputText
         type={'email'}
         label={'Email'}
@@ -83,7 +84,6 @@ export const LoginForm = () => {
           Login
         </Button>
       </div>
-      {error && <p>{error}</p>}
     </form>
   );
 };

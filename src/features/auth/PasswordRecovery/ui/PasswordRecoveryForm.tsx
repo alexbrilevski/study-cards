@@ -47,6 +47,7 @@ export const PasswordRecoveryForm = () => {
 
   return (
     <form onSubmit={passwordRecoveryForm.handleSubmit}>
+      {error && <div className="form-error">{error}</div>}
       <InputText
         type={'email'}
         label={'Email'}
@@ -65,7 +66,6 @@ export const PasswordRecoveryForm = () => {
           Send Instructions
         </Button>
       </div>
-      {error && <p>{error}</p>}
     </form>
   );
 };
