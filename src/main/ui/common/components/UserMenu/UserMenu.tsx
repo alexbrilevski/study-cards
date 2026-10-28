@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import { useEffect, useRef, useState, type FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import type { User } from '../../../../types/user';
 import { useAppDispatch } from '../../../../bll/store';
@@ -17,6 +17,21 @@ type UserMenuProps = {
 export const UserMenu: FC<UserMenuProps> = ({ user }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    const handlePointerDown = (e: PointerEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsExpanded(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
+  }, [isExpanded]);
 
   const handleDropdownControlClick = () => {
     setIsExpanded((prevState) => !prevState);
@@ -27,7 +42,7 @@ export const UserMenu: FC<UserMenuProps> = ({ user }) => {
   };
 
   return (
-    <div className={s['user-menu']}>
+    <div ref={menuRef} className={s['user-menu']}>
       <button className={s['dropdown-control']} onClick={handleDropdownControlClick}>
         <span className={s['user-name']}>{user.name}</span>
         <img
