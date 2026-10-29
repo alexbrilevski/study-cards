@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
 import { setRegistrationSuccess } from '../bll/registrationReducer';
 import { PATH } from '../../../../main/ui/Main/Pages';
+import { Logo } from '../../../../main/ui/common/components/Logo/Logo';
 import { RegistrationFrom } from './RegistrationFrom';
 
 export const Registration = () => {
@@ -20,10 +21,16 @@ export const Registration = () => {
   }
 
   return (
-    <div>
-      <p>Study Cards</p>
-      <h1>Sign Up</h1>
+    <div className="card form-container">
+      <div className="form-header">
+        <Logo />
+        <h1>Sign Up</h1>
+      </div>
       <RegistrationFrom />
+      <div className="form-footer">
+        <p className="form-note">Already have an account?</p>
+        <NavLink to={PATH.LOGIN}>Sign In</NavLink>
+      </div>
     </div>
   );
 };

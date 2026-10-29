@@ -5,7 +5,6 @@ type DefaultInputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>
 
 type CheckboxProps = DefaultInputProps & {
   onChangeChecked?: (checked: boolean) => void,
-  spanClassName?: string,
 };
 
 const Checkbox: FC<CheckboxProps> = ({
@@ -13,7 +12,6 @@ const Checkbox: FC<CheckboxProps> = ({
   onChange,
   onChangeChecked,
   className,
-  spanClassName,
   children,
   ...restProps
 }) => {
@@ -25,19 +23,17 @@ const Checkbox: FC<CheckboxProps> = ({
   const finalInputClassName = `${s['checkbox']} ${className ? className : ''}`
 
   return (
-    <label className={s['checkbox-label']}>
-      <input
-        type={'checkbox'}
-        onChange={onChangeCallback}
-        className={finalInputClassName}
-        {...restProps}
-      />
-      {children &&
-        <span className={s['span-class-name']}>
-          {children}
-        </span>
-      }
-    </label>
+    <div className={s['form-group']}>
+      <label className={s['checkbox-label']}>
+        <input
+          type={'checkbox'}
+          onChange={onChangeCallback}
+          className={finalInputClassName}
+          {...restProps}
+        />
+        {children && <span>{children}</span>}
+      </label>
+    </div>
   )
 }
 

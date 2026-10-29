@@ -1,0 +1,6 @@
+.logo {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-caption);
+  line-height: var(--line-height-caption);
+  color: var(--heading-color);
+}

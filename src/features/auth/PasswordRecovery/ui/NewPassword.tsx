@@ -3,6 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
 import { setNewPassword, setNewPasswordFormError } from '../bll/newPasswordReducer';
 import { PATH } from '../../../../main/ui/Main/Pages';
+import { Logo } from '../../../../main/ui/common/components/Logo/Logo';
 import InputText from '../../../../main/ui/common/components/InputText/InputText';
 import Button from '../../../../main/ui/common/components/Button/Button';
 
@@ -16,7 +17,7 @@ export const NewPassword = () => {
   useEffect(() => {
     return () => {
       if (error) dispatch(setNewPasswordFormError(null));
-    }
+    };
   }, [error]);
 
   const handleSetNewPassword = (e: SubmitEvent<HTMLFormElement>) => {
@@ -32,15 +33,27 @@ export const NewPassword = () => {
   }
 
   return (
-    <div>
-      <p>Study Cards</p>
-      <h1>Create new password</h1>
+    <div className="card form-container">
+      <div className="form-header">
+        <Logo />
+        <h1>Create new password</h1>
+      </div>
       <form onSubmit={handleSetNewPassword}>
-        <span>Password</span>
-        <InputText type={'password'} value={password} onChangeText={setPassword} />
-        <p>Create new password and we will send you further instructions to email</p>
-        <Button>Create new password</Button>
-        {error && <p>{error}</p>}
+        {error && <div className="form-error">{error}</div>}
+        <InputText
+          type={'password'}
+          label={'Password'}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <p className="form-note">
+          Create new password and we will send you further instructions to email
+        </p>
+        <div className="form-actions">
+          <Button variant={'contained'} color={'primary'}>
+            Create new password
+          </Button>
+        </div>
       </form>
     </div>
   );
