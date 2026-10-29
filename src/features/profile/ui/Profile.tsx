@@ -2,6 +2,7 @@ import type { User } from '../../../main/types/user';
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
 import { logout } from '../../auth/Login/bll/loginReducer';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { PATH } from '../../../main/ui/Main/Pages';
 import { EditProfileForm } from './EditProfileForm';
 import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack';
 import Button from '../../../main/ui/common/components/Button/Button';
@@ -18,7 +19,7 @@ export const Profile = () => {
   };
 
   const handleBackButtonClick = () => {
-    navigate('/');
+    navigate(PATH.PACK_LIST);
   };
 
   if (!user) {
@@ -27,7 +28,7 @@ export const Profile = () => {
 
   return (
     <>
-      <ButtonBack caption={'Back to Packs List'} onClick={handleBackButtonClick} />
+      <ButtonBack caption={'Back to Pack List'} onClick={handleBackButtonClick} />
       <div className="card form-container">
         <div className="form-header">
           <h1>Personal Information</h1>

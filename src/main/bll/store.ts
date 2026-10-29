@@ -26,6 +26,10 @@ import {
   profileReducer,
   type ProfileActions,
 } from '../../features/profile/bll/profileReducer';
+import {
+  packListReducer,
+  type PackListActions,
+} from '../../features/packList/bll/packListReducer';
 
 export type RootState = ReturnType<typeof rootReducer>;
 
@@ -35,7 +39,8 @@ export type RootAction =
   | LoginActions
   | ProfileActions
   | NewPasswordActions
-  | PasswordRecoveryActions;
+  | PasswordRecoveryActions
+  | PackListActions;
 
 export type RootThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -56,6 +61,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   newPassword: newPasswordReducer,
   passwordRecovery: passwordRecoveryReducer,
+  packList: packListReducer,
 });
 
 export const store = createStore(rootReducer, undefined, applyMiddleware(thunk));

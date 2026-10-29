@@ -9,7 +9,7 @@ export const Login = () => {
   const authUser = useAppSelector<User | null>((state) => state.profile.user);
 
   if (authUser) {
-    return <Navigate to={PATH.PROFILE} />;
+    return <Navigate to={PATH.PACK_LIST} />;
   }
 
   return (
