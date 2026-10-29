@@ -1,3 +1,103 @@
 .app {
-  padding: 5px 10px;
+  height: 100%;
+  min-height: 100vh;
+  background: var(--default-bg);
+}
+
+.main-content {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--indent-base) var(--indent-s) var(--indent-xl);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+}
+
+.form-container {
+  width: 416px;
+  margin: var(--indent-xl) auto;
+  padding: var(--indent-base) var(--indent-l) var(--indent-l);
+}
+
+.form-header,
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--indent-s);
+  text-align: center;
+}
+
+.form-header {
+  margin-bottom: var(--indent-l);
+}
+
+.form-header p {
+  font-size: var(--font-size-l);
+}
+
+.form-error {
+  margin-bottom: var(--indent-s);
+  color: var(--error-color);
+  text-align: center;
+}
+
+.form-image {
+  margin-bottom: var(--indent-base);
+}
+
+.form-image img {
+  display: block;
+  width: 108px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.form-note {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-l);
+  color: var(--caption-color);
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--indent-s);
+  margin-top: var(--indent-xl);
+}
+
+.form-footer {
+  margin-top: var(--indent-l);
+}
+
+.form-footer p {
+  font-weight: var(--font-weight-caption);
+}
+
+.form-footer a {
+  font-weight: var(--font-weight-caption);
+  color: var(--accent-color);
+  text-decoration: underline;
+  transition: color var(--transition-ease);
+}
+
+.form-footer a:hover {
+  color: var(--accent-color-dark);
+}
+
+@media (max-width: 450px) {
+  .form-container {
+    width: 100%;
+  }
 }

@@ -1,0 +1,11 @@
+.button-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--indent-xs);
+  background: transparent;
+  border: none;
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-l);
+  color: var(--button-text-color-dark);
+  cursor: pointer;
+}

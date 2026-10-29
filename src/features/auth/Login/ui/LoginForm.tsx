@@ -56,23 +56,34 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={loginForm.handleSubmit}>
-      <span>Email</span>
-      <InputText type="email" {...loginForm.getFieldProps('email')} />
-      {loginForm.errors.email && loginForm.touched.email && (
-        <div>{loginForm.errors.email}</div>
-      )}
-      <span>Password</span>
-      <InputText type="password" {...loginForm.getFieldProps('password')} />
-      {loginForm.errors.password && loginForm.touched.password && (
-        <div>{loginForm.errors.password}</div>
-      )}
-      <label>
-        <Checkbox {...loginForm.getFieldProps('rememberMe')} />
-        Remember me
-      </label>
-      <NavLink to={PATH.PASSWORD_RECOVERY}>Forgot password</NavLink>
-      <Button type={'submit'}>Login</Button>
-      {error && <p>{error}</p>}
+      {error && <div className="form-error">{error}</div>}
+      <InputText
+        type={'email'}
+        label={'Email'}
+        error={
+          loginForm.errors.email && loginForm.touched.email ? loginForm.errors.email : ''
+        }
+        {...loginForm.getFieldProps('email')}
+      />
+      <InputText
+        type={'password'}
+        label={'Password'}
+        error={
+          loginForm.errors.password && loginForm.touched.password
+            ? loginForm.errors.password
+            : ''
+        }
+        {...loginForm.getFieldProps('password')}
+      />
+      <Checkbox {...loginForm.getFieldProps('rememberMe')}>Remember me</Checkbox>
+      <div className="text-right">
+        <NavLink to={PATH.PASSWORD_RECOVERY}>Forgot password?</NavLink>
+      </div>
+      <div className="form-actions">
+        <Button type={'submit'} variant={'contained'} color={'primary'}>
+          Login
+        </Button>
+      </div>
     </form>
   );
 };

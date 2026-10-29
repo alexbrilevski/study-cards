@@ -47,14 +47,25 @@ export const PasswordRecoveryForm = () => {
 
   return (
     <form onSubmit={passwordRecoveryForm.handleSubmit}>
-      <span>Email</span>
-      <InputText type={'email'} {...passwordRecoveryForm.getFieldProps('email')} />
-      {passwordRecoveryForm.errors.email && passwordRecoveryForm.touched.email && (
-        <div>{passwordRecoveryForm.errors.email}</div>
-      )}
-      <p>Enter your email address and we will send you further instructions</p>
-      <Button>Send Instructions</Button>
-      {error && <p>{error}</p>}
+      {error && <div className="form-error">{error}</div>}
+      <InputText
+        type={'email'}
+        label={'Email'}
+        error={
+          passwordRecoveryForm.errors.email && passwordRecoveryForm.touched.email
+            ? passwordRecoveryForm.errors.email
+            : ''
+        }
+        {...passwordRecoveryForm.getFieldProps('email')}
+      />
+      <p className="form-note">
+        Enter your email address and we will send you further instructions
+      </p>
+      <div className="form-actions">
+        <Button type={'submit'} variant={'contained'} color={'primary'}>
+          Send Instructions
+        </Button>
+      </div>
     </form>
   );
 };

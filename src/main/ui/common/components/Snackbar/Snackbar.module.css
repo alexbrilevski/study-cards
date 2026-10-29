@@ -1,22 +1,25 @@
 .snackbar {
   position: absolute;
-  bottom: 45px;
+  bottom: var(--indent-xl);
   left: 50%;
   transform: translate(-50%, 50%);
-  padding: 15px 20px;
+  padding: var(--indent-m) var(--indent-base);
   border-radius: 5px;
   text-align: center;
   color: #fff;
 }
 
 .snackbar.error {
-  background: #ff2f2f;
+  background: var(--error-color);
+  box-shadow: var(--shadow-error);
 }
 
 .snackbar.info {
-  background: #0000c4;
+  background: var(--info-color);
+  box-shadow: var(--shadow-primary);
 }
 
 .snackbar.success {
-  background: #006300;
+  background: var(--success-color);
+  box-shadow: var(--shadow-success);
 }

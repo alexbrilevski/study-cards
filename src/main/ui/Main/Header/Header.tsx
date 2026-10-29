@@ -1,45 +1,21 @@
-import { NavLink } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../bll/store';
+import { useAppSelector } from '../../../bll/store';
 import type { User } from '../../../types/user';
-import { logout } from '../../../../features/auth/Login/bll/loginReducer';
-import { PATH } from '../Pages';
-import Button from '../../common/components/Button/Button';
+import { Logo } from '../../common/components/Logo/Logo';
+import { UserMenu } from '../../common/components/UserMenu/UserMenu';
 import s from './Header.module.css';
 
 export const Header = () => {
-  const authUser = useAppSelector<User | null>(state => state.profile.user);
-  const dispatch = useAppDispatch();
+  const authUser = useAppSelector<User | null>((state) => state.profile.user);
 
-  const getNavLinkStyle = (NavData: { isActive: boolean }) => {
-    return NavData.isActive ? `${s['item']} ${s['active']}` : s['item'];
-  };
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  if (!authUser) {
+    return;
+  }
 
   return (
-    <header>
-      <div className={s['navbar']}>
-        <NavLink to={PATH.LOGIN} className={(NavData) => getNavLinkStyle(NavData)}>
-          Login
-        </NavLink>
-        <NavLink to={PATH.REGISTRATION} className={(NavData) => getNavLinkStyle(NavData)}>
-          Registration
-        </NavLink>
-        <NavLink to={PATH.PROFILE} className={(NavData) => getNavLinkStyle(NavData)}>
-          Profile
-        </NavLink>
-        <NavLink to={PATH.PASSWORD_RECOVERY} className={(NavData) => getNavLinkStyle(NavData)}>
-          Password recovery
-        </NavLink>
-        <NavLink to={PATH.CREATE_NEW_PASSWORD} className={(NavData) => getNavLinkStyle(NavData)}>
-          Create new password
-        </NavLink>
-        <NavLink to={PATH.TEST} className={(NavData) => getNavLinkStyle(NavData)}>
-          Test
-        </NavLink>
-        {authUser && <Button onClick={handleLogout}>Logout</Button>}
+    <header className={s['header']}>
+      <div className={s['header-content']}>
+        <Logo />
+        <UserMenu user={authUser} />
       </div>
     </header>
   );

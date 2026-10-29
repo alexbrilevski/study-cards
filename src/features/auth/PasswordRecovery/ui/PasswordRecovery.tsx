@@ -1,6 +1,7 @@
 import { Navigate, NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../../../main/bll/store';
 import { PATH } from '../../../../main/ui/Main/Pages';
+import { Logo } from '../../../../main/ui/common/components/Logo/Logo';
 import { PasswordRecoveryForm } from './PasswordRecoveryForm';
 
 export const PasswordRecovery = () => {
@@ -13,12 +14,16 @@ export const PasswordRecovery = () => {
   }
 
   return (
-    <div>
-      <p>Study Cards</p>
-      <h1>Forgot your password?</h1>
+    <div className="card form-container">
+      <div className="form-header">
+        <Logo />
+        <h1>Forgot your password?</h1>
+      </div>
       <PasswordRecoveryForm />
-      <p>Did you remember your password?</p>
-      <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
+      <div className="form-footer">
+        <p className="form-note">Did you remember your password?</p>
+        <NavLink to={PATH.LOGIN}>Try logging in</NavLink>
+      </div>
     </div>
   );
 };

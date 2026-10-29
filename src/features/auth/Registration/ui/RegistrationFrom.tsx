@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
+import { useFormik } from 'formik';
 import { useAppDispatch, useAppSelector } from '../../../../main/bll/store';
 import { register, setRegistrationFormError } from '../bll/registrationReducer';
 import InputText from '../../../../main/ui/common/components/InputText/InputText';
 import Button from '../../../../main/ui/common/components/Button/Button';
-import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
-import { PATH } from '../../../../main/ui/Main/Pages';
 
 type RegistrationFormErrors = {
   email?: string;
@@ -17,7 +15,6 @@ export const RegistrationFrom = () => {
   const isLoading = useAppSelector<boolean>((state) => state.app.isLoading);
   const error = useAppSelector<string | null>((state) => state.registration.error);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     return () => {
@@ -58,36 +55,50 @@ export const RegistrationFrom = () => {
     },
   });
 
-  const handleCancelClick = () => {
-    navigate(PATH.LOGIN);
-  };
-
   return (
     <form onSubmit={registrationForm.handleSubmit}>
-      <span>Email</span>
-      <InputText type={'email'} {...registrationForm.getFieldProps('email')} />
-      {registrationForm.errors.email && registrationForm.touched.email && (
-        <div>{registrationForm.errors.email}</div>
-      )}
-      <span>Password</span>
-      <InputText type={'password'} {...registrationForm.getFieldProps('password')} />
-      {registrationForm.errors.password && registrationForm.touched.password && (
-        <div>{registrationForm.errors.password}</div>
-      )}
-      <span>Confirm password</span>
+      {error && <div className="form-error">{error}</div>}
+      <InputText
+        type={'email'}
+        label={'Email'}
+        error={
+          registrationForm.errors.email && registrationForm.touched.email
+            ? registrationForm.errors.email
+            : ''
+        }
+        {...registrationForm.getFieldProps('email')}
+      />
       <InputText
         type={'password'}
+        label={'Password'}
+        error={
+          registrationForm.errors.password && registrationForm.touched.password
+            ? registrationForm.errors.password
+            : ''
+        }
+        {...registrationForm.getFieldProps('password')}
+      />
+      <InputText
+        type={'password'}
+        label={'Confirm password'}
+        error={
+          registrationForm.errors.passwordConfirm &&
+          registrationForm.touched.passwordConfirm
+            ? registrationForm.errors.passwordConfirm
+            : ''
+        }
         {...registrationForm.getFieldProps('passwordConfirm')}
       />
-      {registrationForm.errors.passwordConfirm &&
-        registrationForm.touched.passwordConfirm && (
-          <div>{registrationForm.errors.passwordConfirm}</div>
-        )}
-      <Button type={'button'} onClick={handleCancelClick} disabled={isLoading}>
-        Cancel
-      </Button>
-      <Button disabled={isLoading}>Register</Button>
-      {error && <p>{error}</p>}
+      <div className="form-actions">
+        <Button
+          type={'submit'}
+          variant={'contained'}
+          color={'primary'}
+          disabled={isLoading}
+        >
+          Register
+        </Button>
+      </div>
     </form>
   );
 };

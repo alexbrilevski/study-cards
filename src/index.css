@@ -1,3 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --font-primary: 'Montserrat', sans-serif;
+
+  --indent-base: 24px;
+  --indent-xs: 6px;
+  --indent-s: 12px;
+  --indent-m: 16px;
+  --indent-l: 36px;
+  --indent-xl: 48px;
+
+  --text-color: #000;
+  --link-color: #000;
+  --heading-color: #000;
+  --caption-color: rgba(0, 0, 0, 0.5);
+  --accent-color: #366eff;
+  --accent-color-dark: #0038c7;
+  --accent-color-light: rgba(54, 110, 255, 0.15);
+  --success-color: #00d22b;
+  --error-color: #ff3636;
+  --info-color: var(--accent-color);
+
+  --font-size-base: 16px;
+  --font-size-xs: 12px;
+  --font-size-s: 13px;
+  --font-size-m: 14px;
+  --font-size-l: 18px;
+  --font-size-xl: 22px;
+  --font-size-xxl: 26px;
+  --font-size-xxxl: 50px;
+
+  --line-height-base: 1.6;
+  --line-height-m: 20px;
+  --line-height-l: 24px;
+  --line-height-xl: 36px;
+
+  --font-weight-heading: 600;
+  --line-height-heading: 1.2;
+
+  --font-weight-caption: 600;
+  --line-height-caption: 1.4;
+
+  --shadow-active: 0px 4px 18px rgba(54, 110, 255, 0.35);
+  --shadow-primary:
+    0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --shadow-success:
+    0px 4px 18px rgba(0, 210, 43, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --shadow-error:
+    0px 4px 18px rgba(255, 54, 54, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+
+  --transition-ease: 0.3s ease;
+
+  --button-padding-x: var(--indent-base);
+  --button-padding-y: 8px;
+  --button-color: #fcfcfc;
+  --button-color-dark: #e0e0e0;
+  --button-border-radius: 30px;
+  --button-border-radius-default: 3px;
+  --button-font-family: var(--font-primary);
+  --button-font-size: var(--font-size-base);
+  --button-font-weight: 500;
+  --button-line-height: var(--line-height-m);
+  --button-text-color-dark: rgba(0, 0, 0, 0.8);
+  --button-text-color-light: #fff;
+  --button-letter-spacing: 0.01em;
+  --primary-button-color: var(--accent-color);
+  --primary-button-color-dark: var(--accent-color-dark);
+  --primary-button-color-light: var(--accent-color-light);
+  --primary-button-shadow: var(--shadow-primary);
+  --primary-button-shadow-dark:
+    0px 4px 18px rgba(4, 58, 194, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --white-button-color: var(--button-color);
+  --white-button-color-dark: var(--button-color-dark);
+  --white-button-shadow:
+    0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --white-button-shadow-dark:
+    0px 4px 18px rgba(71, 71, 71, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --red-button-color: var(--error-color);
+  --red-button-color-dark: #e20000;
+  --red-button-color-light: rgba(27, 20, 20, 0.15);
+  --red-button-shadow: var(--shadow-error);
+  --red-button-shadow-dark:
+    0px 4px 18px rgba(201, 9, 9, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+
+  --field-label-font-size: var(--font-size-base);
+  --field-label-line-height: var(--line-height-l);
+  --field-label-active-font-size: var(--font-size-s);
+  --field-label-active-line-height: var(--line-height-m);
+  --field-label-color: var(--caption-color);
+  --field-border: 1px solid rgba(0, 0, 0, 0.2);
+  --text-field-padding-x: 0;
+  --text-field-padding-y: var(--indent-xs);
+  --text-field-font-family: var(--font-primary);
+  --text-field-font-size: var(--font-size-base);
+  --text-field-font-weight: 500;
+  --text-field-line-height: var(--line-height-l);
+  --text-field-text-color: #000;
+  --checkbox-checked-bg: var(--accent-color);
+  --checkbox-checked-color: #fff;
+  --field-error-font-size: var(--font-size-s);
+  --field-error-line-height: var(--line-height-m);
+
+  --default-bg: #f9f9fa;
+  --header-bg: #fcfcfc;
+  --header-shadow:
+    0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  --card-bg: #fff;
+  --card-border-radius: 8px;
+  --card-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+
+  --dropdown-bg: #fff;
+  --dropdown-border: 1px solid #cfcfcf;
+  --dropdown-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
+
+  --container-width: 1032px;
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text-color);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,4 +142,33 @@ details,
 figcaption,
 figure {
   display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height-heading);
+}
+
+h1 {
+  font-size: var(--font-size-xxl);
+  line-height: var(--line-height-xl);
+}
+
+a {
+  color: var(--link-color);
+}
+
+b {
+  font-weight: var(--font-weight-caption);
+}
+
+button {
+  font-family: var(--button-font-family);
 }

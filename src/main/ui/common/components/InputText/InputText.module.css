@@ -1,21 +1,75 @@
-.input-text {
-  margin: 5px 0;
-  padding: 5px;
-  background: #f6f6f6;
-  border: 1px solid #9f9f9f;
-  border-radius: 5px;
+.form-group {
+  position: relative;
+  padding-top: var(--indent-s);
+  margin-bottom: var(--indent-base);
 }
 
-.input-text:focus {
-  background: white;
-  box-shadow: 0 0 10px #9f9f9f;
+.label {
+  position: absolute;
+  top: calc(var(--text-field-padding-y) + var(--indent-s));
+  left: var(--text-field-padding-x);
+  font-size: var(--field-label-font-size);
+  line-height: var(--field-label-line-height);
+  color: var(--field-label-color);
+  transition: all var(--transition-ease);
+}
+
+.label.active {
+  top: 0;
+  font-size: var(--field-label-active-font-size);
+  line-height: var(--field-label-active-line-height);
+}
+
+.form-control {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  margin: 0;
+  padding: var(--text-field-padding-y) var(--text-field-padding-x);
+  background: transparent;
+  border: none;
+  border-bottom: var(--field-border);
+  border-radius: 0;
+  font-family: var(--text-field-font-family);
+  font-size: var(--text-field-font-size);
+  font-weight: var(--text-field-font-weight);
+  line-height: var(--text-field-line-height);
+  color: var(--text-field-text-color);
+}
+
+.input:focus {
   outline: none;
 }
 
+.input[type='password'] {
+  padding-right: 36px;
+}
+
 .input-error {
-  border: 2px solid red;
+  border-bottom-color: var(--error-color);
 }
 
 .error {
-  color: red;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  font-size: var(--field-error-font-size);
+  line-height: var(--field-error-line-height);
+  color: var(--error-color);
+}
+
+.toggle-button {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: calc(100% - 2px);
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
