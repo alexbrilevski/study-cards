@@ -36,26 +36,35 @@ export const PackList = () => {
     <div>
       <div>
         <h1>Pack list</h1>
-        <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
+        {cardPacks.length !== 0 && <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
           Add new pack
-        </Button>
+        </Button>}
       </div>
-      <div>
-        {cardPacks.map((cardPack) => (
-          <div key={cardPack._id}>
-            <div>{cardPack.name}</div>
-            <div>
-              <Button>Learn</Button>
-              {cardPack.user_id === authUser._id && (
-                <>
-                  <Button onClick={() => handleEditPack(cardPack._id)}>Edit</Button>
-                  <Button onClick={() => handleDeletePack(cardPack._id)}>Delete</Button>
-                </>
-              )}
+      {cardPacks.length === 0 ? (
+        <div>
+          <p>There are no card packs yet. Click Add new pack to create new pack.</p>
+          <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
+            Add new pack
+          </Button>
+        </div>
+      ) : (
+        <div>
+          {cardPacks.map((cardPack) => (
+            <div key={cardPack._id}>
+              <div>{cardPack.name}</div>
+              <div>
+                <Button>Learn</Button>
+                {cardPack.user_id === authUser._id && (
+                  <>
+                    <Button onClick={() => handleEditPack(cardPack._id)}>Edit</Button>
+                    <Button onClick={() => handleDeletePack(cardPack._id)}>Delete</Button>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
