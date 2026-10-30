@@ -2,10 +2,11 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
 import type { User } from '../../../main/types/user';
 import type { Pack } from '../../../main/types/pack';
-import { addPack, deletePack, editPack, fetchPackList } from '../bll/packListReducer';
+import { addPack, fetchPackList } from '../bll/packListReducer';
 import { Navigate } from 'react-router-dom';
 import { PATH } from '../../../main/ui/Main/Pages';
 import Button from '../../../main/ui/common/components/Button/Button';
+import { PackListTable } from './PackListTable';
 
 export const PackList = () => {
   const authUser = useAppSelector<User | null>((state) => state.profile.user);
@@ -20,14 +21,6 @@ export const PackList = () => {
     dispatch(addPack({ name: 'New pack', isPrivate: false }));
   };
 
-  const handleEditPack = (id: string) => {
-    dispatch(editPack({ _id: id, name: 'Edited pack', isPrivate: false }));
-  };
-
-  const handleDeletePack = (id: string) => {
-    dispatch(deletePack(id));
-  };
-
   if (!authUser) {
     return <Navigate to={PATH.LOGIN} />;
   }
@@ -36,9 +29,11 @@ export const PackList = () => {
     <div>
       <div>
         <h1>Pack list</h1>
-        {cardPacks.length !== 0 && <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
-          Add new pack
-        </Button>}
+        {cardPacks.length !== 0 && (
+          <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
+            Add new pack
+          </Button>
+        )}
       </div>
       {cardPacks.length === 0 ? (
         <div>
@@ -48,22 +43,7 @@ export const PackList = () => {
           </Button>
         </div>
       ) : (
-        <div>
-          {cardPacks.map((cardPack) => (
-            <div key={cardPack._id}>
-              <div>{cardPack.name}</div>
-              <div>
-                <Button>Learn</Button>
-                {cardPack.user_id === authUser._id && (
-                  <>
-                    <Button onClick={() => handleEditPack(cardPack._id)}>Edit</Button>
-                    <Button onClick={() => handleDeletePack(cardPack._id)}>Delete</Button>
-                  </>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+        <PackListTable packs={cardPacks} authUserId={authUser._id} />
       )}
     </div>
   );
