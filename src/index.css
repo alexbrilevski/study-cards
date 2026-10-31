@@ -31,6 +31,7 @@
   --font-size-xxxl: 50px;
 
   --line-height-base: 1.6;
+  --line-height-s: 15px;
   --line-height-m: 20px;
   --line-height-l: 24px;
   --line-height-xl: 36px;
@@ -40,6 +41,9 @@
 
   --font-weight-caption: 600;
   --line-height-caption: 1.4;
+
+  --border-color-default: #d9d9d9;
+  --border-radius-default: 2px;
 
   --shadow-active: 0px 4px 18px rgba(54, 110, 255, 0.35);
   --shadow-primary:
@@ -56,7 +60,7 @@
   --button-color: #fcfcfc;
   --button-color-dark: #e0e0e0;
   --button-border-radius: 30px;
-  --button-border-radius-default: 3px;
+  --button-border-radius-default: var(--border-radius-default);
   --button-font-family: var(--font-primary);
   --button-font-size: var(--font-size-base);
   --button-font-weight: 500;
@@ -88,9 +92,14 @@
   --field-label-active-font-size: var(--font-size-s);
   --field-label-active-line-height: var(--line-height-m);
   --field-label-color: var(--caption-color);
-  --field-border: 1px solid rgba(0, 0, 0, 0.2);
+  --field-padding-x: var(--indent-s);
+  --field-padding-y: var(--indent-xs);
+  --field-bg-default: #fff;
+  --field-border: 1px solid var(--border-color-default);
+  --field-border-radius: var(--border-radius-default);
   --text-field-padding-x: 0;
   --text-field-padding-y: var(--indent-xs);
+  --text-field-border: 1px solid rgba(0, 0, 0, 0.2);
   --text-field-font-family: var(--font-primary);
   --text-field-font-size: var(--font-size-base);
   --text-field-font-weight: 500;
@@ -171,4 +180,13 @@ b {
 
 button {
   font-family: var(--button-font-family);
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: auto;
+}
+
+select {
+  font-family: var(--font-primary);
 }
