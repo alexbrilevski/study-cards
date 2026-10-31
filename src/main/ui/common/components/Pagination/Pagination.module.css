@@ -1,0 +1,48 @@
+.pagination {
+  display: flex;
+  gap: var(--indent-s);
+  align-items: center;
+  margin-top: var(--indent-base);
+}
+
+.pagination ul {
+  display: flex;
+  gap: var(--indent-s);
+  list-style: none;
+}
+
+.pagination button {
+  display: block;
+  width: 24px;
+  height: 24px;
+  padding: 3px var(--indent-xs);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--button-border-radius-default);
+  font-size: var(--font-size-xs);
+}
+
+.pagination .selected-page {
+  background-color: var(--primary-button-color);
+  border-color: 1px solid var(--primary-button-color);
+  color: var(--button-text-color-light);
+}
+
+.page-size-select {
+  display: flex;
+  align-items: center;
+  gap: var(--indent-xs);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-s);
+}
+
+.page-size-select > div {
+  margin-bottom: 0;
+}
+
+.page-size-select select {
+  width: 40px;
+  height: 24px;
+  padding: 3px var(--indent-xs);
+  font-size: var(--font-size-xs);
+}
