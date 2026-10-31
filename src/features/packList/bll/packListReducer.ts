@@ -1,17 +1,20 @@
 import { setAppIsLoading } from '../../../main/bll/appReducer';
 import type { RootThunk } from '../../../main/bll/store';
-import type { Pack, PackListData } from '../../../main/types/pack';
+import type { Pack, PackListData, PackListQueryParams } from '../../../main/types/pack';
 import { handleApiRequestError } from '../../../utils/notificationUtils';
 import { packListAPI } from '../dal/packListApi';
 
 // Constants
 const ACTION_TYPES = {
   SET_PACK_LIST_DATA: 'pack-list/SET-PACK-LIST-DATA',
+  SET_PACK_LIST_PARAMS: 'pack-list/SET-PACK-LIST-PARAMS',
 };
 
 // Types
 type InitState = typeof initState;
-export type PackListActions = ReturnType<typeof setPackListData>;
+export type PackListActions =
+  | ReturnType<typeof setPackListParams>
+  | ReturnType<typeof setPackListData>;
 
 // Initial state
 const initState = {
@@ -28,7 +31,8 @@ export const packListReducer = (
   action: PackListActions,
 ): InitState => {
   switch (action.type) {
-    case ACTION_TYPES.SET_PACK_LIST_DATA: {
+    case ACTION_TYPES.SET_PACK_LIST_DATA:
+    case ACTION_TYPES.SET_PACK_LIST_PARAMS: {
       return { ...state, ...action.payload };
     }
     default: {
@@ -40,6 +44,8 @@ export const packListReducer = (
 // Action creators
 const setPackListData = (packListData: PackListData) =>
   ({ type: ACTION_TYPES.SET_PACK_LIST_DATA, payload: { ...packListData } }) as const;
+export const setPackListParams = (params: PackListQueryParams) =>
+  ({ type: ACTION_TYPES.SET_PACK_LIST_PARAMS, payload: { ...params } }) as const;
 
 // Thunk creators
 export const fetchPackList = (): RootThunk => (dispatch, getState) => {
