@@ -55,11 +55,11 @@ export const Pagination: FC<PaginationPropsType> = ({
       </button>
 
       <ul>
-        {paginationRange.map((pageNumber) => {
+        {paginationRange.map((pageNumber, index) => {
           return (
-            <li key={`page-${pageNumber}`}>
+            <li key={`page-${pageNumber}-${index}`}>
               {pageNumber === DOTS ? (
-                <span className={s.dots}>&#8230;</span>
+                <span className={s.dots}>{DOTS}</span>
               ) : (
                 <button
                   className={pageNumber === currentPage ? s['selected-page'] : undefined}
