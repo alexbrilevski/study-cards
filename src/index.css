@@ -187,6 +187,7 @@ button:disabled {
   cursor: auto;
 }
 
+input,
 select {
   font-family: var(--font-primary);
 }

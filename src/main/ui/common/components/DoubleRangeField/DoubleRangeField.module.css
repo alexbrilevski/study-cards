@@ -1,0 +1,71 @@
+.double-range-field {
+  display: flex;
+  align-items: center;
+  gap: var(--indent-s);
+}
+
+.double-range-input {
+  display: block;
+  width: 36px;
+  height: 36px;
+  padding: var(--indent-xs);
+  background-color: var(--field-bg-default);
+  border: var(--field-border);
+  border-radius: var(--field-border-radius);
+  font-weight: 600;
+  text-align: center;
+  appearance: textfield;
+}
+
+.double-range {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 5px;
+}
+
+.double-range-track,
+.double-range-fill {
+  position: absolute;
+  height: 5px;
+  background-color: var(--accent-color);
+  border-radius: 10px;
+}
+
+.double-range-track {
+  width: 100%;
+  opacity: 50%;
+}
+
+.double-range-thumb,
+.double-range-thumb::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.double-range-thumb {
+  pointer-events: none;
+  position: absolute;
+  top: 3px;
+  width: 100%;
+  height: 0;
+  outline: none;
+}
+
+/* For Firefox browsers */
+.double-range-thumb::-moz-range-thumb,
+.double-range-thumb::-webkit-slider-thumb {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border: 4px solid var(--accent-color);
+  border-radius: 50%;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.double-range-thumb:disabled::-moz-range-thumb,
+.double-range-thumb:disabled::-webkit-slider-thumb {
+  opacity: 0.5;
+  cursor: auto;
+}
