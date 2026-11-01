@@ -6,12 +6,17 @@ import { addPack, fetchPackList, setPackListParams } from '../bll/packListReduce
 import { Navigate } from 'react-router-dom';
 import { PATH } from '../../../main/ui/Main/Pages';
 import Button from '../../../main/ui/common/components/Button/Button';
+import { PackListHeader } from './PackListHeader';
 import { PackListTable } from './PackListTable';
 import { Pagination } from '../../../main/ui/common/components/Pagination/Pagination';
 
 export const PackList = () => {
   const authUser = useAppSelector<User | null>((state) => state.profile.user);
   const cardPacks = useAppSelector<Pack[]>((state) => state.packList.cardPacks);
+  const minCardsCount = useAppSelector((state) => state.packList.minCardsCount);
+  const maxCardsCount = useAppSelector((state) => state.packList.maxCardsCount);
+  const min = useAppSelector((state) => state.packList.min);
+  const max = useAppSelector((state) => state.packList.max);
   const page = useAppSelector<number>((state) => state.packList.page);
   const pageSize = useAppSelector<number>((state) => state.packList.pageCount);
   const totalPacksCount = useAppSelector<number>(
@@ -21,18 +26,22 @@ export const PackList = () => {
 
   useEffect(() => {
     dispatch(fetchPackList());
-  }, [page, pageSize]);
+  }, [page, pageSize, min, max]);
 
   const handleAddPack = () => {
     dispatch(addPack({ name: 'New pack', isPrivate: false }));
   };
 
+  const setCardsCountRange = ([min, max]: [number, number]) => {
+    dispatch(setPackListParams({ min, max }));
+  };
+
   const handlePageChange = (pageNumber: number) => {
-    dispatch(setPackListParams({page: pageNumber}));
+    dispatch(setPackListParams({ page: pageNumber }));
   };
 
   const handlePageSizeChange = (pageSize: number) => {
-    dispatch(setPackListParams({pageCount: pageSize}));
+    dispatch(setPackListParams({ pageCount: pageSize }));
   };
 
   if (!authUser) {
@@ -58,6 +67,11 @@ export const PackList = () => {
         </div>
       ) : (
         <div>
+          <PackListHeader
+            minCardsCount={minCardsCount}
+            maxCardsCount={maxCardsCount}
+            onCardsCountRangeChange={setCardsCountRange}
+          />
           <PackListTable packs={cardPacks} authUserId={authUser._id} />
           <Pagination
             currentPage={page}
