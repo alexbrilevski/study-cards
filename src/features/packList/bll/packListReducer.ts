@@ -26,6 +26,7 @@ const initState = {
   pageCount: 10,
   max: undefined as number | undefined,
   min: undefined as number | undefined,
+  user_id: undefined as string | undefined,
 };
 
 export const packListReducer = (
@@ -51,11 +52,11 @@ export const setPackListParams = (params: PackListQueryParams) =>
 
 // Thunk creators
 export const fetchPackList = (): RootThunk => (dispatch, getState) => {
-  const { pageCount, page, min, max } = getState().packList;
+  const { pageCount, page, user_id, min, max } = getState().packList;
 
   dispatch(setAppIsLoading(true));
   packListAPI
-    .getPacks({ min, max, pageCount, page })
+    .getPacks({ pageCount, page, user_id, min, max })
     .then((data) => {
       dispatch(setPackListData(data));
     })

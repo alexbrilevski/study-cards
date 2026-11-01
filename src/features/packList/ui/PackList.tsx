@@ -10,6 +10,8 @@ import { PackListHeader } from './PackListHeader';
 import { PackListTable } from './PackListTable';
 import { Pagination } from '../../../main/ui/common/components/Pagination/Pagination';
 
+export type CardsPackListView = 'my' | 'all';
+
 export const PackList = () => {
   const authUser = useAppSelector<User | null>((state) => state.profile.user);
   const cardPacks = useAppSelector<Pack[]>((state) => state.packList.cardPacks);
@@ -17,6 +19,7 @@ export const PackList = () => {
   const maxCardsCount = useAppSelector((state) => state.packList.maxCardsCount);
   const min = useAppSelector((state) => state.packList.min);
   const max = useAppSelector((state) => state.packList.max);
+  const user_id = useAppSelector((state) => state.packList.user_id);
   const page = useAppSelector<number>((state) => state.packList.page);
   const pageSize = useAppSelector<number>((state) => state.packList.pageCount);
   const totalPacksCount = useAppSelector<number>(
@@ -26,10 +29,15 @@ export const PackList = () => {
 
   useEffect(() => {
     dispatch(fetchPackList());
-  }, [page, pageSize, min, max]);
+  }, [page, pageSize, user_id, min, max]);
 
   const handleAddPack = () => {
     dispatch(addPack({ name: 'New pack', isPrivate: false }));
+  };
+
+  const setPackListView = (view: CardsPackListView) => {
+    console.log(view, view === 'my' ? authUser?._id : undefined);
+    dispatch(setPackListParams({ user_id: view === 'my' ? authUser?._id : undefined }));
   };
 
   const setCardsCountRange = ([min, max]: [number, number]) => {
@@ -71,6 +79,7 @@ export const PackList = () => {
             minCardsCount={minCardsCount}
             maxCardsCount={maxCardsCount}
             onCardsCountRangeChange={setCardsCountRange}
+            onSelectPackListView={setPackListView}
           />
           <PackListTable packs={cardPacks} authUserId={authUser._id} />
           <Pagination
