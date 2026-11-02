@@ -43,7 +43,7 @@ const DoubleRangeField: FC<DoubleRangeFieldProps> = ({
   const [maxValue, setMaxValue] = useState(initMaxValue);
 
   const getPercent = (value: number) =>
-    Math.round(((value - initMin) / (initMax - initMin)) * 100);
+    Math.round(((value - initMinValue) / (initMaxValue - initMinValue)) * 100);
 
   const setRangeFill = (minVal: number, maxVal: number) => {
     const minPercent = getPercent(minVal);
@@ -54,8 +54,8 @@ const DoubleRangeField: FC<DoubleRangeFieldProps> = ({
 
   const onMinValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     let value = Math.min(+e.currentTarget.value, maxValue);
-    if (value < initMin) {
-      value = initMin;
+    if (value < initMinValue) {
+      value = initMinValue;
     }
     setMinValue(value);
     onChangeRange && onChangeRange([value, maxValue]);
@@ -63,8 +63,8 @@ const DoubleRangeField: FC<DoubleRangeFieldProps> = ({
 
   const onMaxValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     let value = Math.max(+e.currentTarget.value, minValue);
-    if (value > initMax) {
-      value = initMax;
+    if (value > initMaxValue) {
+      value = initMaxValue;
     }
     setMaxValue(value);
     onChangeRange && onChangeRange([minValue, value]);
@@ -76,8 +76,8 @@ const DoubleRangeField: FC<DoubleRangeFieldProps> = ({
         className={s['double-range-input']}
         type={'number'}
         value={minValue}
-        min={initMin}
-        max={initMax}
+        min={initMinValue}
+        max={initMaxValue}
         onChange={onMinValueChange}
       />
       <div className={s['double-range']}>
@@ -92,8 +92,8 @@ const DoubleRangeField: FC<DoubleRangeFieldProps> = ({
           onChange={onMinValueChange}
           className={s['double-range-thumb']}
           style={{ zIndex: minValue === maxValue && minValue !== 0 ? 1 : 0 }}
-          min={initMin}
-          max={initMax}
+          min={initMinValue}
+          max={initMaxValue}
           step={stepValue}
           disabled={disabled}
           {...restProps}
@@ -103,8 +103,8 @@ const DoubleRangeField: FC<DoubleRangeFieldProps> = ({
           value={maxValue}
           onChange={onMaxValueChange}
           className={s['double-range-thumb']}
-          min={initMin}
-          max={initMax}
+          min={initMinValue}
+          max={initMaxValue}
           step={stepValue}
           disabled={disabled}
           {...restProps}
@@ -114,8 +114,8 @@ const DoubleRangeField: FC<DoubleRangeFieldProps> = ({
         className={s['double-range-input']}
         type={'number'}
         value={maxValue}
-        min={initMin}
-        max={initMax}
+        min={initMinValue}
+        max={initMaxValue}
         onChange={onMaxValueChange}
       />
     </div>
