@@ -52,7 +52,6 @@
   outline: none;
 }
 
-/* For Firefox browsers */
 .double-range-thumb::-moz-range-thumb,
 .double-range-thumb::-webkit-slider-thumb {
   width: 8px;

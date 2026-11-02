@@ -22,6 +22,10 @@
   line-height: var(--line-height-m);
 }
 
+.search-field input:focus::placeholder {
+  opacity: 0;
+}
+
 .search-field img {
   position: absolute;
   top: 50%;
