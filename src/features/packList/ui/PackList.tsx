@@ -19,6 +19,7 @@ export const PackList = () => {
   const maxCardsCount = useAppSelector((state) => state.packList.maxCardsCount);
   const min = useAppSelector((state) => state.packList.min);
   const max = useAppSelector((state) => state.packList.max);
+  const packName = useAppSelector<string>((state) => state.packList.packName);
   const user_id = useAppSelector((state) => state.packList.user_id);
   const page = useAppSelector<number>((state) => state.packList.page);
   const pageSize = useAppSelector<number>((state) => state.packList.pageCount);
@@ -29,10 +30,14 @@ export const PackList = () => {
 
   useEffect(() => {
     dispatch(fetchPackList());
-  }, [page, pageSize, user_id, min, max]);
+  }, [page, pageSize, packName, user_id, min, max]);
 
   const handleAddPack = () => {
     dispatch(addPack({ name: 'New pack', isPrivate: false }));
+  };
+
+  const setPackNameSearchParam = (packName: string) => {
+    dispatch(setPackListParams({ packName }));
   };
 
   const setPackListView = (view: CardsPackListView) => {
@@ -76,8 +81,10 @@ export const PackList = () => {
       ) : (
         <div>
           <PackListHeader
+            packName={packName}
             minCardsCount={minCardsCount}
             maxCardsCount={maxCardsCount}
+            onSearchByPackName={setPackNameSearchParam}
             onCardsCountRangeChange={setCardsCountRange}
             onSelectPackListView={setPackListView}
           />

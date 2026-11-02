@@ -1,22 +1,34 @@
 import type { FC } from 'react';
-import DoubleRangeField from '../../../main/ui/common/components/DoubleRangeField/DoubleRangeField';
 import type { CardsPackListView } from './PackList';
+import DoubleRangeField from '../../../main/ui/common/components/DoubleRangeField/DoubleRangeField';
+import SearchField from '../../../main/ui/common/components/SearchField/SearchField';
 
 type PackListHeaderProps = {
+  packName: string;
   minCardsCount: number;
   maxCardsCount: number;
+  onSearchByPackName: (packName: string) => void;
   onCardsCountRangeChange: (value: [number, number]) => void;
   onSelectPackListView: (view: CardsPackListView) => void;
 };
 
 export const PackListHeader: FC<PackListHeaderProps> = ({
+  packName,
   minCardsCount,
   maxCardsCount,
+  onSearchByPackName,
   onCardsCountRangeChange,
   onSelectPackListView,
 }) => {
   return (
     <div>
+      <SearchField
+        label={'Search by name'}
+        placeholder={'Provide your text'}
+        name={'packName'}
+        value={packName}
+        onChangeValue={onSearchByPackName}
+      />
       <div>
         <h2>Show cards packs</h2>
         <div>
