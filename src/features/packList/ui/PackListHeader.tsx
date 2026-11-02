@@ -5,8 +5,11 @@ import SearchField from '../../../main/ui/common/components/SearchField/SearchFi
 
 type PackListHeaderProps = {
   packName: string;
+  min: number;
+  max: number;
   minCardsCount: number;
   maxCardsCount: number;
+  userId: string;
   onSearchByPackName: (packName: string) => void;
   onCardsCountRangeChange: (value: [number, number]) => void;
   onSelectPackListView: (view: CardsPackListView) => void;
@@ -14,8 +17,11 @@ type PackListHeaderProps = {
 
 export const PackListHeader: FC<PackListHeaderProps> = ({
   packName,
+  min,
+  max,
   minCardsCount,
   maxCardsCount,
+  userId,
   onSearchByPackName,
   onCardsCountRangeChange,
   onSelectPackListView,
@@ -32,17 +38,27 @@ export const PackListHeader: FC<PackListHeaderProps> = ({
       <div>
         <h2>Show cards packs</h2>
         <div>
-          <button onClick={() => onSelectPackListView('my')}>My</button>
-          <button onClick={() => onSelectPackListView('all')}>All</button>
+          <button
+            className={userId ? 'active' : undefined}
+            onClick={() => onSelectPackListView('my')}
+          >
+            My
+          </button>
+          <button
+            className={!userId ? 'active' : undefined}
+            onClick={() => onSelectPackListView('all')}
+          >
+            All
+          </button>
         </div>
       </div>
       <div>
         <h2>Number of cards</h2>
         <DoubleRangeField
+          min={min}
+          max={max}
           rangeValues={[minCardsCount, maxCardsCount]}
           onChangeRange={onCardsCountRangeChange}
-          min={minCardsCount}
-          max={maxCardsCount}
         />
       </div>
     </div>

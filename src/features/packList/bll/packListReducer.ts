@@ -24,7 +24,7 @@ const initState = {
   minCardsCount: 0,
   page: 1,
   pageCount: 10,
-  packName: '',
+  packName: undefined as string | undefined,
   max: undefined as number | undefined,
   min: undefined as number | undefined,
   user_id: undefined as string | undefined,

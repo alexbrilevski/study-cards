@@ -15,12 +15,12 @@ export type CardsPackListView = 'my' | 'all';
 export const PackList = () => {
   const authUser = useAppSelector<User | null>((state) => state.profile.user);
   const cardPacks = useAppSelector<Pack[]>((state) => state.packList.cardPacks);
-  const minCardsCount = useAppSelector((state) => state.packList.minCardsCount);
-  const maxCardsCount = useAppSelector((state) => state.packList.maxCardsCount);
-  const min = useAppSelector((state) => state.packList.min);
-  const max = useAppSelector((state) => state.packList.max);
-  const packName = useAppSelector<string>((state) => state.packList.packName);
-  const user_id = useAppSelector((state) => state.packList.user_id);
+  const minCardsCount = useAppSelector<number>((state) => state.packList.minCardsCount);
+  const maxCardsCount = useAppSelector<number>((state) => state.packList.maxCardsCount);
+  const min = useAppSelector<number | undefined>((state) => state.packList.min);
+  const max = useAppSelector<number | undefined>((state) => state.packList.max);
+  const packName = useAppSelector<string | undefined>((state) => state.packList.packName);
+  const user_id = useAppSelector<string | undefined>((state) => state.packList.user_id);
   const page = useAppSelector<number>((state) => state.packList.page);
   const pageSize = useAppSelector<number>((state) => state.packList.pageCount);
   const totalPacksCount = useAppSelector<number>(
@@ -41,7 +41,6 @@ export const PackList = () => {
   };
 
   const setPackListView = (view: CardsPackListView) => {
-    console.log(view, view === 'my' ? authUser?._id : undefined);
     dispatch(setPackListParams({ user_id: view === 'my' ? authUser?._id : undefined }));
   };
 
@@ -81,9 +80,12 @@ export const PackList = () => {
       ) : (
         <div>
           <PackListHeader
-            packName={packName}
+            packName={packName !== undefined ? packName : ''}
+            min={min !== undefined ? min : minCardsCount}
+            max={max !== undefined ? max : maxCardsCount}
             minCardsCount={minCardsCount}
             maxCardsCount={maxCardsCount}
+            userId={user_id !== undefined ? user_id : ''}
             onSearchByPackName={setPackNameSearchParam}
             onCardsCountRangeChange={setCardsCountRange}
             onSelectPackListView={setPackListView}
