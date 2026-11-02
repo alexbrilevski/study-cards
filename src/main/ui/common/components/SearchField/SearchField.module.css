@@ -1,0 +1,30 @@
+.search-field .form-control {
+  position: relative;
+}
+
+.search-field label {
+  display: inline-block;
+  margin-bottom: var(--indent-xs);
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  line-height: var(--line-height-m);
+}
+
+.search-field input {
+  display: block;
+  width: 100%;
+  height: 36px;
+  padding: var(--indent-xs) var(--indent-base) var(--indent-xs) var(--indent-l);
+  background-color: var(--field-bg-defaul);
+  border: var(--field-border);
+  border-radius: var(--field-border-radius);
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+}
+
+.search-field img {
+  position: absolute;
+  top: 50%;
+  left: var(--indent-s);
+  transform: translateY(-50%);
+}
