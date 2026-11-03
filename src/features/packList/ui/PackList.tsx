@@ -48,6 +48,17 @@ export const PackList = () => {
     dispatch(setPackListParams({ min, max }));
   };
 
+  const resetPackListFilters = () => {
+    dispatch(
+      setPackListParams({
+        packName: undefined,
+        min: undefined,
+        max: undefined,
+        user_id: undefined,
+      }),
+    );
+  };
+
   const handlePageChange = (pageNumber: number) => {
     dispatch(setPackListParams({ page: pageNumber }));
   };
@@ -87,8 +98,9 @@ export const PackList = () => {
             maxCardsCount={maxCardsCount}
             userId={user_id !== undefined ? user_id : ''}
             onSearchByPackName={setPackNameSearchParam}
-            onCardsCountRangeChange={setCardsCountRange}
             onSelectPackListView={setPackListView}
+            onCardsCountRangeChange={setCardsCountRange}
+            onClearFilters={resetPackListFilters}
           />
           <PackListTable packs={cardPacks} authUserId={authUser._id} />
           <Pagination

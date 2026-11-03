@@ -2,6 +2,8 @@ import type { FC } from 'react';
 import type { CardsPackListView } from './PackList';
 import DoubleRangeField from '../../../main/ui/common/components/DoubleRangeField/DoubleRangeField';
 import SearchField from '../../../main/ui/common/components/SearchField/SearchField';
+import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
+import clearFiltersIcon from '../../../assets/icons/clear-filters.svg';
 
 type PackListHeaderProps = {
   packName: string;
@@ -11,8 +13,9 @@ type PackListHeaderProps = {
   maxCardsCount: number;
   userId: string;
   onSearchByPackName: (packName: string) => void;
-  onCardsCountRangeChange: (value: [number, number]) => void;
   onSelectPackListView: (view: CardsPackListView) => void;
+  onCardsCountRangeChange: (value: [number, number]) => void;
+  onClearFilters: () => void;
 };
 
 export const PackListHeader: FC<PackListHeaderProps> = ({
@@ -23,8 +26,9 @@ export const PackListHeader: FC<PackListHeaderProps> = ({
   maxCardsCount,
   userId,
   onSearchByPackName,
-  onCardsCountRangeChange,
   onSelectPackListView,
+  onCardsCountRangeChange,
+  onClearFilters,
 }) => {
   return (
     <div>
@@ -61,6 +65,9 @@ export const PackListHeader: FC<PackListHeaderProps> = ({
           onChangeRange={onCardsCountRangeChange}
         />
       </div>
+      <button onClick={onClearFilters}>
+        <IconSvg src={clearFiltersIcon} size={24} />
+      </button>
     </div>
   );
 };
