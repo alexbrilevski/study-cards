@@ -24,6 +24,18 @@
   box-shadow: var(--card-shadow);
 }
 
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--indent-base);
+}
+
+.page-header h1 {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-heading);
+}
+
 .form-container {
   width: 416px;
   margin: var(--indent-xl) auto;

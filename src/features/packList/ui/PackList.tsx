@@ -73,20 +73,18 @@ export const PackList = () => {
 
   return (
     <div>
-      <div>
+      <div className="page-header">
         <h1>Pack list</h1>
-        {cardPacks.length !== 0 && (
-          <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
-            Add new pack
-          </Button>
-        )}
+        <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
+          Add new pack
+        </Button>
       </div>
       {cardPacks.length === 0 ? (
         <div>
-          <p>There are no card packs yet. Click Add new pack to create new pack.</p>
-          <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
-            Add new pack
-          </Button>
+          <p className="text-center">
+            No card packs found. Click Add new pack to create new pack or change list
+            filters.
+          </p>
         </div>
       ) : (
         <div>
