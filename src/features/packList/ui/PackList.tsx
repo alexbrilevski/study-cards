@@ -6,7 +6,7 @@ import { addPack, fetchPackList, setPackListParams } from '../bll/packListReduce
 import { Navigate } from 'react-router-dom';
 import { PATH } from '../../../main/ui/Main/Pages';
 import Button from '../../../main/ui/common/components/Button/Button';
-import { PackListHeader } from './PackListHeader';
+import { PackListHeader } from './PackListHeader/PackListHeader';
 import { PackListTable } from './PackListTable';
 import { Pagination } from '../../../main/ui/common/components/Pagination/Pagination';
 
