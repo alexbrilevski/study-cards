@@ -1,16 +1,26 @@
 import type { FC } from 'react';
 import type { Pack } from '../../../main/types/pack';
 import { useAppDispatch } from '../../../main/bll/store';
-import { deletePack, editPack } from '../bll/packListReducer';
+import { deletePack, editPack, setPackListParams } from '../bll/packListReducer';
 import Button from '../../../main/ui/common/components/Button/Button';
+import ButtonSort from '../../../main/ui/common/components/ButtonSort/ButtonSort';
 
 type PackListTableProps = {
   packs: Pack[];
   authUserId: string;
+  sortPacks: string;
 };
 
-export const PackListTable: FC<PackListTableProps> = ({ packs, authUserId }) => {
+export const PackListTable: FC<PackListTableProps> = ({
+  packs,
+  authUserId,
+  sortPacks,
+}) => {
   const dispatch = useAppDispatch();
+
+  const setPackListSorting = (sortPacks: string) => {
+    dispatch(setPackListParams({ sortPacks }));
+  };
 
   const handleEditPack = (id: string) => {
     dispatch(editPack({ _id: id, name: 'Edited pack', isPrivate: false }));
@@ -24,9 +34,33 @@ export const PackListTable: FC<PackListTableProps> = ({ packs, authUserId }) => 
     <table>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Cards</th>
-          <th>Last Updated</th>
+          <th>
+            <ButtonSort
+              sortParam={'name'}
+              currentSorting={sortPacks}
+              onSortClick={setPackListSorting}
+            >
+              Name
+            </ButtonSort>
+          </th>
+          <th>
+            <ButtonSort
+              sortParam={'cardsCount'}
+              currentSorting={sortPacks}
+              onSortClick={setPackListSorting}
+            >
+              Cards
+            </ButtonSort>
+          </th>
+          <th>
+            <ButtonSort
+              sortParam={'updated'}
+              currentSorting={sortPacks}
+              onSortClick={setPackListSorting}
+            >
+              Last Updated
+            </ButtonSort>
+          </th>
           <th>Created by</th>
           <th>Actions</th>
         </tr>

@@ -21,6 +21,7 @@ export const PackList = () => {
   const max = useAppSelector<number | undefined>((state) => state.packList.max);
   const packName = useAppSelector<string | undefined>((state) => state.packList.packName);
   const user_id = useAppSelector<string | undefined>((state) => state.packList.user_id);
+  const sortPacks = useAppSelector<string>((state) => state.packList.sortPacks);
   const page = useAppSelector<number>((state) => state.packList.page);
   const pageSize = useAppSelector<number>((state) => state.packList.pageCount);
   const totalPacksCount = useAppSelector<number>(
@@ -30,7 +31,7 @@ export const PackList = () => {
 
   useEffect(() => {
     dispatch(fetchPackList());
-  }, [page, pageSize, packName, user_id, min, max]);
+  }, [page, pageSize, packName, user_id, min, max, sortPacks]);
 
   const handleAddPack = () => {
     dispatch(addPack({ name: 'New pack', isPrivate: false }));
@@ -100,7 +101,11 @@ export const PackList = () => {
             onCardsCountRangeChange={setCardsCountRange}
             onClearFilters={resetPackListFilters}
           />
-          <PackListTable packs={cardPacks} authUserId={authUser._id} />
+          <PackListTable
+            packs={cardPacks}
+            authUserId={authUser._id}
+            sortPacks={sortPacks}
+          />
           <Pagination
             currentPage={page}
             pageSize={pageSize}
