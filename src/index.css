@@ -4,6 +4,7 @@
   --font-primary: 'Montserrat', sans-serif;
 
   --indent-base: 24px;
+  --indent-xxs: 3px;
   --indent-xs: 6px;
   --indent-s: 12px;
   --indent-m: 16px;
@@ -121,6 +122,12 @@
   --dropdown-bg: #fff;
   --dropdown-border: 1px solid #cfcfcf;
   --dropdown-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
+
+  --table-head-bg: #efefef;
+  --table-body-bg: #fff;
+  --table-border-color: var(--border-color-default);
+  --table-shadow: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1))
+    drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.1));
 
   --container-width: 1032px;
 

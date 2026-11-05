@@ -108,6 +108,60 @@
   color: var(--accent-color-dark);
 }
 
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--table-border-color);
+  text-align: left;
+  filter: var(--table-shadow);
+}
+
+.table-head {
+  background-color: var(--table-head-bg);
+}
+
+.table-body {
+  background-color: var(--table-body-bg);
+}
+
+.table-body tr {
+  border-bottom: 1px solid var(--table-border-color);
+}
+
+.table-body tr:last-child {
+  border-bottom: none;
+}
+
+.table th,
+.table td {
+  padding: var(--indent-s) var(--indent-base);
+}
+
+.table th,
+.table th button {
+  font-size: var(--font-size-m);
+  font-weight: 500;
+}
+
+.table th button {
+  background-color: transparent;
+  border: none;
+}
+
+.table td {
+  font-size: var(--font-size-s);
+}
+
+.table .table-actions {
+  display: flex;
+  gap: var(--indent-xs);
+}
+
+.table .table-actions button {
+  padding: var(--indent-xxs);
+  border-radius: 50%;
+}
+
 @media (max-width: 450px) {
   .form-container {
     width: 100%;
