@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import type { Pack } from '../../../main/types/pack';
 import { useAppDispatch } from '../../../main/bll/store';
 import { deletePack, editPack, setPackListParams } from '../bll/packListReducer';
+import { formatDate } from '../../../utils/formatDate';
 import Button from '../../../main/ui/common/components/Button/Button';
 import ButtonSort from '../../../main/ui/common/components/ButtonSort/ButtonSort';
 import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
@@ -75,7 +76,7 @@ export const PackListTable: FC<PackListTableProps> = ({
             <tr key={pack._id}>
               <td>{pack.name}</td>
               <td>{pack.cardsCount}</td>
-              <td>{pack.updated}</td>
+              <td>{formatDate(pack.updated)}</td>
               <td>{pack.user_name}</td>
               <td>
                 <div className="table-actions">
