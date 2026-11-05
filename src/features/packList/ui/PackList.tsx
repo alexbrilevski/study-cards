@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
+import { useDebouncedCallback } from '../../../utils/hooks/useDebouncedCallback';
 import type { User } from '../../../main/types/user';
 import type { Pack } from '../../../main/types/pack';
 import { addPack, fetchPackList, setPackListParams } from '../bll/packListReducer';
-import { Navigate } from 'react-router-dom';
 import { PATH } from '../../../main/ui/Main/Pages';
 import Button from '../../../main/ui/common/components/Button/Button';
 import { PackListHeader } from './PackListHeader/PackListHeader';
@@ -37,17 +38,17 @@ export const PackList = () => {
     dispatch(addPack({ name: 'New pack', isPrivate: false }));
   };
 
-  const setPackNameSearchParam = (packName: string) => {
+  const setPackNameSearchParam = useDebouncedCallback((packName: string) => {
     dispatch(setPackListParams({ packName }));
-  };
+  }, 500);
 
   const setPackListView = (view: CardsPackListView) => {
     dispatch(setPackListParams({ user_id: view === 'my' ? authUser?._id : undefined }));
   };
 
-  const setCardsCountRange = ([min, max]: [number, number]) => {
+  const setCardsCountRange = useDebouncedCallback(([min, max]: [number, number]) => {
     dispatch(setPackListParams({ min, max }));
-  };
+  }, 500);
 
   const resetPackListFilters = () => {
     dispatch(
