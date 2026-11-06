@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useState,
   type ChangeEvent,
   type DetailedHTMLProps,
@@ -41,6 +42,11 @@ const DoubleRangeField: FC<DoubleRangeFieldProps> = ({
 
   const [minValue, setMinValue] = useState(initMinValue);
   const [maxValue, setMaxValue] = useState(initMaxValue);
+
+  useEffect(() => {
+    setMinValue(min as number);
+    setMaxValue(max as number);
+  }, [min, max]);
 
   const getPercent = (value: number) =>
     Math.round(((value - initMinValue) / (initMaxValue - initMinValue)) * 100);

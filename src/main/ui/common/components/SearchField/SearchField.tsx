@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useState,
   type ChangeEvent,
   type DetailedHTMLProps,
@@ -29,6 +30,10 @@ const SearchField: FC<SearchFieldProps> = ({
 }) => {
   const [inputValue, setInputvalue] = useState(value);
   const fieldId = name ? name : undefined;
+
+  useEffect(() => {
+    setInputvalue(value);
+  }, [value]);
 
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     const currentValue = e.currentTarget.value;
