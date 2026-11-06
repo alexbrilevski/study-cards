@@ -15,7 +15,7 @@
   width: 100%;
   height: 36px;
   padding: var(--indent-xs) var(--indent-base) var(--indent-xs) var(--indent-l);
-  background-color: var(--field-bg-defaul);
+  background-color: var(--field-bg-default);
   border: var(--field-border);
   border-radius: var(--field-border-radius);
   font-size: var(--font-size-m);
