@@ -18,13 +18,17 @@ export const PackList = () => {
   const cardPacks = useAppSelector<Pack[]>((state) => state.packList.cardPacks);
   const minCardsCount = useAppSelector<number>((state) => state.packList.minCardsCount);
   const maxCardsCount = useAppSelector<number>((state) => state.packList.maxCardsCount);
-  const min = useAppSelector<number | undefined>((state) => state.packList.min);
-  const max = useAppSelector<number | undefined>((state) => state.packList.max);
-  const packName = useAppSelector<string | undefined>((state) => state.packList.packName);
-  const user_id = useAppSelector<string | undefined>((state) => state.packList.user_id);
-  const sortPacks = useAppSelector<string>((state) => state.packList.sortPacks);
-  const page = useAppSelector<number>((state) => state.packList.page);
-  const pageSize = useAppSelector<number>((state) => state.packList.pageCount);
+  const min = useAppSelector<number | undefined>((state) => state.packList.params.min);
+  const max = useAppSelector<number | undefined>((state) => state.packList.params.max);
+  const packName = useAppSelector<string | undefined>(
+    (state) => state.packList.params.packName,
+  );
+  const user_id = useAppSelector<string | undefined>(
+    (state) => state.packList.params.user_id,
+  );
+  const sortPacks = useAppSelector<string>((state) => state.packList.params.sortPacks);
+  const page = useAppSelector<number>((state) => state.packList.params.page);
+  const pageSize = useAppSelector<number>((state) => state.packList.params.pageCount);
   const totalPacksCount = useAppSelector<number>(
     (state) => state.packList.cardPacksTotalCount,
   );

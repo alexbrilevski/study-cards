@@ -8,7 +8,7 @@ import { packListAPI } from '../dal/packListApi';
 const ACTION_TYPES = {
   SET_PACK_LIST_DATA: 'pack-list/SET-PACK-LIST-DATA',
   SET_PACK_LIST_PARAMS: 'pack-list/SET-PACK-LIST-PARAMS',
-};
+} as const;
 
 // Types
 type InitState = typeof initState;
@@ -22,13 +22,15 @@ const initState = {
   cardPacksTotalCount: 0,
   maxCardsCount: 0,
   minCardsCount: 0,
-  page: 1,
-  pageCount: 10,
-  packName: undefined as string | undefined,
-  max: undefined as number | undefined,
-  min: undefined as number | undefined,
-  user_id: undefined as string | undefined,
-  sortPacks: '0updated',
+  params: {
+    user_id: undefined as string | undefined,
+    packName: undefined as string | undefined,
+    max: undefined as number | undefined,
+    min: undefined as number | undefined,
+    sortPacks: '0updated',
+    page: 1,
+    pageCount: 10,
+  },
 };
 
 export const packListReducer = (
@@ -36,9 +38,27 @@ export const packListReducer = (
   action: PackListActions,
 ): InitState => {
   switch (action.type) {
-    case ACTION_TYPES.SET_PACK_LIST_DATA:
+    case ACTION_TYPES.SET_PACK_LIST_DATA: {
+      const {
+        cardPacks,
+        cardPacksTotalCount,
+        minCardsCount,
+        maxCardsCount,
+        page,
+        pageCount,
+      } = action.payload;
+
+      return {
+        ...state,
+        cardPacks,
+        cardPacksTotalCount,
+        minCardsCount,
+        maxCardsCount,
+        params: { ...state.params, page, pageCount },
+      };
+    }
     case ACTION_TYPES.SET_PACK_LIST_PARAMS: {
-      return { ...state, ...action.payload };
+      return { ...state, params: { ...state.params, ...action.payload } };
     }
     default: {
       return state;
@@ -48,17 +68,17 @@ export const packListReducer = (
 
 // Action creators
 const setPackListData = (packListData: PackListData) =>
-  ({ type: ACTION_TYPES.SET_PACK_LIST_DATA, payload: { ...packListData } }) as const;
+  ({ type: ACTION_TYPES.SET_PACK_LIST_DATA, payload: packListData }) as const;
 export const setPackListParams = (params: PackListQueryParams) =>
-  ({ type: ACTION_TYPES.SET_PACK_LIST_PARAMS, payload: { ...params } }) as const;
+  ({ type: ACTION_TYPES.SET_PACK_LIST_PARAMS, payload: params }) as const;
 
 // Thunk creators
 export const fetchPackList = (): RootThunk => (dispatch, getState) => {
-  const { pageCount, page, packName, user_id, sortPacks, min, max } = getState().packList;
+  const params = getState().packList.params;
 
   dispatch(setAppIsLoading(true));
   packListAPI
-    .getPacks({ pageCount, page, packName, user_id, sortPacks, min, max })
+    .getPacks(params)
     .then((data) => {
       dispatch(setPackListData(data));
     })
