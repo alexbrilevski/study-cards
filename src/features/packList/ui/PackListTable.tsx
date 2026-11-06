@@ -74,11 +74,11 @@ export const PackListTable: FC<PackListTableProps> = ({
         {packs.map((pack) => {
           return (
             <tr key={pack._id}>
-              <td>{pack.name}</td>
-              <td>{pack.cardsCount}</td>
-              <td>{formatDate(pack.updated)}</td>
-              <td>{pack.user_name}</td>
-              <td>
+              <td width={'30%'}>{pack.name}</td>
+              <td width={'15%'}>{pack.cardsCount}</td>
+              <td width={'20%'}>{formatDate(pack.updated)}</td>
+              <td width={'20%'}>{pack.user_name}</td>
+              <td width={'15%'}>
                 <div className="table-actions">
                   <Button>
                     <IconSvg src={learnIcon} size={16} />
