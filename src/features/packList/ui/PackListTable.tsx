@@ -1,7 +1,9 @@
 import type { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import type { Pack } from '../../../main/types/pack';
 import { useAppDispatch } from '../../../main/bll/store';
 import { deletePack, editPack, setPackListParams } from '../bll/packListReducer';
+import { PATH } from '../../../main/ui/Main/Pages';
 import { formatDate } from '../../../utils/formatDate';
 import Button from '../../../main/ui/common/components/Button/Button';
 import ButtonSort from '../../../main/ui/common/components/ButtonSort/ButtonSort';
@@ -74,7 +76,9 @@ export const PackListTable: FC<PackListTableProps> = ({
         {packs.map((pack) => {
           return (
             <tr key={pack._id}>
-              <td width={'30%'}>{pack.name}</td>
+              <td width={'30%'}>
+                <NavLink to={`${PATH.CARDS_LIST}/${pack._id}`}>{pack.name}</NavLink>
+              </td>
               <td width={'15%'}>{pack.cardsCount}</td>
               <td width={'20%'}>{formatDate(pack.updated)}</td>
               <td width={'20%'}>{pack.user_name}</td>
