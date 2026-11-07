@@ -1,5 +1,7 @@
+import { setAppIsLoading } from '../../../main/bll/appReducer';
 import type { RootThunk } from '../../../main/bll/store';
 import type { Card, CardListData } from '../../../main/types/card';
+import { handleApiRequestError } from '../../../utils/notificationUtils';
 import { cardListAPI } from '../dal/cardListApi';
 
 // Constants
@@ -56,7 +58,17 @@ export const fetchCardList =
   (cardsPack_id: string): RootThunk =>
   (dispatch, getState) => {
     const params = { ...getState().cardList.params, cardsPack_id };
-    cardListAPI.getCards(params).then((data) => {
-      dispatch(setCardListData(data));
-    });
+
+    dispatch(setAppIsLoading(true));
+    cardListAPI
+      .getCards(params)
+      .then((data) => {
+        dispatch(setCardListData(data));
+      })
+      .catch((error) => {
+        handleApiRequestError(error, dispatch);
+      })
+      .finally(() => {
+        setAppIsLoading(false);
+      });
   };
