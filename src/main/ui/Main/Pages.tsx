@@ -18,7 +18,7 @@ export const PATH = {
   PASSWORD_RECOVERY_CONFIRM: '/password-recovery-confirm',
   CREATE_NEW_PASSWORD: '/create-new-password',
   PACK_LIST: '/packs',
-  CARDS_LIST: '/cards',
+  CARD_LIST: '/cards',
   TEST: '/test',
   ERROR404: '/error-404',
 };
@@ -37,7 +37,7 @@ export const Pages = () => {
       />
       <Route path={PATH.CREATE_NEW_PASSWORD + '/:token'} element={<NewPassword />} />
       <Route path={PATH.PACK_LIST} element={<PackList />} />
-      <Route path={PATH.CARDS_LIST + '/:packId'} element={<CardList />} />
+      <Route path={PATH.CARD_LIST + '/:packId'} element={<CardList />} />
       <Route path={PATH.TEST} element={<Test />} />
       <Route path={PATH.ERROR404} element={<Error404 />} />
       <Route path={'*'} element={<Navigate to={PATH.ERROR404} />} />

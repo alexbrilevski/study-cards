@@ -1,24 +1,28 @@
 import type { PackListQueryParams, PackListData, Pack } from '../../../main/types/pack';
 import { baseInstance } from '../../../main/dal/instance';
 
-type RequestParams = PackListQueryParams;
+type GetPacksRequestParams = PackListQueryParams;
 
-type ResponseData = PackListData;
+type GetPacksResponseData = PackListData;
+
+export type AddPackRequestData = { name: string; deckCover?: string; isPrivate: boolean };
+
+export type UpdatePackRequestData = { _id: string } & Partial<Omit<Pack, '_id'>>;
 
 export const packListAPI = {
-  getPacks(params: RequestParams) {
+  getPacks(params: GetPacksRequestParams) {
     return baseInstance
-      .get<ResponseData>('cards/pack', { params })
+      .get<GetPacksResponseData>('cards/pack', { params })
       .then((response) => response.data);
   },
-  addPack(cardsPack: { name: string; isPrivate: boolean }) {
+  addPack(cardsPack: AddPackRequestData) {
     return baseInstance
       .post<{ newCardsPack: Pack }>('cards/pack', {
         cardsPack,
       })
       .then((response) => response.data);
   },
-  updatePack(cardsPack: { _id: string; name: string; isPrivate: boolean }) {
+  updatePack(cardsPack: UpdatePackRequestData) {
     return baseInstance
       .put<{ updatedCardsPack: Pack }>('cards/pack', {
         cardsPack,

@@ -2,7 +2,11 @@ import { setAppIsLoading } from '../../../main/bll/appReducer';
 import type { RootThunk } from '../../../main/bll/store';
 import type { Pack, PackListData, PackListQueryParams } from '../../../main/types/pack';
 import { handleApiRequestError } from '../../../utils/notificationUtils';
-import { packListAPI } from '../dal/packListApi';
+import {
+  packListAPI,
+  type AddPackRequestData,
+  type UpdatePackRequestData,
+} from '../dal/packListApi';
 
 // Constants
 const ACTION_TYPES = {
@@ -90,7 +94,7 @@ export const fetchPackList = (): RootThunk => (dispatch, getState) => {
     });
 };
 export const addPack =
-  (cardsPack: { name: string; isPrivate: boolean }): RootThunk =>
+  (cardsPack: AddPackRequestData): RootThunk =>
   (dispatch) => {
     dispatch(setAppIsLoading(true));
     packListAPI
@@ -106,7 +110,7 @@ export const addPack =
       });
   };
 export const editPack =
-  (cardsPack: { _id: string; name: string; isPrivate: boolean }): RootThunk =>
+  (cardsPack: UpdatePackRequestData): RootThunk =>
   (dispatch) => {
     dispatch(setAppIsLoading(true));
     packListAPI

@@ -30,7 +30,7 @@ export const PackListTable: FC<PackListTableProps> = ({
   };
 
   const handleEditPack = (id: string) => {
-    dispatch(editPack({ _id: id, name: 'Edited pack', isPrivate: false }));
+    dispatch(editPack({ _id: id, name: 'Edited pack', private: false }));
   };
 
   const handleDeletePack = (id: string) => {
@@ -77,7 +77,7 @@ export const PackListTable: FC<PackListTableProps> = ({
           return (
             <tr key={pack._id}>
               <td width={'30%'}>
-                <NavLink to={`${PATH.CARDS_LIST}/${pack._id}`}>{pack.name}</NavLink>
+                <NavLink to={`${PATH.CARD_LIST}/${pack._id}`}>{pack.name}</NavLink>
               </td>
               <td width={'15%'}>{pack.cardsCount}</td>
               <td width={'20%'}>{formatDate(pack.updated)}</td>
