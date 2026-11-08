@@ -2,7 +2,7 @@ import { setAppIsLoading } from '../../../main/bll/appReducer';
 import type { RootThunk } from '../../../main/bll/store';
 import type { Card, CardListData } from '../../../main/types/card';
 import { handleApiRequestError } from '../../../utils/notificationUtils';
-import { cardListAPI, type NewCardData } from '../dal/cardListApi';
+import { cardListAPI, type NewCardData, type UpdateCardData } from '../dal/cardListApi';
 
 // Constants
 const ACTION_TYPES = {
@@ -84,6 +84,42 @@ export const addCard =
         if (newCard) {
           dispatch(fetchCardList(newCard.cardsPack_id));
         }
+      })
+      .catch((error) => {
+        handleApiRequestError(error, dispatch);
+      })
+      .finally(() => {
+        setAppIsLoading(false);
+      });
+  };
+export const updateCard =
+  (cardData: UpdateCardData): RootThunk =>
+  (dispatch) => {
+    dispatch(setAppIsLoading(true));
+    cardListAPI
+      .updateCard(cardData)
+      .then((data) => {
+        const { updatedCard } = data;
+        if (updatedCard) {
+          dispatch(fetchCardList(updatedCard.cardsPack_id));
+        }
+      })
+      .catch((error) => {
+        handleApiRequestError(error, dispatch);
+      })
+      .finally(() => {
+        setAppIsLoading(false);
+      });
+  };
+export const deleteCard =
+  (id: string): RootThunk =>
+  (dispatch) => {
+    dispatch(setAppIsLoading(true));
+    cardListAPI
+      .deleteCard(id)
+      .then((data) => {
+        const { deletedCard } = data;
+        dispatch(fetchCardList(deletedCard.cardsPack_id));
       })
       .catch((error) => {
         handleApiRequestError(error, dispatch);

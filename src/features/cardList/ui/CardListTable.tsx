@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 import type { Card } from '../../../main/types/card';
+import { useAppDispatch } from '../../../main/bll/store';
+import { deleteCard, updateCard } from '../bll/cardListReducer';
 import Button from '../../../main/ui/common/components/Button/Button';
 import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
 import editIcon from '../../../assets/icons/edit.svg';
@@ -12,6 +14,16 @@ type CardListTableProps = {
 };
 
 export const CardListTable: FC<CardListTableProps> = ({ cards, isAuthUserPack }) => {
+  const dispatch = useAppDispatch();
+
+  const handleUpdateCard = (id: string) => {
+    dispatch(updateCard({ _id: id, question: 'Updated question' }));
+  };
+
+  const handleDeleteCard = (id: string) => {
+    dispatch(deleteCard(id));
+  };
+
   return (
     <table className="table">
       <thead className="table-head">
@@ -33,10 +45,10 @@ export const CardListTable: FC<CardListTableProps> = ({ cards, isAuthUserPack })
             {isAuthUserPack && (
               <td>
                 <div className="table-actions">
-                  <Button>
+                  <Button onClick={() => handleUpdateCard(card._id)}>
                     <IconSvg src={editIcon} size={16} />
                   </Button>
-                  <Button>
+                  <Button onClick={() => handleDeleteCard(card._id)}>
                     <IconSvg src={deleteIcon} size={16} />
                   </Button>
                 </div>
