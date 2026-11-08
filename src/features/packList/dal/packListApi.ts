@@ -1,8 +1,6 @@
 import type { PackListQueryParams, PackListData, Pack } from '../../../main/types/pack';
 import { baseInstance } from '../../../main/dal/instance';
 
-type GetPacksRequestParams = PackListQueryParams;
-
 type GetPacksResponseData = PackListData;
 
 export type AddPackRequestData = { name: string; deckCover?: string; isPrivate: boolean };
@@ -10,7 +8,7 @@ export type AddPackRequestData = { name: string; deckCover?: string; isPrivate: 
 export type UpdatePackRequestData = { _id: string } & Partial<Omit<Pack, '_id'>>;
 
 export const packListAPI = {
-  getPacks(params: GetPacksRequestParams) {
+  getPacks(params: PackListQueryParams) {
     return baseInstance
       .get<GetPacksResponseData>('cards/pack', { params })
       .then((response) => response.data);
