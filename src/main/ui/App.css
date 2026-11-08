@@ -135,6 +135,7 @@
 .table th,
 .table td {
   padding: var(--indent-s) var(--indent-base);
+  vertical-align: top;
 }
 
 .table th,

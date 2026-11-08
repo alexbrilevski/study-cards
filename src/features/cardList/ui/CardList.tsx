@@ -7,6 +7,7 @@ import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack
 import type { User } from '../../../main/types/user';
 import { PATH } from '../../../main/ui/Main/Pages';
 import Button from '../../../main/ui/common/components/Button/Button';
+import { CardListTable } from './CardListTable';
 
 export const CardList: FC = () => {
   const { packId } = useParams<'packId'>();
@@ -64,11 +65,7 @@ export const CardList: FC = () => {
           )}
         </div>
       ) : (
-        <>
-          {cards.map((card) => (
-            <div key={card._id}>{card.question}</div>
-          ))}
-        </>
+        <CardListTable cards={cards} isAuthUserPack={isAuthUserPack} />
       )}
     </>
   );
