@@ -6,9 +6,13 @@ export type Card = {
   answer: string;
   grade: number;
   shots: number;
+  answerImg?: string;
+  answerVideo?: string;
+  questionImg?: string;
+  questionVideo?: string;
   comments?: string;
   type?: string;
-  rating?: number;
+  rating: number;
   created: string;
   updated: string;
 };
@@ -17,6 +21,7 @@ export type CardListData = {
   cards: Array<Card>;
   packUserId: string;
   packName: string;
+  packDeckCover?: string;
   packPrivate: boolean;
   packCreated: string;
   packUpdated: string;

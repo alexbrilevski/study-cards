@@ -2,7 +2,7 @@ export type Pack = {
   _id: string;
   cardsCount: number;
   created: string;
-  deckCover: string;
+  deckCover?: string;
   grade: number;
   name: string;
   path: string;
