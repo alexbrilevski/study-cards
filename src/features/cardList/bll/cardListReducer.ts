@@ -2,7 +2,7 @@ import { setAppIsLoading } from '../../../main/bll/appReducer';
 import type { RootThunk } from '../../../main/bll/store';
 import type { Card, CardListData } from '../../../main/types/card';
 import { handleApiRequestError } from '../../../utils/notificationUtils';
-import { cardListAPI } from '../dal/cardListApi';
+import { cardListAPI, type NewCardData } from '../dal/cardListApi';
 
 // Constants
 const ACTION_TYPES = {
@@ -15,6 +15,7 @@ type InitState = typeof initState;
 const initState = {
   cards: [] as Card[],
   packUserId: '',
+  packName: '',
   cardsTotalCount: 0,
   maxGrade: 0,
   minGrade: 0,
@@ -64,6 +65,25 @@ export const fetchCardList =
       .getCards(params)
       .then((data) => {
         dispatch(setCardListData(data));
+      })
+      .catch((error) => {
+        handleApiRequestError(error, dispatch);
+      })
+      .finally(() => {
+        setAppIsLoading(false);
+      });
+  };
+export const addCard =
+  (cardData: NewCardData): RootThunk =>
+  (dispatch) => {
+    dispatch(setAppIsLoading(true));
+    cardListAPI
+      .addCard(cardData)
+      .then((data) => {
+        const { newCard } = data;
+        if (newCard) {
+          dispatch(fetchCardList(newCard.cardsPack_id));
+        }
       })
       .catch((error) => {
         handleApiRequestError(error, dispatch);
