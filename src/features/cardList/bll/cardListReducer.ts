@@ -92,7 +92,7 @@ export const addCard =
         setAppIsLoading(false);
       });
   };
-export const updateCard =
+export const editCard =
   (cardData: UpdateCardData): RootThunk =>
   (dispatch) => {
     dispatch(setAppIsLoading(true));

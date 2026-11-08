@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import type { Card } from '../../../main/types/card';
 import { useAppDispatch } from '../../../main/bll/store';
-import { deleteCard, updateCard } from '../bll/cardListReducer';
+import { deleteCard, editCard } from '../bll/cardListReducer';
 import Button from '../../../main/ui/common/components/Button/Button';
 import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
 import editIcon from '../../../assets/icons/edit.svg';
@@ -17,7 +17,7 @@ export const CardListTable: FC<CardListTableProps> = ({ cards, isAuthUserPack })
   const dispatch = useAppDispatch();
 
   const handleUpdateCard = (id: string) => {
-    dispatch(updateCard({ _id: id, question: 'Updated question' }));
+    dispatch(editCard({ _id: id, question: 'Updated question' }));
   };
 
   const handleDeleteCard = (id: string) => {
