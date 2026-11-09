@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState, type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../bll/store';
 import {
   deletePack,
   editPack,
 } from '../../../../../features/packList/bll/packListReducer';
+import { PATH } from '../../../Main/Pages';
 import { IconSvg } from '../IconSvg/IconSvg';
 import menuIcon from '../../../../../assets/icons/three-dots.svg';
 import editIcon from '../../../../../assets/icons/edit.svg';
 import deleteIcon from '../../../../../assets/icons/trash.svg';
 import learnIcon from '../../../../../assets/icons/teacher.svg';
 import s from './CardPackMenu.module.css';
+import { updateCardPackName } from '../../../../../features/cardList/bll/cardListReducer';
 
 type CardsPackMenuProps = {
   cardPackId: string;
@@ -20,6 +23,7 @@ export const CardPackMenu: FC<CardsPackMenuProps> = ({ cardPackId, isEmptyPack }
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isExpanded) return;
@@ -40,11 +44,16 @@ export const CardPackMenu: FC<CardsPackMenuProps> = ({ cardPackId, isEmptyPack }
   };
 
   const handleEditPack = () => {
-    dispatch(editPack({ _id: cardPackId, name: 'New pack name' }));
+    setIsExpanded(false);
+    const packName = 'New pack name';
+    dispatch(updateCardPackName(packName));
+    dispatch(editPack({ _id: cardPackId, name: packName }));
   };
 
   const handleDeletePack = () => {
+    setIsExpanded(false);
     dispatch(deletePack(cardPackId));
+    navigate(PATH.PACK_LIST);
   };
 
   return (

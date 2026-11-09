@@ -7,9 +7,13 @@ import { cardListAPI, type NewCardData, type UpdateCardData } from '../dal/cardL
 // Constants
 const ACTION_TYPES = {
   SET_CARD_LIST_DATA: 'card-list/SET-DATA',
+  UPDATE_CARD_PACK_NAME: 'card-list/UPDATE-CARD-PACK-NAME',
 } as const;
 
-export type CardListActions = ReturnType<typeof setCardListData>;
+export type CardListActions =
+  | ReturnType<typeof setCardListData>
+  | ReturnType<typeof updateCardPackName>;
+
 type InitState = typeof initState;
 
 const initState = {
@@ -44,6 +48,9 @@ export const cardListReducer = (
         params: { ...state.params, page, pageCount },
       };
     }
+    case ACTION_TYPES.UPDATE_CARD_PACK_NAME: {
+      return { ...state, ...action.payload };
+    }
     default: {
       return state;
     }
@@ -53,6 +60,8 @@ export const cardListReducer = (
 // Action creators
 const setCardListData = (cardListData: CardListData) =>
   ({ type: ACTION_TYPES.SET_CARD_LIST_DATA, payload: cardListData }) as const;
+export const updateCardPackName = (packName: string) =>
+  ({ type: ACTION_TYPES.UPDATE_CARD_PACK_NAME, payload: { packName } }) as const;
 
 // Thunk creators
 export const fetchCardList =
