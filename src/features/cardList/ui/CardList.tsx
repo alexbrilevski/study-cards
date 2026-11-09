@@ -1,12 +1,13 @@
 import { useEffect, type FC } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
 import type { Card } from '../../../main/types/card';
-import { addCard, fetchCardList } from '../bll/cardListReducer';
-import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack';
 import type { User } from '../../../main/types/user';
+import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
+import { addCard, fetchCardList } from '../bll/cardListReducer';
 import { PATH } from '../../../main/ui/Main/Pages';
+import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack';
 import Button from '../../../main/ui/common/components/Button/Button';
+import { CardPackMenu } from '../../../main/ui/common/components/CardPackMenu/CardPackMenu';
 import { CardListTable } from './CardListTable';
 
 export const CardList: FC = () => {
@@ -45,12 +46,25 @@ export const CardList: FC = () => {
     <>
       <ButtonBack onClick={handleGoBackClick} caption={'Back to Pack List'} />
       <div className="page-header">
-        <h1>{packName}</h1>
-        {isAuthUserPack && cards.length !== 0 && (
-          <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
-            Add new card
-          </Button>
-        )}
+        <div className="page-title-container">
+          <h1>{packName}</h1>
+          {isAuthUserPack && (
+            <CardPackMenu
+              cardPackId={packId as string}
+              isEmptyPack={cards.length === 0}
+            />
+          )}
+        </div>
+        {cards.length !== 0 &&
+          (isAuthUserPack ? (
+            <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
+              Add new card
+            </Button>
+          ) : (
+            <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
+              Learn pack
+            </Button>
+          ))}
       </div>
       {cards.length === 0 ? (
         <div className="text-center">

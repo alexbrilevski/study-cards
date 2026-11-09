@@ -1,0 +1,75 @@
+.card-pack-menu {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.dropdown-control {
+  background: transparent;
+  border: none;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--indent-s);
+  background: var(--dropdown-bg);
+  border: var(--dropdown-border);
+  filter: drop-shadow(var(--dropdown-shadow));
+  z-index: 1;
+}
+
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: 9px;
+  width: 5px;
+  height: 5px;
+  background: inherit;
+  border-top: var(--dropdown-border);
+  border-left: var(--dropdown-border);
+  transform: rotate(45deg);
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: var(--indent-xs) 0;
+}
+
+.dropdown li {
+  display: block;
+}
+
+.dropdown a,
+.dropdown button {
+  display: flex;
+  align-items: center;
+  gap: var(--indent-s);
+  width: 100%;
+  padding: var(--indent-s) var(--indent-base);
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-l);
+  text-decoration: none;
+}
+
+.dropdown img {
+  flex-shrink: 0;
+}
+
+.dropdown span {
+  text-wrap: nowrap;
+}
+
+.dropdown button {
+  background-color: transparent;
+  border: none;
+}
+
+.dropdown a:hover,
+.dropdown button:hover {
+  text-decoration: underline;
+}
+

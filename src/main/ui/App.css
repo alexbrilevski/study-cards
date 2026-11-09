@@ -36,6 +36,12 @@
   line-height: var(--line-height-heading);
 }
 
+.page-title-container {
+  display: flex;
+  align-items: center;
+  gap: var(--indent-xs);
+}
+
 .form-container {
   width: 416px;
   margin: var(--indent-xl) auto;
