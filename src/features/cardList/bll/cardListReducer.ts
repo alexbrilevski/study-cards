@@ -1,17 +1,19 @@
 import { setAppIsLoading } from '../../../main/bll/appReducer';
 import type { RootThunk } from '../../../main/bll/store';
-import type { Card, CardListData } from '../../../main/types/card';
+import type { Card, CardListData, CardListQueryParams } from '../../../main/types/card';
 import { handleApiRequestError } from '../../../utils/notificationUtils';
 import { cardListAPI, type NewCardData, type UpdateCardData } from '../dal/cardListApi';
 
 // Constants
 const ACTION_TYPES = {
   SET_CARD_LIST_DATA: 'card-list/SET-DATA',
+  SET_CARD_LIST_PARAMS: 'card-list/SET-CARD-LIST-PARAMS',
   UPDATE_CARD_PACK_NAME: 'card-list/UPDATE-CARD-PACK-NAME',
 } as const;
 
 export type CardListActions =
   | ReturnType<typeof setCardListData>
+  | ReturnType<typeof setCardListParams>
   | ReturnType<typeof updateCardPackName>;
 
 type InitState = typeof initState;
@@ -48,6 +50,9 @@ export const cardListReducer = (
         params: { ...state.params, page, pageCount },
       };
     }
+    case ACTION_TYPES.SET_CARD_LIST_PARAMS: {
+      return { ...state, params: { ...state.params, ...action.payload } };
+    }
     case ACTION_TYPES.UPDATE_CARD_PACK_NAME: {
       return { ...state, ...action.payload };
     }
@@ -60,6 +65,8 @@ export const cardListReducer = (
 // Action creators
 const setCardListData = (cardListData: CardListData) =>
   ({ type: ACTION_TYPES.SET_CARD_LIST_DATA, payload: cardListData }) as const;
+export const setCardListParams = (params: CardListQueryParams) =>
+  ({ type: ACTION_TYPES.SET_CARD_LIST_PARAMS, payload: params }) as const;
 export const updateCardPackName = (packName: string) =>
   ({ type: ACTION_TYPES.UPDATE_CARD_PACK_NAME, payload: { packName } }) as const;
 
