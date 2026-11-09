@@ -3,12 +3,13 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import type { Card } from '../../../main/types/card';
 import type { User } from '../../../main/types/user';
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
-import { addCard, fetchCardList } from '../bll/cardListReducer';
+import { addCard, fetchCardList, setCardListParams } from '../bll/cardListReducer';
 import { PATH } from '../../../main/ui/Main/Pages';
 import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack';
 import Button from '../../../main/ui/common/components/Button/Button';
 import { CardPackMenu } from '../../../main/ui/common/components/CardPackMenu/CardPackMenu';
 import { CardListTable } from './CardListTable';
+import { Pagination } from '../../../main/ui/common/components/Pagination/Pagination';
 
 export const CardList: FC = () => {
   const { packId } = useParams<'packId'>();
@@ -16,6 +17,11 @@ export const CardList: FC = () => {
   const packName = useAppSelector<string>((state) => state.cardList.packName);
   const packUserId = useAppSelector<string>((state) => state.cardList.packUserId);
   const cards = useAppSelector<Card[]>((state) => state.cardList.cards);
+  const page = useAppSelector<number>((state) => state.cardList.params.page);
+  const pageSize = useAppSelector<number>((state) => state.cardList.params.pageCount);
+  const cardsTotalCount = useAppSelector<number>(
+    (state) => state.cardList.cardsTotalCount,
+  );
   const isAuthUserPack = packUserId === authUser?._id;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -36,6 +42,14 @@ export const CardList: FC = () => {
         answer: 'New answer',
       }),
     );
+  };
+
+  const setCardListPage = (page: number) => {
+    dispatch(setCardListParams({ cardsPack_id: packId as string, page }));
+  };
+
+  const setCardListPageSize = (pageSize: number) => {
+    dispatch(setCardListParams({ cardsPack_id: packId as string, pageCount: pageSize }));
   };
 
   if (!authUser) {
@@ -79,7 +93,16 @@ export const CardList: FC = () => {
           )}
         </div>
       ) : (
-        <CardListTable cards={cards} isAuthUserPack={isAuthUserPack} />
+        <div>
+          <CardListTable cards={cards} isAuthUserPack={isAuthUserPack} />
+          <Pagination
+            currentPage={page}
+            pageSize={pageSize}
+            totalCount={cardsTotalCount}
+            onPageChange={setCardListPage}
+            onPageSizeChange={setCardListPageSize}
+          />
+        </div>
       )}
     </>
   );
