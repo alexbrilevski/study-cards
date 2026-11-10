@@ -26,7 +26,6 @@ const initState = {
   maxGrade: 0,
   minGrade: 0,
   params: {
-    cardsPack_id: '',
     cardAnswer: undefined as string | undefined,
     cardQuestion: undefined as string | undefined,
     min: undefined as number | undefined,
@@ -65,7 +64,7 @@ export const cardListReducer = (
 // Action creators
 const setCardListData = (cardListData: CardListData) =>
   ({ type: ACTION_TYPES.SET_CARD_LIST_DATA, payload: cardListData }) as const;
-export const setCardListParams = (params: CardListQueryParams) =>
+export const setCardListParams = (params: Omit<CardListQueryParams, 'cardsPack_id'>) =>
   ({ type: ACTION_TYPES.SET_CARD_LIST_PARAMS, payload: params }) as const;
 export const updateCardPackName = (packName: string) =>
   ({ type: ACTION_TYPES.UPDATE_CARD_PACK_NAME, payload: { packName } }) as const;
@@ -74,7 +73,7 @@ export const updateCardPackName = (packName: string) =>
 export const fetchCardList =
   (cardsPack_id: string): RootThunk =>
   (dispatch, getState) => {
-    const params = { ...getState().cardList.params, cardsPack_id };
+    const params = { cardsPack_id, ...getState().cardList.params };
 
     dispatch(setAppIsLoading(true));
     cardListAPI

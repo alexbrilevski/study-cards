@@ -50,15 +50,15 @@ export const CardList: FC = () => {
   };
 
   const setCardQuestionSearchParam = useDebouncedCallback((value: string) => {
-    dispatch(setCardListParams({ cardsPack_id: packId as string, cardQuestion: value }));
+    dispatch(setCardListParams({ cardQuestion: value }));
   }, 500);
 
   const setCardListPage = (page: number) => {
-    dispatch(setCardListParams({ cardsPack_id: packId as string, page }));
+    dispatch(setCardListParams({ page }));
   };
 
   const setCardListPageSize = (pageSize: number) => {
-    dispatch(setCardListParams({ cardsPack_id: packId as string, pageCount: pageSize }));
+    dispatch(setCardListParams({ pageCount: pageSize }));
   };
 
   if (!authUser) {
