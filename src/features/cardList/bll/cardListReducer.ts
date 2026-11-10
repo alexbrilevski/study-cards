@@ -30,7 +30,7 @@ const initState = {
     cardQuestion: undefined as string | undefined,
     min: undefined as number | undefined,
     max: undefined as number | undefined,
-    sortCards: '',
+    sortCards: '0updated',
     page: 1,
     pageCount: 10,
   },

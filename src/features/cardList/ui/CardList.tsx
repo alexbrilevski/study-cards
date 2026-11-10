@@ -22,6 +22,7 @@ export const CardList: FC = () => {
   const cardQuestion = useAppSelector<string | undefined>(
     (state) => state.cardList.params.cardQuestion,
   );
+  const sortCards = useAppSelector<string>((state) => state.cardList.params.sortCards);
   const page = useAppSelector<number>((state) => state.cardList.params.page);
   const pageSize = useAppSelector<number>((state) => state.cardList.params.pageCount);
   const cardsTotalCount = useAppSelector<number>(
@@ -33,7 +34,7 @@ export const CardList: FC = () => {
 
   useEffect(() => {
     if (packId) dispatch(fetchCardList(packId));
-  }, [packId, cardQuestion, page, pageSize]);
+  }, [packId, cardQuestion, sortCards, page, pageSize]);
 
   const handleGoBackClick = () => {
     navigate(-1);
@@ -112,7 +113,11 @@ export const CardList: FC = () => {
         </div>
       ) : (
         <div>
-          <CardListTable cards={cards} isAuthUserPack={isAuthUserPack} />
+          <CardListTable
+            cards={cards}
+            sortCards={sortCards}
+            isAuthUserPack={isAuthUserPack}
+          />
           <Pagination
             currentPage={page}
             pageSize={pageSize}

@@ -1,20 +1,30 @@
 import type { FC } from 'react';
 import type { Card } from '../../../main/types/card';
 import { useAppDispatch } from '../../../main/bll/store';
-import { deleteCard, editCard } from '../bll/cardListReducer';
+import { deleteCard, editCard, setCardListParams } from '../bll/cardListReducer';
 import Button from '../../../main/ui/common/components/Button/Button';
 import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
 import editIcon from '../../../assets/icons/edit.svg';
 import deleteIcon from '../../../assets/icons/trash.svg';
 import { formatDate } from '../../../utils/formatDate';
+import ButtonSort from '../../../main/ui/common/components/ButtonSort/ButtonSort';
 
 type CardListTableProps = {
   cards: Card[];
+  sortCards: string;
   isAuthUserPack: boolean;
 };
 
-export const CardListTable: FC<CardListTableProps> = ({ cards, isAuthUserPack }) => {
+export const CardListTable: FC<CardListTableProps> = ({
+  cards,
+  sortCards,
+  isAuthUserPack,
+}) => {
   const dispatch = useAppDispatch();
+
+  const setCardListSorting = (sortCards: string) => {
+    dispatch(setCardListParams({ sortCards }));
+  };
 
   const handleUpdateCard = (id: string) => {
     dispatch(editCard({ _id: id, question: 'Updated question' }));
@@ -28,10 +38,42 @@ export const CardListTable: FC<CardListTableProps> = ({ cards, isAuthUserPack })
     <table className="table">
       <thead className="table-head">
         <tr>
-          <th>Question</th>
-          <th>Answer</th>
-          <th>Last Updated</th>
-          <th>Grade</th>
+          <th>
+            <ButtonSort
+              sortParam={'question'}
+              currentSorting={sortCards}
+              onSortClick={setCardListSorting}
+            >
+              Question
+            </ButtonSort>
+          </th>
+          <th>
+            <ButtonSort
+              sortParam={'answer'}
+              currentSorting={sortCards}
+              onSortClick={setCardListSorting}
+            >
+              Answer
+            </ButtonSort>
+          </th>
+          <th>
+            <ButtonSort
+              sortParam={'updated'}
+              currentSorting={sortCards}
+              onSortClick={setCardListSorting}
+            >
+              Last Updated
+            </ButtonSort>
+          </th>
+          <th>
+            <ButtonSort
+              sortParam={'grade'}
+              currentSorting={sortCards}
+              onSortClick={setCardListSorting}
+            >
+              Grade
+            </ButtonSort>
+          </th>
           {isAuthUserPack && <th></th>}
         </tr>
       </thead>
