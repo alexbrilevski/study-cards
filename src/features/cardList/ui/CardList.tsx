@@ -10,6 +10,8 @@ import Button from '../../../main/ui/common/components/Button/Button';
 import { CardPackMenu } from '../../../main/ui/common/components/CardPackMenu/CardPackMenu';
 import { CardListTable } from './CardListTable';
 import { Pagination } from '../../../main/ui/common/components/Pagination/Pagination';
+import { useDebouncedCallback } from '../../../utils/hooks/useDebouncedCallback';
+import SearchField from '../../../main/ui/common/components/SearchField/SearchField';
 
 export const CardList: FC = () => {
   const { packId } = useParams<'packId'>();
@@ -17,6 +19,9 @@ export const CardList: FC = () => {
   const packName = useAppSelector<string>((state) => state.cardList.packName);
   const packUserId = useAppSelector<string>((state) => state.cardList.packUserId);
   const cards = useAppSelector<Card[]>((state) => state.cardList.cards);
+  const cardQuestion = useAppSelector<string | undefined>(
+    (state) => state.cardList.params.cardQuestion,
+  );
   const page = useAppSelector<number>((state) => state.cardList.params.page);
   const pageSize = useAppSelector<number>((state) => state.cardList.params.pageCount);
   const cardsTotalCount = useAppSelector<number>(
@@ -28,7 +33,7 @@ export const CardList: FC = () => {
 
   useEffect(() => {
     if (packId) dispatch(fetchCardList(packId));
-  }, [packId]);
+  }, [packId, cardQuestion]);
 
   const handleGoBackClick = () => {
     navigate(-1);
@@ -43,6 +48,10 @@ export const CardList: FC = () => {
       }),
     );
   };
+
+  const setCardQuestionSearchParam = useDebouncedCallback((value: string) => {
+    dispatch(setCardListParams({ cardsPack_id: packId as string, cardQuestion: value }));
+  }, 500);
 
   const setCardListPage = (page: number) => {
     dispatch(setCardListParams({ cardsPack_id: packId as string, page }));
@@ -79,6 +88,15 @@ export const CardList: FC = () => {
               Learn pack
             </Button>
           ))}
+      </div>
+      <div>
+        <SearchField
+          label={'Search by Question'}
+          name={'cardListSearch'}
+          placeholder={'Provide your text'}
+          value={cardQuestion !== undefined ? cardQuestion : ''}
+          onChangeValue={setCardQuestionSearchParam}
+        />
       </div>
       {cards.length === 0 ? (
         <div className="text-center">
