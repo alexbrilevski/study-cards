@@ -33,7 +33,7 @@ export const CardList: FC = () => {
 
   useEffect(() => {
     if (packId) dispatch(fetchCardList(packId));
-  }, [packId, cardQuestion]);
+  }, [packId, cardQuestion, page, pageSize]);
 
   const handleGoBackClick = () => {
     navigate(-1);
