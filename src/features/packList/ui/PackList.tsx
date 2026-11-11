@@ -78,12 +78,14 @@ export const PackList = () => {
   }
 
   return (
-    <div>
+    <>
       <div className="page-header">
-        <h1>Pack list</h1>
-        <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
-          Add new pack
-        </Button>
+        <div className="page-header-main">
+          <h1>Pack list</h1>
+          <Button variant={'contained'} color={'primary'} onClick={handleAddPack}>
+            Add new pack
+          </Button>
+        </div>
       </div>
       {cardPacks.length === 0 ? (
         <div>
@@ -120,6 +122,6 @@ export const PackList = () => {
           />
         </div>
       )}
-    </div>
+    </>
   );
 };

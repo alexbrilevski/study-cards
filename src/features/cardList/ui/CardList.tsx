@@ -4,14 +4,15 @@ import type { Card } from '../../../main/types/card';
 import type { User } from '../../../main/types/user';
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
 import { addCard, fetchCardList, setCardListParams } from '../bll/cardListReducer';
+import { useDebouncedCallback } from '../../../utils/hooks/useDebouncedCallback';
 import { PATH } from '../../../main/ui/Main/Pages';
 import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack';
 import Button from '../../../main/ui/common/components/Button/Button';
+import SearchField from '../../../main/ui/common/components/SearchField/SearchField';
 import { CardPackMenu } from '../../../main/ui/common/components/CardPackMenu/CardPackMenu';
 import { CardListTable } from './CardListTable';
 import { Pagination } from '../../../main/ui/common/components/Pagination/Pagination';
-import { useDebouncedCallback } from '../../../utils/hooks/useDebouncedCallback';
-import SearchField from '../../../main/ui/common/components/SearchField/SearchField';
+import s from './CardList.module.css';
 
 export const CardList: FC = () => {
   const { packId } = useParams<'packId'>();
@@ -68,29 +69,31 @@ export const CardList: FC = () => {
 
   return (
     <>
-      <ButtonBack onClick={handleGoBackClick} caption={'Back to Pack List'} />
       <div className="page-header">
-        <div className="page-title-container">
-          <h1>{packName}</h1>
-          {isAuthUserPack && (
-            <CardPackMenu
-              cardPackId={packId as string}
-              isEmptyPack={cards.length === 0}
-            />
-          )}
+        <ButtonBack onClick={handleGoBackClick} caption={'Back to Pack List'} />
+        <div className="page-header-main">
+          <div className="page-title-container">
+            <h1>{packName}</h1>
+            {isAuthUserPack && (
+              <CardPackMenu
+                cardPackId={packId as string}
+                isEmptyPack={cards.length === 0}
+              />
+            )}
+          </div>
+          {cards.length !== 0 &&
+            (isAuthUserPack ? (
+              <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
+                Add new card
+              </Button>
+            ) : (
+              <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
+                Learn pack
+              </Button>
+            ))}
         </div>
-        {cards.length !== 0 &&
-          (isAuthUserPack ? (
-            <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
-              Add new card
-            </Button>
-          ) : (
-            <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
-              Learn pack
-            </Button>
-          ))}
       </div>
-      <div>
+      <div className={s['card-list-header']}>
         <SearchField
           label={'Search by Question'}
           name={'cardListSearch'}
