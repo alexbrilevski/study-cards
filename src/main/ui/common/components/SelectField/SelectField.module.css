@@ -1,0 +1,19 @@
+.select-field {
+  position: relative;
+  margin-bottom: var(--indent-s);
+}
+
+.select {
+  appearance: none;
+  padding: var(--field-padding-y) var(--field-padding-x);
+  background-color: var(--field-bg-default);
+  border: var(--field-border);
+  border-radius: var(--field-border-radius);
+}
+
+.arrow-icon {
+  position: absolute;
+  top: 50%;
+  right: var(--indent-xs);
+  transform: translateY(-50%);
+}

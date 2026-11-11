@@ -1,0 +1,13 @@
+.name-col {
+  width: 30%;
+}
+
+.updated-col,
+.author-col {
+  width: 20%;
+}
+
+.cards-count-col,
+.actions-col {
+  width: 15%;
+}

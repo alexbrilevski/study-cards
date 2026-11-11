@@ -30,7 +30,7 @@
   padding: var(--text-field-padding-y) var(--text-field-padding-x);
   background: transparent;
   border: none;
-  border-bottom: var(--field-border);
+  border-bottom: var(--text-field-border);
   border-radius: 0;
   font-family: var(--text-field-font-family);
   font-size: var(--text-field-font-size);
