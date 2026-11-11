@@ -37,6 +37,14 @@ export const CardList: FC = () => {
     if (packId) dispatch(fetchCardList(packId));
   }, [packId, cardQuestion, sortCards, page, pageSize]);
 
+  useEffect(() => {
+    return () => {
+      if (cardQuestion) {
+        dispatch(setCardListParams({ cardQuestion: undefined }));
+      }
+    };
+  }, []);
+
   const handleGoBackClick = () => {
     navigate(-1);
   };
