@@ -4,7 +4,7 @@ export const DOTS = '...' as const;
 
 const range = (start: number, end: number) => {
   const length = end - start + 1;
-  return Array.from(Array(length), (val, index) => index + start);
+  return Array.from(Array(length), (_, index) => index + start);
 };
 
 type PaginationArgs = {
