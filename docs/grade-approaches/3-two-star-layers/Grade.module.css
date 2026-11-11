@@ -1,0 +1,25 @@
+.grade {
+  display: inline-flex;
+  gap: var(--indent-xs);
+}
+
+.star {
+  position: relative;
+  display: block;
+  line-height: 0;
+  color: var(--grade-star-color);
+}
+
+.star svg {
+  display: block;
+  max-width: none;
+}
+
+.fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  color: var(--grade-star-color-filled);
+}
