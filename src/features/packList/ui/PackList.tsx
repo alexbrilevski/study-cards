@@ -8,7 +8,7 @@ import { addPack, fetchPackList, setPackListParams } from '../bll/packListReduce
 import { PATH } from '../../../main/ui/Main/Pages';
 import Button from '../../../main/ui/common/components/Button/Button';
 import { PackListHeader } from './PackListHeader/PackListHeader';
-import { PackListTable } from './PackListTable';
+import { PackListTable } from './PackListTable/PackListTable';
 import { Pagination } from '../../../main/ui/common/components/Pagination/Pagination';
 
 export type CardsPackListView = 'my' | 'all';

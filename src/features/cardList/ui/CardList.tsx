@@ -10,7 +10,7 @@ import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack
 import Button from '../../../main/ui/common/components/Button/Button';
 import SearchField from '../../../main/ui/common/components/SearchField/SearchField';
 import { CardPackMenu } from '../../../main/ui/common/components/CardPackMenu/CardPackMenu';
-import { CardListTable } from './CardListTable';
+import { CardListTable } from './CardListTable/CardListTable';
 import { Pagination } from '../../../main/ui/common/components/Pagination/Pagination';
 import s from './CardList.module.css';
 
@@ -32,9 +32,6 @@ export const CardList: FC = () => {
   const isAuthUserPack = packUserId === authUser?._id;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  console.log('cards', cards);
-  console.log('cardsTotalCount', cardsTotalCount);
 
   useEffect(() => {
     if (packId) dispatch(fetchCardList(packId));

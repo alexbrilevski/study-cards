@@ -1,14 +1,15 @@
 import type { FC } from 'react';
-import type { Card } from '../../../main/types/card';
-import { useAppDispatch } from '../../../main/bll/store';
-import { deleteCard, editCard, setCardListParams } from '../bll/cardListReducer';
-import { formatDate } from '../../../utils/formatDate';
-import Button from '../../../main/ui/common/components/Button/Button';
-import ButtonSort from '../../../main/ui/common/components/ButtonSort/ButtonSort';
-import Grade from '../../../main/ui/common/components/Grade/Grade';
-import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
-import editIcon from '../../../assets/icons/edit.svg';
-import deleteIcon from '../../../assets/icons/trash.svg';
+import type { Card } from '../../../../main/types/card';
+import { useAppDispatch } from '../../../../main/bll/store';
+import { deleteCard, editCard, setCardListParams } from '../../bll/cardListReducer';
+import { formatDate } from '../../../../utils/formatDate';
+import Button from '../../../../main/ui/common/components/Button/Button';
+import ButtonSort from '../../../../main/ui/common/components/ButtonSort/ButtonSort';
+import Grade from '../../../../main/ui/common/components/Grade/Grade';
+import { IconSvg } from '../../../../main/ui/common/components/IconSvg/IconSvg';
+import editIcon from '../../../../assets/icons/edit.svg';
+import deleteIcon from '../../../../assets/icons/trash.svg';
+import s from './CardListTable.module.css';
 
 type CardListTableProps = {
   cards: Card[];
@@ -39,7 +40,7 @@ export const CardListTable: FC<CardListTableProps> = ({
     <table className="table">
       <thead className="table-head">
         <tr>
-          <th>
+          <th className={s['question-col']}>
             <ButtonSort
               sortParam={'question'}
               currentSorting={sortCards}
@@ -48,7 +49,7 @@ export const CardListTable: FC<CardListTableProps> = ({
               Question
             </ButtonSort>
           </th>
-          <th>
+          <th className={s['answer-col']}>
             <ButtonSort
               sortParam={'answer'}
               currentSorting={sortCards}
@@ -57,7 +58,7 @@ export const CardListTable: FC<CardListTableProps> = ({
               Answer
             </ButtonSort>
           </th>
-          <th>
+          <th className={s['updated-col']}>
             <ButtonSort
               sortParam={'updated'}
               currentSorting={sortCards}
@@ -81,9 +82,9 @@ export const CardListTable: FC<CardListTableProps> = ({
       <tbody className="table-body">
         {cards.map((card) => (
           <tr key={card._id}>
-            <td width={'35%'}>{card.question}</td>
-            <td width={'35%'}>{card.answer}</td>
-            <td width={'15%'}>{formatDate(card.updated)}</td>
+            <td>{card.question}</td>
+            <td>{card.answer}</td>
+            <td>{formatDate(card.updated)}</td>
             <td>
               <Grade value={card.grade} />
             </td>

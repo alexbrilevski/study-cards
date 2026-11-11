@@ -1,16 +1,17 @@
 import type { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import type { Pack } from '../../../main/types/pack';
-import { useAppDispatch } from '../../../main/bll/store';
-import { deletePack, editPack, setPackListParams } from '../bll/packListReducer';
-import { PATH } from '../../../main/ui/Main/Pages';
-import { formatDate } from '../../../utils/formatDate';
-import Button from '../../../main/ui/common/components/Button/Button';
-import ButtonSort from '../../../main/ui/common/components/ButtonSort/ButtonSort';
-import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
-import learnIcon from '../../../assets/icons/teacher.svg';
-import editIcon from '../../../assets/icons/edit.svg';
-import deleteIcon from '../../../assets/icons/trash.svg';
+import type { Pack } from '../../../../main/types/pack';
+import { useAppDispatch } from '../../../../main/bll/store';
+import { deletePack, editPack, setPackListParams } from '../../bll/packListReducer';
+import { PATH } from '../../../../main/ui/Main/Pages';
+import { formatDate } from '../../../../utils/formatDate';
+import Button from '../../../../main/ui/common/components/Button/Button';
+import ButtonSort from '../../../../main/ui/common/components/ButtonSort/ButtonSort';
+import { IconSvg } from '../../../../main/ui/common/components/IconSvg/IconSvg';
+import learnIcon from '../../../../assets/icons/teacher.svg';
+import editIcon from '../../../../assets/icons/edit.svg';
+import deleteIcon from '../../../../assets/icons/trash.svg';
+import s from './PackListTable.module.css';
 
 type PackListTableProps = {
   packs: Pack[];
@@ -41,7 +42,7 @@ export const PackListTable: FC<PackListTableProps> = ({
     <table className="table">
       <thead className="table-head">
         <tr>
-          <th>
+          <th className={s['name-col']}>
             <ButtonSort
               sortParam={'name'}
               currentSorting={sortPacks}
@@ -50,7 +51,7 @@ export const PackListTable: FC<PackListTableProps> = ({
               Name
             </ButtonSort>
           </th>
-          <th>
+          <th className={s['cards-count-col']}>
             <ButtonSort
               sortParam={'cardsCount'}
               currentSorting={sortPacks}
@@ -59,7 +60,7 @@ export const PackListTable: FC<PackListTableProps> = ({
               Cards
             </ButtonSort>
           </th>
-          <th>
+          <th className={s['updated-col']}>
             <ButtonSort
               sortParam={'updated'}
               currentSorting={sortPacks}
@@ -68,21 +69,21 @@ export const PackListTable: FC<PackListTableProps> = ({
               Last Updated
             </ButtonSort>
           </th>
-          <th>Created by</th>
-          <th>Actions</th>
+          <th className={s['author-col']}>Created by</th>
+          <th className={s['actions-col']}>Actions</th>
         </tr>
       </thead>
       <tbody className="table-body">
         {packs.map((pack) => {
           return (
             <tr key={pack._id}>
-              <td width={'30%'}>
+              <td>
                 <NavLink to={`${PATH.CARD_LIST}/${pack._id}`}>{pack.name}</NavLink>
               </td>
-              <td width={'15%'}>{pack.cardsCount}</td>
-              <td width={'20%'}>{formatDate(pack.updated)}</td>
-              <td width={'20%'}>{pack.user_name}</td>
-              <td width={'15%'}>
+              <td>{pack.cardsCount}</td>
+              <td>{formatDate(pack.updated)}</td>
+              <td>{pack.user_name}</td>
+              <td>
                 <div className="table-actions">
                   <Button>
                     <IconSvg src={learnIcon} size={16} />
