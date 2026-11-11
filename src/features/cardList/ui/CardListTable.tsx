@@ -2,12 +2,13 @@ import type { FC } from 'react';
 import type { Card } from '../../../main/types/card';
 import { useAppDispatch } from '../../../main/bll/store';
 import { deleteCard, editCard, setCardListParams } from '../bll/cardListReducer';
+import { formatDate } from '../../../utils/formatDate';
 import Button from '../../../main/ui/common/components/Button/Button';
+import ButtonSort from '../../../main/ui/common/components/ButtonSort/ButtonSort';
+import Grade from '../../../main/ui/common/components/Grade/Grade';
 import { IconSvg } from '../../../main/ui/common/components/IconSvg/IconSvg';
 import editIcon from '../../../assets/icons/edit.svg';
 import deleteIcon from '../../../assets/icons/trash.svg';
-import { formatDate } from '../../../utils/formatDate';
-import ButtonSort from '../../../main/ui/common/components/ButtonSort/ButtonSort';
 
 type CardListTableProps = {
   cards: Card[];
@@ -83,7 +84,9 @@ export const CardListTable: FC<CardListTableProps> = ({
             <td width={'35%'}>{card.question}</td>
             <td width={'35%'}>{card.answer}</td>
             <td width={'15%'}>{formatDate(card.updated)}</td>
-            <td>{card.grade}</td>
+            <td>
+              <Grade value={card.grade} />
+            </td>
             {isAuthUserPack && (
               <td>
                 <div className="table-actions">
