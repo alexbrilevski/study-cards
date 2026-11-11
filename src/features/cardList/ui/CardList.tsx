@@ -33,6 +33,9 @@ export const CardList: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  console.log('cards', cards);
+  console.log('cardsTotalCount', cardsTotalCount);
+
   useEffect(() => {
     if (packId) dispatch(fetchCardList(packId));
   }, [packId, cardQuestion, sortCards, page, pageSize]);
@@ -102,20 +105,8 @@ export const CardList: FC = () => {
           onChangeValue={setCardQuestionSearchParam}
         />
       </div>
-      {cards.length === 0 ? (
-        <div className="text-center">
-          <p>This pack is empty.</p>
-          {isAuthUserPack && (
-            <>
-              <p>Click add new card to fill this pack.</p>
-              <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
-                Add new card
-              </Button>
-            </>
-          )}
-        </div>
-      ) : (
-        <div>
+      {cards.length !== 0 ? (
+        <>
           <CardListTable
             cards={cards}
             sortCards={sortCards}
@@ -128,6 +119,18 @@ export const CardList: FC = () => {
             onPageChange={setCardListPage}
             onPageSizeChange={setCardListPageSize}
           />
+        </>
+      ) : (
+        <div className="no-content-text caption text-center">
+          <p>This pack is empty.</p>
+          {isAuthUserPack && (
+            <>
+              <p>Click add new card to fill this pack.</p>
+              <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
+                Add new card
+              </Button>
+            </>
+          )}
         </div>
       )}
     </>

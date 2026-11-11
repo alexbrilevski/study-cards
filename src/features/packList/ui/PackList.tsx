@@ -87,41 +87,41 @@ export const PackList = () => {
           </Button>
         </div>
       </div>
-      {cardPacks.length === 0 ? (
-        <div>
-          <p className="text-center">
-            No card packs found. Click Add new pack to create new pack or change list
+      <>
+        <PackListHeader
+          packName={packName !== undefined ? packName : ''}
+          min={min !== undefined ? min : minCardsCount}
+          max={max !== undefined ? max : maxCardsCount}
+          minCardsCount={minCardsCount}
+          maxCardsCount={maxCardsCount}
+          userId={user_id !== undefined ? user_id : ''}
+          onSearchByPackName={setPackNameSearchParam}
+          onSelectPackListView={setPackListView}
+          onCardsCountRangeChange={setCardsCountRange}
+          onClearFilters={resetPackListFilters}
+        />
+        {cardPacks.length !== 0 ? (
+          <>
+            <PackListTable
+              packs={cardPacks}
+              authUserId={authUser._id}
+              sortPacks={sortPacks}
+            />
+            <Pagination
+              currentPage={page}
+              pageSize={pageSize}
+              totalCount={totalPacksCount}
+              onPageChange={handlePageChange}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          </>
+        ) : (
+          <p className="no-content-text caption text-center">
+            No card packs found. Click "Add new pack" to create a new pack or change list
             filters.
           </p>
-        </div>
-      ) : (
-        <div>
-          <PackListHeader
-            packName={packName !== undefined ? packName : ''}
-            min={min !== undefined ? min : minCardsCount}
-            max={max !== undefined ? max : maxCardsCount}
-            minCardsCount={minCardsCount}
-            maxCardsCount={maxCardsCount}
-            userId={user_id !== undefined ? user_id : ''}
-            onSearchByPackName={setPackNameSearchParam}
-            onSelectPackListView={setPackListView}
-            onCardsCountRangeChange={setCardsCountRange}
-            onClearFilters={resetPackListFilters}
-          />
-          <PackListTable
-            packs={cardPacks}
-            authUserId={authUser._id}
-            sortPacks={sortPacks}
-          />
-          <Pagination
-            currentPage={page}
-            pageSize={pageSize}
-            totalCount={totalPacksCount}
-            onPageChange={handlePageChange}
-            onPageSizeChange={handlePageSizeChange}
-          />
-        </div>
-      )}
+        )}
+      </>
     </>
   );
 };

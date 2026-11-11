@@ -18,6 +18,18 @@
   text-align: right;
 }
 
+.caption {
+  color: var(--caption-color);
+}
+
+.no-content-text {
+  margin-top: calc(var(--indent-xl) * 2);
+}
+
+.no-content-text button {
+  margin-top: var(--indent-l);
+}
+
 .card {
   background: var(--card-bg);
   border-radius: var(--card-border-radius);
