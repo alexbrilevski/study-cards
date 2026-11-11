@@ -1,0 +1,8 @@
+.grade {
+  display: inline-flex;
+  gap: var(--indent-xs);
+}
+
+.grade svg {
+  display: block;
+}

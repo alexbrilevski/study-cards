@@ -1,0 +1,13 @@
+.button-sort {
+  display: inline-flex;
+  align-items: center;
+}
+
+.button-sort img {
+  display: block;
+  margin-left: var(--indent-xs);
+}
+
+.button-sort.up img {
+  transform: rotate(180deg);
+}

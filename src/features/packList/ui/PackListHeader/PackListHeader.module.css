@@ -1,0 +1,58 @@
+.pack-list-header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--indent-base);
+  margin-bottom: var(--indent-base);
+}
+
+.pack-list-header h2 {
+  margin-bottom: var(--indent-xs);
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  line-height: var(--line-height-m);
+}
+
+.pack-name-filter {
+  flex-grow: 1;
+  max-width: 413px;
+}
+
+.pack-list-view-toggle {
+  display: flex;
+  width: 192px;
+  height: 36px;
+  border: var(--field-border);
+  border-radius: var(--field-border-radius);
+  overflow: hidden;
+}
+
+.pack-list-view-toggle button {
+  display: block;
+  width: 50%;
+  height: 100%;
+  padding: var(--indent-xs) var(--indent-base);
+  border: none;
+  background-color: var(--field-bg-default);
+  font-size: var(--font-size-m);
+}
+
+.pack-list-view-toggle button.active {
+  background-color: var(--primary-button-color);
+  color: var(--button-text-color-light);
+}
+
+.cards-range-filter {
+  flex-grow: 1;
+  flex-shrink: 0;
+  min-width: 200px;
+}
+
+.clear-filters {
+  display: block;
+  width: 40px;
+  height: 36px;
+  padding: var(--indent-xs);
+  background-color: var(--field-bg-default);
+  border: var(--field-border);
+  border-radius: var(--field-border-radius);
+}

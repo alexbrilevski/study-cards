@@ -1,0 +1,15 @@
+.grade {
+  display: inline-flex;
+  gap: var(--indent-xs);
+}
+
+.star {
+  display: block;
+  -webkit-mask: url('../../../../../assets/icons/star.svg') no-repeat center / contain;
+  mask: url('../../../../../assets/icons/star.svg') no-repeat center / contain;
+  background: linear-gradient(
+    to right,
+    var(--grade-star-color-filled) var(--fill),
+    var(--grade-star-color) var(--fill)
+  );
+}
