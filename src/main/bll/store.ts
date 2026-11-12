@@ -34,6 +34,7 @@ import {
   cardListReducer,
   type CardListActions,
 } from '../../features/cardList/bll/cardListReducer';
+import { learnReducer, type LearnActions } from '../../features/learn/bll/learnReducer';
 
 export type RootState = ReturnType<typeof rootReducer>;
 
@@ -45,7 +46,8 @@ export type RootAction =
   | NewPasswordActions
   | PasswordRecoveryActions
   | PackListActions
-  | CardListActions;
+  | CardListActions
+  | LearnActions;
 
 export type RootThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -68,6 +70,7 @@ const rootReducer = combineReducers({
   passwordRecovery: passwordRecoveryReducer,
   packList: packListReducer,
   cardList: cardListReducer,
+  learn: learnReducer,
 });
 
 export const store = createStore(rootReducer, undefined, applyMiddleware(thunk));

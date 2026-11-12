@@ -6,13 +6,13 @@ import {
   editPack,
 } from '../../../../../features/packList/bll/packListReducer';
 import { PATH } from '../../../Main/Pages';
+import { updateCardPackName } from '../../../../../features/cardList/bll/cardListReducer';
 import { IconSvg } from '../IconSvg/IconSvg';
 import menuIcon from '../../../../../assets/icons/three-dots.svg';
 import editIcon from '../../../../../assets/icons/edit.svg';
 import deleteIcon from '../../../../../assets/icons/trash.svg';
 import learnIcon from '../../../../../assets/icons/teacher.svg';
 import s from './CardPackMenu.module.css';
-import { updateCardPackName } from '../../../../../features/cardList/bll/cardListReducer';
 
 type CardsPackMenuProps = {
   cardPackId: string;
@@ -56,6 +56,10 @@ export const CardPackMenu: FC<CardsPackMenuProps> = ({ cardPackId, isEmptyPack }
     navigate(PATH.PACK_LIST);
   };
 
+  const handleLearnCardPack = () => {
+    navigate(`${PATH.LEARN}/${cardPackId}`);
+  };
+
   return (
     <div ref={menuRef} className={s['card-pack-menu']}>
       <button className={s['dropdown-control']} onClick={handleExpandMenu}>
@@ -78,7 +82,7 @@ export const CardPackMenu: FC<CardsPackMenuProps> = ({ cardPackId, isEmptyPack }
             </li>
             {!isEmptyPack && (
               <li>
-                <button>
+                <button onClick={handleLearnCardPack}>
                   <IconSvg src={learnIcon} size={24} />
                   <span>Learn</span>
                 </button>
