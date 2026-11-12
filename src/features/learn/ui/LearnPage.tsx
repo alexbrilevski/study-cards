@@ -3,10 +3,11 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import type { Card } from '../../../main/types/card';
 import type { User } from '../../../main/types/user';
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store';
+import { fetchCardPackToLearn } from '../bll/learnReducer';
 import { getRandomCard } from '../../../utils/getRandomCard';
 import { PATH } from '../../../main/ui/Main/Pages';
 import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack';
-import { fetchCardPackToLearn } from '../bll/learnReducer';
+import { LearnCard } from './LearnCard';
 
 type LearnPageProps = {};
 
@@ -47,11 +48,15 @@ export const LearnPage: FC<LearnPageProps> = () => {
     <div>
       <ButtonBack caption={'Back'} onClick={handleGoBack} />
       <h1>Learn {packName}</h1>
-      {!isFetchingCardPack
-        ? randomCard
-          ? randomCard.question
-          : 'No cards found in this pack.'
-        : 'Fetching random card'}
+      {isFetchingCardPack ? (
+        <p>
+          Just a moment, please.
+          <br />
+          Fetching a random card...
+        </p>
+      ) : (
+        <LearnCard card={randomCard} />
+      )}
     </div>
   );
 };
