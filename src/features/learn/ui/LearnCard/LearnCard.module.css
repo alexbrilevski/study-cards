@@ -1,0 +1,27 @@
+.learn-card {
+  padding: var(--indent-base) var(--indent-l) var(--indent-l);
+  background: var(--card-bg);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+}
+
+.question-block .question {
+  margin-bottom: var(--indent-base);
+}
+
+.question-block .card-shots {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-l);
+  color: var(--caption-color);
+}
+
+.answer-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--indent-base);
+  margin-top: var(--indent-base);
+}
+
+.answer-block .card-grade p {
+  margin-bottom: var(--indent-s);
+}

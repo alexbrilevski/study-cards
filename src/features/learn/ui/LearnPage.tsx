@@ -7,7 +7,8 @@ import { fetchCardPackToLearn } from '../bll/learnReducer';
 import { getRandomCard } from '../../../utils/getRandomCard';
 import { PATH } from '../../../main/ui/Main/Pages';
 import ButtonBack from '../../../main/ui/common/components/ButtonBack/ButtonBack';
-import { LearnCard } from './LearnCard';
+import { LearnCard } from './LearnCard/LearnCard';
+import s from './LearnPage.module.css';
 
 type LearnPageProps = {};
 
@@ -45,18 +46,20 @@ export const LearnPage: FC<LearnPageProps> = () => {
   }
 
   return (
-    <div>
+    <>
       <ButtonBack caption={'Back'} onClick={handleGoBack} />
-      <h1>Learn {packName}</h1>
-      {isFetchingCardPack ? (
-        <p>
-          Just a moment, please.
-          <br />
-          Fetching a random card...
-        </p>
-      ) : (
-        <LearnCard card={randomCard} />
-      )}
-    </div>
+      <div className={s['learn-page-container']}>
+        <h1>Learn "{packName}"</h1>
+        {isFetchingCardPack ? (
+          <p className={s['card-preloader']}>
+            Just a moment, please.
+            <br />
+            Fetching a random card...
+          </p>
+        ) : (
+          <LearnCard card={randomCard} />
+        )}
+      </div>
+    </>
   );
 };

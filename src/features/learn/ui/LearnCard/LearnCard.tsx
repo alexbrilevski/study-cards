@@ -1,9 +1,10 @@
 import { useState, type FC } from 'react';
-import type { Card } from '../../../main/types/card';
-import Button from '../../../main/ui/common/components/Button/Button';
-import InputRadio from '../../../main/ui/common/components/InputRadio/InputRadio';
-import { useAppDispatch } from '../../../main/bll/store';
-import { updateCardGrade } from '../bll/learnReducer';
+import type { Card } from '../../../../main/types/card';
+import Button from '../../../../main/ui/common/components/Button/Button';
+import InputRadio from '../../../../main/ui/common/components/InputRadio/InputRadio';
+import { useAppDispatch } from '../../../../main/bll/store';
+import { updateCardGrade } from '../../bll/learnReducer';
+import s from './LearnCard.module.css';
 
 type LearnCardProps = {
   card: Card | null;
@@ -36,18 +37,26 @@ export const LearnCard: FC<LearnCardProps> = ({ card }) => {
   };
 
   return (
-    <div>
-      <p>Question: {card.question}</p>
-      <p>Number of times the question was answered: {card.shots}</p>
-      <div>
+    <div className={s['learn-card']}>
+      <div className={s['question-block']}>
+        <p className={s['question']}>
+          <b>Question:</b> {card.question}
+        </p>
+        <p className={s['card-shots']}>
+          Number of times the question was answered: <b>{card.shots}</b>
+        </p>
+      </div>
+      <div className={s['answer-block']}>
         {!showAnswer ? (
           <Button variant={'contained'} color={'primary'} onClick={handleShowAnswer}>
             Show answer
           </Button>
         ) : (
           <>
-            <p>{card.answer}</p>
-            <div>
+            <p>
+              <b>Answer:</b> {card.answer}
+            </p>
+            <div className={s['card-grade']}>
               <p>Rate yourself:</p>
               <InputRadio
                 name={'grade'}

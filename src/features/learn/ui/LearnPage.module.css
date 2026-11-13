@@ -1,0 +1,17 @@
+.learn-page-container {
+  max-width: 439px;
+  margin: var(--indent-base) auto;
+}
+
+.learn-page-container h1 {
+  margin-bottom: var(--indent-s);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-heading);
+  text-align: center;
+}
+
+.card-preloader {
+  margin: var(--indent-xl) 0;
+  color: var(--caption-color);
+  text-align: center;
+}
