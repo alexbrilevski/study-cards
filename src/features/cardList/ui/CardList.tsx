@@ -15,7 +15,7 @@ import { Pagination } from '../../../main/ui/common/components/Pagination/Pagina
 import s from './CardList.module.css';
 
 export const CardList: FC = () => {
-  const { packId } = useParams<'packId'>();
+  const { cardPackId } = useParams<'cardPackId'>();
   const authUser = useAppSelector<User | null>((state) => state.profile.user);
   const packName = useAppSelector<string>((state) => state.cardList.packName);
   const packUserId = useAppSelector<string>((state) => state.cardList.packUserId);
@@ -34,8 +34,8 @@ export const CardList: FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (packId) dispatch(fetchCardList(packId));
-  }, [packId, cardQuestion, sortCards, page, pageSize]);
+    if (cardPackId) dispatch(fetchCardList(cardPackId));
+  }, [cardPackId, cardQuestion, sortCards, page, pageSize]);
 
   useEffect(() => {
     return () => {
@@ -52,11 +52,15 @@ export const CardList: FC = () => {
   const handleAddCard = () => {
     dispatch(
       addCard({
-        cardsPack_id: packId as string,
+        cardsPack_id: cardPackId as string,
         question: 'New question',
         answer: 'New answer',
       }),
     );
+  };
+
+  const handleLearnCardPack = () => {
+    navigate(`${PATH.LEARN}/${cardPackId}`);
   };
 
   const setCardQuestionSearchParam = useDebouncedCallback((value: string) => {
@@ -84,7 +88,7 @@ export const CardList: FC = () => {
             <h1>{packName}</h1>
             {isAuthUserPack && (
               <CardPackMenu
-                cardPackId={packId as string}
+                cardPackId={cardPackId as string}
                 isEmptyPack={cards.length === 0}
               />
             )}
@@ -95,7 +99,7 @@ export const CardList: FC = () => {
                 Add new card
               </Button>
             ) : (
-              <Button variant={'contained'} color={'primary'} onClick={handleAddCard}>
+              <Button variant={'contained'} color={'primary'} onClick={handleLearnCardPack}>
                 Learn pack
               </Button>
             ))}

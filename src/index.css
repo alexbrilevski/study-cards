@@ -108,6 +108,8 @@
   --text-field-text-color: #000;
   --checkbox-checked-bg: var(--accent-color);
   --checkbox-checked-color: #fff;
+  --radio-border-color: #000;
+  --radio-checked-border-color: var(--accent-color);
   --field-error-font-size: var(--font-size-s);
   --field-error-line-height: var(--line-height-m);
 

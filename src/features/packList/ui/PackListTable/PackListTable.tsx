@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import type { Pack } from '../../../../main/types/pack';
 import { useAppDispatch } from '../../../../main/bll/store';
 import { deletePack, editPack, setPackListParams } from '../../bll/packListReducer';
@@ -25,6 +25,7 @@ export const PackListTable: FC<PackListTableProps> = ({
   sortPacks,
 }) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const setPackListSorting = (sortPacks: string) => {
     dispatch(setPackListParams({ sortPacks }));
@@ -36,6 +37,10 @@ export const PackListTable: FC<PackListTableProps> = ({
 
   const handleDeletePack = (id: string) => {
     dispatch(deletePack(id));
+  };
+
+  const handleLearnCardPack = (id: string) => {
+    navigate(`${PATH.LEARN}/${id}`);
   };
 
   return (
@@ -85,7 +90,7 @@ export const PackListTable: FC<PackListTableProps> = ({
               <td>{pack.user_name}</td>
               <td>
                 <div className="table-actions">
-                  <Button>
+                  <Button onClick={() => handleLearnCardPack(pack._id)}>
                     <IconSvg src={learnIcon} size={16} />
                   </Button>
                   {pack.user_id === authUserId && (
